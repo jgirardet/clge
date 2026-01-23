@@ -1,0 +1,221 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress.com - Themes - Baskerville-2\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-11-21T03:42:02+00:00\n"
+"PO-Revision-Date: 2024-06-12 12:02:57+0000\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+
+#: functions.php:254
+msgid "Continue Reading &rarr;"
+msgstr "Читать далее &rarr;"
+
+#. Template Name of the theme
+msgid "No Sidebar"
+msgstr "Без боковой панели"
+
+#. Template Name of the theme
+msgid "Full Width, No Sidebar"
+msgstr "Полная ширина, без боковой панели"
+
+#. Template Name of the theme
+msgid "Contributors"
+msgstr "Участники разработки"
+
+#: templates/contributors-page.php:71
+msgid "Website"
+msgstr "Сайт"
+
+#: templates/contributors-page.php:66
+#: templates/contributors-page.php:67
+msgid "Author archive"
+msgstr "Архив автора"
+
+#: templates/contributors-page.php:59
+msgid "%s post"
+msgid_plural "%s posts"
+msgstr[0] "%s запись"
+msgstr[1] "%s записи"
+msgstr[2] "%s записей"
+
+#: search.php:11
+msgid "Search Results for: %s"
+msgstr "Результаты поиска для: %s"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:61
+#: inc/template-tags.php:68
+msgid ", "
+msgstr ", "
+
+#: inc/template-tags.php:39
+msgid "%s Edit Post "
+msgstr "%s Редактировать пост"
+
+#: inc/template-tags.php:23
+msgid "Featured"
+msgstr "Избранное"
+
+#: inc/template-tags.php:17
+msgid "Featured post"
+msgstr "Избранная запись"
+
+#: inc/custom-header.php:33
+msgid "Default Header"
+msgstr "Шапка сайта по умолчанию"
+
+#: header.php:67
+msgid "Open Search"
+msgstr "Открыть поиск"
+
+#: header.php:56
+msgid "Menu"
+msgstr "Меню"
+
+#: header.php:27
+msgid "Search"
+msgstr "Поиск"
+
+#: header.php:19
+msgid "Skip to content"
+msgstr "Перейти к содержимому"
+
+#: functions.php:208
+msgid "Footer 3"
+msgstr "Подвал 3"
+
+#: functions.php:200
+msgid "Footer 2"
+msgstr "Подвал 2"
+
+#: functions.php:192
+msgid "Footer 1"
+msgstr "Подвал 1"
+
+#: functions.php:185
+msgid "Widgets in this area will be shown in the sidebar."
+msgstr "Виджеты в этой области будут отображаться в боковой панели"
+
+#: functions.php:183
+msgid "Sidebar"
+msgstr "Боковая колонка"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Pacifico, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:127
+msgctxt "Pacifico font: on or off"
+msgid "on"
+msgstr "off"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto Slab, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:121
+msgctxt "Roboto Slab font: on or off"
+msgid "on"
+msgstr "on"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto, translate this to 'off'. Do not translate into your own language.
+#: functions.php:115
+msgctxt "Roboto font: on or off"
+msgid "on"
+msgstr "on"
+
+#: footer.php:56
+msgid "Up"
+msgstr "Вверх"
+
+#: footer.php:56
+msgid "To the top"
+msgstr "Наверх"
+
+#: footer.php:52
+msgid "Theme: %1$s by %2$s."
+msgstr "Тема: %1$s, автор: %2$s."
+
+#: footer.php:50
+msgid "Proudly powered by %s"
+msgstr "Сайт работает на %s"
+
+#: footer.php:50
+msgid "http://wordpress.org/"
+msgstr "http://wordpress.org/"
+
+#: content-none.php:25
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Запрошенную информацию найти не удалось. Возможно, будет полезен поиск по сайту."
+
+#: content-none.php:18
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Извините, по вашему запросу ничего не найдено. Попробуйте другие ключевые слова."
+
+#: content-none.php:12
+msgid "Ready to publish your first post? %1$sGet started here%2$s."
+msgstr "Готовы опубликовать свой первый пост? %1$sНачните здесь%2$s."
+
+#: content-author.php:34
+msgid "View all posts by %s"
+msgstr "Смотреть все записи автора %s"
+
+#: content-author.php:28
+msgid "Published by %s"
+msgstr "Опубликовано %s"
+
+#. translators: %s: Name of current post.
+#: content-aside.php:38
+#: content-audio.php:43
+#: content-gallery.php:68
+#: content-image.php:51
+#: content-link.php:49
+#: content-page.php:36
+#: content-quote.php:45
+#: content-status.php:36
+#: content-video.php:45
+#: content.php:45
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Продолжить чтение %s <span class=\"meta-nav\">\t</span>"
+
+#: comments.php:54
+msgid "Comments are closed."
+msgstr "Комментарии запрещены."
+
+#: comments.php:45
+msgid "Newer Comments"
+msgstr "Следующие комментарии"
+
+#: comments.php:44
+msgid "Older Comments"
+msgstr "Предыдущие комментарии"
+
+#: comments.php:29
+msgid "Add yours"
+msgstr "Добавьте свой"
+
+#: comments.php:21
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "%2$s: %1$s комментарий"
+msgstr[1] "%2$s: %1$s комментария"
+msgstr[2] "%2$s: %1$s комментариев"
+
+#: 404.php:31
+msgid "Try looking in the monthly archives."
+msgstr "Попробуйте посмотреть в архивах по месяцам."
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "По этому адресу ничего не найдено. Воспользуйтесь одной из следующих ссылок или поиском."
+
+#: 404.php:19
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Ой! Страница не найдена."

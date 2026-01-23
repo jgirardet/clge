@@ -1,0 +1,232 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress.com - Themes - Baskerville-2\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-03-05T00:56:14+00:00\n"
+"PO-Revision-Date: 2020-10-23 11:05:34+0000\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+
+#: functions.php:254
+msgid "Continue Reading &rarr;"
+msgstr "Lees verder &rarr;"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/full-width-page.php
+msgid "Full Width, No Sidebar"
+msgstr "Volledige breedte, Geen zijbalk"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/no-sidebar-page.php
+msgid "No Sidebar"
+msgstr "Geen zijbalk"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/contributors-page.php
+msgid "Contributors"
+msgstr "Bijdragers"
+
+#: templates/contributors-page.php:71
+msgid "Website"
+msgstr "Website"
+
+#: templates/contributors-page.php:59
+msgid "%s post"
+msgid_plural "%s posts"
+msgstr[0] "%s artikel"
+msgstr[1] "%s artikelen"
+
+#: templates/contributors-page.php:66
+#: templates/contributors-page.php:67
+msgid "Author archive"
+msgstr "Archief beheerder"
+
+#: search.php:11
+msgid "Search Results for: %s"
+msgstr "Zoekresultaten voor: %s"
+
+#: inc/template-tags.php:23
+msgid "Featured"
+msgstr "Uitgelicht"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:61
+#: inc/template-tags.php:68
+msgid ", "
+msgstr ", "
+
+#: inc/template-tags.php:39
+msgid "%s Edit Post "
+msgstr "%s Bericht bewerken"
+
+#: inc/template-tags.php:17
+msgid "Featured post"
+msgstr "Uitgelicht bericht"
+
+#: inc/custom-header.php:33
+msgid "Default Header"
+msgstr "Standaard header"
+
+#: header.php:67
+msgid "Open Search"
+msgstr "Zoeken openen"
+
+#: header.php:56
+msgid "Menu"
+msgstr "Menu"
+
+#: header.php:19
+msgid "Skip to content"
+msgstr "Naar de inhoud springen"
+
+#: header.php:27
+msgid "Search"
+msgstr "Zoeken"
+
+#: functions.php:200
+msgid "Footer 2"
+msgstr "Voettekst 2"
+
+#: functions.php:208
+msgid "Footer 3"
+msgstr "Voettekst 3"
+
+#: functions.php:183
+msgid "Sidebar"
+msgstr "Sidebar"
+
+#: functions.php:192
+msgid "Footer 1"
+msgstr "Voettekst 1"
+
+#: footer.php:56
+msgid "Up"
+msgstr "Omhoog"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Pacifico, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:127
+msgctxt "Pacifico font: on or off"
+msgid "on"
+msgstr "Uit"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto, translate this to 'off'. Do not translate into your own language.
+#: functions.php:115
+msgctxt "Roboto font: on or off"
+msgid "on"
+msgstr "Aan"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto Slab, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:121
+msgctxt "Roboto Slab font: on or off"
+msgid "on"
+msgstr "Aan"
+
+#: footer.php:56
+msgid "To the top"
+msgstr "Naar boven"
+
+#: footer.php:50
+msgid "Proudly powered by %s"
+msgstr "Ondersteund door %s"
+
+#: footer.php:52
+msgid "Theme: %1$s by %2$s."
+msgstr "Thema: %1$s door %2$s."
+
+#: footer.php:50
+msgid "http://wordpress.org/"
+msgstr "http://wordpress.org/"
+
+#: content-none.php:18
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Helaas, er waren geen overeenkomsten met jouw zoekterm. Probeer het opnieuw met enkele andere zoekwoorden."
+
+#: content-none.php:25
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Het lijkt erop dat wij niet kunnen vinden wat jij zoekt. Wellicht helpt de zoekfunctie."
+
+#: content-author.php:34
+msgid "View all posts by %s"
+msgstr "Toon alle berichten van %s"
+
+#: content-none.php:12
+msgid "Ready to publish your first post? %1$sGet started here%2$s."
+msgstr "Klaar om je eerste bericht te plaatsen? %1$sBegin hier%2$s."
+
+#: content-author.php:28
+msgid "Published by %s"
+msgstr "Gepubliceerd door %s"
+
+#. translators: %1$s: Pencil icon, %2$s: Name of current post
+#: content-aside.php:62
+#: content-audio.php:73
+#: content-gallery.php:105
+#: content-image.php:76
+#: content-link.php:79
+#: content-page.php:45
+#: content-quote.php:74
+#: content-status.php:59
+#: content-video.php:68
+#: content.php:66
+msgid "%1$s Edit %2$s"
+msgstr "%1$s Bewerken %2$s"
+
+#. translators: %s: Name of current post.
+#: content-aside.php:38
+#: content-audio.php:49
+#: content-gallery.php:68
+#: content-image.php:52
+#: content-link.php:49
+#: content-page.php:36
+#: content-quote.php:51
+#: content-status.php:36
+#: content-video.php:45
+#: content.php:45
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Lees verder %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: comments.php:54
+msgid "Comments are closed."
+msgstr "Reacties zijn gesloten."
+
+#: comments.php:29
+msgid "Add yours"
+msgstr "Voeg uw reactie toe"
+
+#: comments.php:44
+msgid "Older Comments"
+msgstr "Oudere reacties"
+
+#: comments.php:45
+msgid "Newer Comments"
+msgstr "Nieuwere reacties"
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Het lijkt erop dat niets werd gevonden op deze locatie. Probeer dan misschien een van de links hieronder of een zoekopdracht?"
+
+#: comments.php:21
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "Een gedachte over &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s gedachten over &ldquo;%2$s&rdquo;"
+
+#: 404.php:31
+msgid "Try looking in the monthly archives."
+msgstr "Bekijk het maandelijks archief"
+
+#: 404.php:19
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Oeps! Die pagina kon niet worden gevonden."

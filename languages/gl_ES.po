@@ -1,0 +1,224 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress.com - Themes - Baskerville-2\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-03-05T00:56:14+00:00\n"
+"PO-Revision-Date: 2018-10-06 02:40:14+0000\n"
+"Language: gl_ES\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+
+#: functions.php:254
+msgid "Continue Reading &rarr;"
+msgstr "Seguir lendo &rarr;"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/full-width-page.php
+msgid "Full Width, No Sidebar"
+msgstr "Todo o largo, sen barra lateral."
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/no-sidebar-page.php
+msgid "No Sidebar"
+msgstr "Sen barra lateral"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/contributors-page.php
+msgid "Contributors"
+msgstr "Colaboradores"
+
+#: templates/contributors-page.php:71
+msgid "Website"
+msgstr "Sitio web"
+
+#: templates/contributors-page.php:59
+msgid "%s post"
+msgid_plural "%s posts"
+msgstr[0] "%s artigo"
+msgstr[1] "%s artigos"
+
+#: templates/contributors-page.php:66
+#: templates/contributors-page.php:67
+msgid "Author archive"
+msgstr "Arquivo do autor"
+
+#: search.php:11
+msgid "Search Results for: %s"
+msgstr "Resultados da busca para: %s"
+
+#: inc/template-tags.php:23
+msgid "Featured"
+msgstr "Destacado"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:61
+#: inc/template-tags.php:68
+msgid ", "
+msgstr ","
+
+#: inc/template-tags.php:39
+msgid "%s Edit Post "
+msgstr "%s Editar o artigo"
+
+#: inc/template-tags.php:17
+msgid "Featured post"
+msgstr "Artigo destacado"
+
+#: inc/custom-header.php:33
+msgid "Default Header"
+msgstr "Cabeceira predeterminada"
+
+#: header.php:56
+msgid "Menu"
+msgstr "Menú"
+
+#: header.php:19
+msgid "Skip to content"
+msgstr "Ir ao contido"
+
+#: header.php:27
+msgid "Search"
+msgstr "Buscar"
+
+#: functions.php:200
+msgid "Footer 2"
+msgstr "Rodapé 2"
+
+#: functions.php:208
+msgid "Footer 3"
+msgstr "Rodapé 3"
+
+#: functions.php:183
+msgid "Sidebar"
+msgstr "Barra lateral"
+
+#: functions.php:192
+msgid "Footer 1"
+msgstr "Rodapé 1"
+
+#: functions.php:185
+msgid "Widgets in this area will be shown in the sidebar."
+msgstr "Os widgets nesta área serán mostrados na barra lateral. "
+
+#. Translators: If there are characters in your language that are not supported
+#. by Pacifico, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:127
+msgctxt "Pacifico font: on or off"
+msgid "on"
+msgstr "on"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto Slab, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:121
+msgctxt "Roboto Slab font: on or off"
+msgid "on"
+msgstr "on"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto, translate this to 'off'. Do not translate into your own language.
+#: functions.php:115
+msgctxt "Roboto font: on or off"
+msgid "on"
+msgstr "on"
+
+#: footer.php:56
+msgid "Up"
+msgstr "Subir"
+
+#: footer.php:56
+msgid "To the top"
+msgstr "Á parte superior"
+
+#: footer.php:50
+msgid "Proudly powered by %s"
+msgstr "Basado en %s traducido por egalego.com"
+
+#: footer.php:52
+msgid "Theme: %1$s by %2$s."
+msgstr "Tema: %1$s por %2$s"
+
+#: footer.php:50
+msgid "http://wordpress.org/"
+msgstr "http://gl.wordpress.org/"
+
+#: content-none.php:18
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Sentímolo, pero non hai nada que coincida cos termos de busca. Probe con palabras distintas."
+
+#: content-none.php:25
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Semella que non podemos atopar o que procuras. Tal vez unha busca poida axudar."
+
+#: content-author.php:34
+msgid "View all posts by %s"
+msgstr "Ver todas as mensaxes de %s"
+
+#. translators: %s: Name of current post.
+#: content-aside.php:38
+#: content-audio.php:49
+#: content-gallery.php:68
+#: content-image.php:52
+#: content-link.php:49
+#: content-page.php:36
+#: content-quote.php:51
+#: content-status.php:36
+#: content-video.php:45
+#: content.php:45
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Seguir lendo %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-author.php:28
+msgid "Published by %s"
+msgstr "Publicado por %s"
+
+#. translators: %1$s: Pencil icon, %2$s: Name of current post
+#: content-aside.php:62
+#: content-audio.php:73
+#: content-gallery.php:105
+#: content-image.php:76
+#: content-link.php:79
+#: content-page.php:45
+#: content-quote.php:74
+#: content-status.php:59
+#: content-video.php:68
+#: content.php:66
+msgid "%1$s Edit %2$s"
+msgstr "%1$s Editar %2$s"
+
+#: comments.php:54
+msgid "Comments are closed."
+msgstr "Comentarios pechados"
+
+#: comments.php:44
+msgid "Older Comments"
+msgstr "Comentarios máis antigos"
+
+#: comments.php:45
+msgid "Newer Comments"
+msgstr "Comentarios recentes"
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Semella que non se atopa nada por aquí. Queres probar con algún dos enlaces de embaixo ou cunha busca?"
+
+#: 404.php:31
+msgid "Try looking in the monthly archives."
+msgstr "Proba mirando nos arquivos mensuais."
+
+#: comments.php:21
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "Unha opinión sobre &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s opiniones sobre &ldquo;%2$s&rdquo;"
+
+#: 404.php:19
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Vaia! Esta páxina non se pode atopar."

@@ -1,0 +1,238 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress.com - Themes - Baskerville-2\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-08-14T00:45:47+00:00\n"
+"PO-Revision-Date: 2025-05-31 13:36:03+0000\n"
+"Language: sv_SE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+
+#: functions.php:254
+msgid "Continue Reading &rarr;"
+msgstr "Fortsätt läsa &rarr;"
+
+#. Template Name of the theme
+msgid "No Sidebar"
+msgstr "Ingen sidopanel"
+
+#. Template Name of the theme
+msgid "Full Width, No Sidebar"
+msgstr "Full bredd, ingen sidopanel"
+
+#. Template Name of the theme
+msgid "Contributors"
+msgstr "Bidragslämnare"
+
+#. Description of the theme
+#: style.css
+msgid "Baskerville 2 is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
+msgstr "Baskerville 2 är ett dynamiskt, rutnätbaserat tema för kuratorer. Det är det perfekta sättet att visa upp dina inlägg, videoklipp, bilder och gallerier och dela dina favoritcitat och länkar."
+
+#: templates/contributors-page.php:71
+msgid "Website"
+msgstr "Webbplats"
+
+#: templates/contributors-page.php:59
+msgid "%s post"
+msgid_plural "%s posts"
+msgstr[0] "%s inlägg"
+msgstr[1] "%s inlägg"
+
+#: templates/contributors-page.php:66
+#: templates/contributors-page.php:67
+msgid "Author archive"
+msgstr "Författararkiv"
+
+#: search.php:11
+msgid "Search Results for: %s"
+msgstr "Sökresultat för: %s"
+
+#: inc/template-tags.php:23
+msgid "Featured"
+msgstr "Utvalda"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:61
+#: inc/template-tags.php:68
+msgid ", "
+msgstr ", "
+
+#: inc/template-tags.php:39
+msgid "%s Edit Post "
+msgstr "%s redigera inlägg"
+
+#: inc/template-tags.php:17
+msgid "Featured post"
+msgstr "Utvalt inlägg"
+
+#: header.php:67
+msgid "Open Search"
+msgstr "Öppna sök"
+
+#: inc/custom-header.php:33
+msgid "Default Header"
+msgstr "Standardrubrik"
+
+#: header.php:56
+msgid "Menu"
+msgstr "Meny"
+
+#: header.php:19
+msgid "Skip to content"
+msgstr "Hoppa till innehåll"
+
+#: header.php:27
+msgid "Search"
+msgstr "Sök"
+
+#: functions.php:200
+msgid "Footer 2"
+msgstr "Sidfot 2"
+
+#: functions.php:208
+msgid "Footer 3"
+msgstr "Sidfot 3"
+
+#: functions.php:183
+msgid "Sidebar"
+msgstr "Sidopanel"
+
+#: functions.php:192
+msgid "Footer 1"
+msgstr "Sidfot 1"
+
+#: functions.php:185
+msgid "Widgets in this area will be shown in the sidebar."
+msgstr "Widgetar i detta område kommer visas i sidopanelen."
+
+#: footer.php:56
+msgid "Up"
+msgstr "Upp"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto, translate this to 'off'. Do not translate into your own language.
+#: functions.php:115
+msgctxt "Roboto font: on or off"
+msgid "on"
+msgstr "on"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Pacifico, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:127
+msgctxt "Pacifico font: on or off"
+msgid "on"
+msgstr "on"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto Slab, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:121
+msgctxt "Roboto Slab font: on or off"
+msgid "on"
+msgstr "on"
+
+#: footer.php:56
+msgid "To the top"
+msgstr "Till toppen"
+
+#: footer.php:50
+msgid "Proudly powered by %s"
+msgstr "Drivs med %s"
+
+#: footer.php:52
+msgid "Theme: %1$s by %2$s."
+msgstr "Tema: %1$s av %2$s."
+
+#: footer.php:50
+msgid "http://wordpress.org/"
+msgstr "https://sv.wordpress.org/"
+
+#: content-none.php:25
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Det verkar som att vi inte kan hitta det du letar efter. Kanske en sökning kan hjälpa?"
+
+#: content-none.php:18
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Inget matchade dina söktermer. Försök igen med några andra nyckelord."
+
+#: content-author.php:34
+msgid "View all posts by %s"
+msgstr "Visa alla inlägg av %s"
+
+#: content-none.php:12
+msgid "Ready to publish your first post? %1$sGet started here%2$s."
+msgstr "Redo att publicera ditt första inlägg? %1$sKom igång här%2$s."
+
+#: content-author.php:28
+msgid "Published by %s"
+msgstr "Publicerad av %s"
+
+#. translators: %1$s: Pencil icon, %2$s: Name of current post
+#: content-aside.php:62
+#: content-audio.php:67
+#: content-gallery.php:105
+#: content-image.php:75
+#: content-link.php:79
+#: content-page.php:45
+#: content-quote.php:68
+#: content-status.php:59
+#: content-video.php:68
+#: content.php:66
+msgid "%1$s Edit %2$s"
+msgstr "%1$s Redigera %2$s"
+
+#. translators: %s: Name of current post.
+#: content-aside.php:38
+#: content-audio.php:43
+#: content-gallery.php:68
+#: content-image.php:51
+#: content-link.php:49
+#: content-page.php:36
+#: content-quote.php:45
+#: content-status.php:36
+#: content-video.php:45
+#: content.php:45
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Fortsätt läsa %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: comments.php:54
+msgid "Comments are closed."
+msgstr "Kommentarer är stängda."
+
+#: comments.php:44
+msgid "Older Comments"
+msgstr "Äldre kommentarer"
+
+#: comments.php:45
+msgid "Newer Comments"
+msgstr "Nyare kommentarer"
+
+#: comments.php:29
+msgid "Add yours"
+msgstr "Lägg till din"
+
+#: comments.php:21
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "En reaktion till &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s reaktioner till &ldquo;%2$s&rdquo;"
+
+#: 404.php:31
+msgid "Try looking in the monthly archives."
+msgstr "Prova att titta i de månatliga arkiven."
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Det verkar som om inget hittades på denna plats. Kanske prova någon av länkarna nedan eller en sökning?"
+
+#: 404.php:19
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Hoppsan! Den sidan kan inte hittas."

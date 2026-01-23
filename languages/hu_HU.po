@@ -1,0 +1,241 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress.com - Themes - Baskerville-2\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-03-05T00:56:14+00:00\n"
+"PO-Revision-Date: 2018-08-28 09:00:20+0000\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+
+#: functions.php:254
+msgid "Continue Reading &rarr;"
+msgstr "Bővebben &rarr;"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/full-width-page.php
+msgid "Full Width, No Sidebar"
+msgstr "Teljes méret, Oldalsáv nélkül"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/no-sidebar-page.php
+msgid "No Sidebar"
+msgstr "Nincs oldalsáv"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/contributors-page.php
+msgid "Contributors"
+msgstr "Közreműködők"
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/style.css
+msgid "Baskerville 2 is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
+msgstr "A Baskerville 2 egy dinamikus, rácsalapú téma a kurátorok számára. Ez a tökéletes módja annak, hogy bemutassa a bejegyzéseit, videóit, képeit és galériáit, és megossza kedvenc idézeteit és linkjeit."
+
+#: templates/contributors-page.php:71
+msgid "Website"
+msgstr "Weboldal"
+
+#: templates/contributors-page.php:59
+msgid "%s post"
+msgid_plural "%s posts"
+msgstr[0] "%s bejegyzés"
+msgstr[1] "%s bejegyzés"
+
+#: templates/contributors-page.php:66
+#: templates/contributors-page.php:67
+msgid "Author archive"
+msgstr "A szerző további bejegyzései"
+
+#: search.php:11
+msgid "Search Results for: %s"
+msgstr "%s kifejezésre történő keresés eredménye:"
+
+#: inc/template-tags.php:23
+msgid "Featured"
+msgstr "Kiemelt"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:61
+#: inc/template-tags.php:68
+msgid ", "
+msgstr ", "
+
+#: inc/template-tags.php:39
+msgid "%s Edit Post "
+msgstr "%s Bejegyzés szerkesztése"
+
+#: inc/template-tags.php:17
+msgid "Featured post"
+msgstr "Kiemelt bejegyzés"
+
+#: header.php:67
+msgid "Open Search"
+msgstr "Keresés kinyitása"
+
+#: inc/custom-header.php:33
+msgid "Default Header"
+msgstr "Alapértelmezett fejléc"
+
+#: header.php:56
+msgid "Menu"
+msgstr "Menü"
+
+#: header.php:19
+msgid "Skip to content"
+msgstr "Tovább a tartalomhoz"
+
+#: header.php:27
+msgid "Search"
+msgstr "Keresés"
+
+#: functions.php:200
+msgid "Footer 2"
+msgstr "2. lábrész"
+
+#: functions.php:208
+msgid "Footer 3"
+msgstr "3. lábrész"
+
+#: functions.php:183
+msgid "Sidebar"
+msgstr "Oldalsáv"
+
+#: functions.php:192
+msgid "Footer 1"
+msgstr "1. lábrész"
+
+#: functions.php:185
+msgid "Widgets in this area will be shown in the sidebar."
+msgstr "Az ezek a widgetek az oldalsávon jelennek meg."
+
+#: footer.php:56
+msgid "Up"
+msgstr "Fel"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto, translate this to 'off'. Do not translate into your own language.
+#: functions.php:115
+msgctxt "Roboto font: on or off"
+msgid "on"
+msgstr "be"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Pacifico, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:127
+msgctxt "Pacifico font: on or off"
+msgid "on"
+msgstr "on"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto Slab, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:121
+msgctxt "Roboto Slab font: on or off"
+msgid "on"
+msgstr "on"
+
+#: footer.php:56
+msgid "To the top"
+msgstr "Ugrás a tetejére"
+
+#: footer.php:50
+msgid "Proudly powered by %s"
+msgstr "Köszönjük %s!"
+
+#: footer.php:52
+msgid "Theme: %1$s by %2$s."
+msgstr "Sablon: %1$s, %2$s fejlesztésében."
+
+#: footer.php:50
+msgid "http://wordpress.org/"
+msgstr "http://wordpress.org/"
+
+#: content-none.php:18
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Elnézést, nem találunk a keresési feltételeknek megfelelő eredményt. Próbálkozzon meg egy másik kulcsszóval, kifejezéssel."
+
+#: content-none.php:25
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Úgy tűnik, nem találtuk meg azt, amit keresett. Talán, egy újabb keresés segíthet."
+
+#: content-author.php:34
+msgid "View all posts by %s"
+msgstr "%s összes bejegyzéseinek megtekintése"
+
+#: content-none.php:12
+msgid "Ready to publish your first post? %1$sGet started here%2$s."
+msgstr "Készen állunk az első bejegyzés közzétételére? %1$sKezdjük el ide%2$s."
+
+#. translators: %s: Name of current post.
+#: content-aside.php:38
+#: content-audio.php:49
+#: content-gallery.php:68
+#: content-image.php:52
+#: content-link.php:49
+#: content-page.php:36
+#: content-quote.php:51
+#: content-status.php:36
+#: content-video.php:45
+#: content.php:45
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "%s <span class=\"meta-nav\">&rarr;</span> A teljes bejegyzés megtekintése"
+
+#: content-author.php:28
+msgid "Published by %s"
+msgstr "Közzétéve: %s"
+
+#. translators: %1$s: Pencil icon, %2$s: Name of current post
+#: content-aside.php:62
+#: content-audio.php:73
+#: content-gallery.php:105
+#: content-image.php:76
+#: content-link.php:79
+#: content-page.php:45
+#: content-quote.php:74
+#: content-status.php:59
+#: content-video.php:68
+#: content.php:66
+msgid "%1$s Edit %2$s"
+msgstr "%1$s Szerkesztés %2$s"
+
+#: comments.php:54
+msgid "Comments are closed."
+msgstr "Hozzászólások letiltva."
+
+#: comments.php:44
+msgid "Older Comments"
+msgstr "Korábbi hozzászólás"
+
+#: comments.php:45
+msgid "Newer Comments"
+msgstr "Újabb hozzászólás"
+
+#: comments.php:29
+msgid "Add yours"
+msgstr "Új írása"
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Úgy tűnik, ezen a helyszinen nem találtunk semmit. Talán az alábbi hivatkozások vagy egy keresés segíthet!"
+
+#: comments.php:21
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "&ldquo;%2$s&rdquo; bejegyzéshez egy hozzászólás"
+msgstr[1] "&ldquo;%2$s&rdquo; bejegyzéshez %1$s hozzászólás"
+
+#: 404.php:31
+msgid "Try looking in the monthly archives."
+msgstr "Próbálj belenézni a havi összes bejegyzésekben."
+
+#: 404.php:19
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "A keresett oldal nem található."

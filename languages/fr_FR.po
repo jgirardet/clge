@@ -1,0 +1,237 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress.com - Themes - Baskerville-2\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-03-05T00:56:14+00:00\n"
+"PO-Revision-Date: 2018-10-07 10:41:23+0000\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+
+#: functions.php:254
+msgid "Continue Reading &rarr;"
+msgstr "Lire la Suite &rarr;"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/contributors-page.php
+msgid "Contributors"
+msgstr "Contributeurs"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/full-width-page.php
+msgid "Full Width, No Sidebar"
+msgstr "Pleine largeur, sans barre latérale"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/no-sidebar-page.php
+msgid "No Sidebar"
+msgstr "Sans Sidebar"
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/style.css
+msgid "Baskerville 2 is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
+msgstr "Baskerville 2 est un thème dynamique basé sur un format en grille fait pour les organisateurs de contenu. C’est la meilleure façon de mettre en avant vos articles, vidéos, images et galeries, et de partager vos liens et citations favorites."
+
+#: templates/contributors-page.php:71
+msgid "Website"
+msgstr "Site web"
+
+#: templates/contributors-page.php:59
+msgid "%s post"
+msgid_plural "%s posts"
+msgstr[0] "%s article"
+msgstr[1] "%s articles"
+
+#: templates/contributors-page.php:66
+#: templates/contributors-page.php:67
+msgid "Author archive"
+msgstr "Archives d&rsquo;Auteur"
+
+#: search.php:11
+msgid "Search Results for: %s"
+msgstr "Résultat de recherche pour : %s"
+
+#: inc/template-tags.php:23
+msgid "Featured"
+msgstr "à la Une"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:61
+#: inc/template-tags.php:68
+msgid ", "
+msgstr ", "
+
+#: header.php:67
+msgid "Open Search"
+msgstr "Ouvrir la recherche"
+
+#: inc/custom-header.php:33
+msgid "Default Header"
+msgstr "En-tête par défaut"
+
+#: inc/template-tags.php:17
+msgid "Featured post"
+msgstr "Article mis en avant"
+
+#: header.php:56
+msgid "Menu"
+msgstr "Menu"
+
+#: header.php:19
+msgid "Skip to content"
+msgstr "Accéder au contenu principal"
+
+#: header.php:27
+msgid "Search"
+msgstr "Recherche"
+
+#: functions.php:200
+msgid "Footer 2"
+msgstr "Pied de Page 2"
+
+#: functions.php:208
+msgid "Footer 3"
+msgstr "Pied&nbsp;de&nbsp;page&nbsp;3"
+
+#: functions.php:183
+msgid "Sidebar"
+msgstr "Colonne latérale"
+
+#: functions.php:185
+msgid "Widgets in this area will be shown in the sidebar."
+msgstr "Les widgets de cette partie seront affichés dans la barre latérale."
+
+#: functions.php:192
+msgid "Footer 1"
+msgstr "Pied&nbsp;de&nbsp;page&nbsp;1"
+
+#: footer.php:56
+msgid "Up"
+msgstr "Retour en haut"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto, translate this to 'off'. Do not translate into your own language.
+#: functions.php:115
+msgctxt "Roboto font: on or off"
+msgid "on"
+msgstr "on"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto Slab, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:121
+msgctxt "Roboto Slab font: on or off"
+msgid "on"
+msgstr "on"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Pacifico, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:127
+msgctxt "Pacifico font: on or off"
+msgid "on"
+msgstr "on"
+
+#: footer.php:56
+msgid "To the top"
+msgstr "Retour en haut"
+
+#: footer.php:50
+msgid "Proudly powered by %s"
+msgstr "Fièrement propulsé par %s"
+
+#: footer.php:52
+msgid "Theme: %1$s by %2$s."
+msgstr "Thème&nbsp;: %1$s par %2$s."
+
+#: footer.php:50
+msgid "http://wordpress.org/"
+msgstr "http://wordpress.org/"
+
+#: content-none.php:18
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Désolé, mais rien ne correspond à vos termes de recherche. Veuillez essayer de nouveau avec quelques mots-clés différents."
+
+#: content-none.php:25
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Il semble que nous ne puissions pas trouver ce que vous cherchez. Le moteur de recherche sera peut-être plus fructueux."
+
+#: content-author.php:34
+msgid "View all posts by %s"
+msgstr "Afficher tous les articles par %s"
+
+#: content-none.php:12
+msgid "Ready to publish your first post? %1$sGet started here%2$s."
+msgstr "Prêt à publier votre premier article? %1$sCommencez ici%2$s."
+
+#. translators: %s: Name of current post.
+#: content-aside.php:38
+#: content-audio.php:49
+#: content-gallery.php:68
+#: content-image.php:52
+#: content-link.php:49
+#: content-page.php:36
+#: content-quote.php:51
+#: content-status.php:36
+#: content-video.php:45
+#: content.php:45
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Lire la suite %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-author.php:28
+msgid "Published by %s"
+msgstr "Publié par %s"
+
+#. translators: %1$s: Pencil icon, %2$s: Name of current post
+#: content-aside.php:62
+#: content-audio.php:73
+#: content-gallery.php:105
+#: content-image.php:76
+#: content-link.php:79
+#: content-page.php:45
+#: content-quote.php:74
+#: content-status.php:59
+#: content-video.php:68
+#: content.php:66
+msgid "%1$s Edit %2$s"
+msgstr "%1$s Modifier %2$s"
+
+#: comments.php:54
+msgid "Comments are closed."
+msgstr "Les commentaires sont fermés."
+
+#: comments.php:29
+msgid "Add yours"
+msgstr "Ajouter un commentaire"
+
+#: comments.php:44
+msgid "Older Comments"
+msgstr "Commentaires plus anciens"
+
+#: comments.php:45
+msgid "Newer Comments"
+msgstr "Commentaires plus récents"
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Contenu introuvable. Vous pouvez essayer l'outil de recherche ou les liens ci-dessous pour le retrouver."
+
+#: 404.php:31
+msgid "Try looking in the monthly archives."
+msgstr "Essayez de parcourir les archives mensuelles."
+
+#: comments.php:21
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "Un commentaire sur &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s commentaires sur &ldquo;%2$s&rdquo;"
+
+#: 404.php:19
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Aïe ! Cette page est introuvable."

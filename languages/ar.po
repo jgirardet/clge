@@ -1,0 +1,249 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress.com - Themes - Baskerville-2\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-03-05T00:56:14+00:00\n"
+"PO-Revision-Date: 2020-08-02 17:14:28+0000\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+
+#: functions.php:254
+msgid "Continue Reading &rarr;"
+msgstr "المزيد &larr;"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/full-width-page.php
+msgid "Full Width, No Sidebar"
+msgstr "عرض كامل، بدون شريط جانبي"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/no-sidebar-page.php
+msgid "No Sidebar"
+msgstr "لا يوجد شريط جانبي"
+
+#. Template Name of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/templates/contributors-page.php
+msgid "Contributors"
+msgstr "المساهمين"
+
+#. Description of the plugin/theme
+#: wp-content/themes/pub/baskerville-2/style.css
+msgid "Baskerville 2 is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
+msgstr "Baskerville 2 هو قالب ديناميكي، شبكي لأمناء المكاتب. سيوفر لك الطريقة المثلى لعرض مشاركاتك، ومقاطع الفيديو، والصور والمعارض، ولمشاركة اقتباساتك وروابطك المفضلة."
+
+#: templates/contributors-page.php:71
+msgid "Website"
+msgstr "الموقع"
+
+#: templates/contributors-page.php:59
+msgid "%s post"
+msgid_plural "%s posts"
+msgstr[0] "%s تدوينة"
+msgstr[1] "تدوينة واحدة"
+msgstr[2] "تدوينتان إثنتان"
+msgstr[3] "%s تدوينات"
+msgstr[4] "%s تدوينة"
+msgstr[5] "%s تدوينة"
+
+#: templates/contributors-page.php:66
+#: templates/contributors-page.php:67
+msgid "Author archive"
+msgstr "أرشيف المؤلف"
+
+#: search.php:11
+msgid "Search Results for: %s"
+msgstr "نتائج البحث عن: %s"
+
+#: inc/template-tags.php:23
+msgid "Featured"
+msgstr "المميز"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:61
+#: inc/template-tags.php:68
+msgid ", "
+msgstr "، "
+
+#: inc/template-tags.php:39
+msgid "%s Edit Post "
+msgstr "تعديل التدوينة %s"
+
+#: inc/template-tags.php:17
+msgid "Featured post"
+msgstr "موضوع مميّز"
+
+#: header.php:67
+msgid "Open Search"
+msgstr "فتح البحث"
+
+#: inc/custom-header.php:33
+msgid "Default Header"
+msgstr "رأس الصفحة الرئيسي"
+
+#: header.php:56
+msgid "Menu"
+msgstr "القائمة"
+
+#: header.php:19
+msgid "Skip to content"
+msgstr "انتقل إلى المحتوى"
+
+#: header.php:27
+msgid "Search"
+msgstr "بحث"
+
+#: functions.php:208
+msgid "Footer 3"
+msgstr "تذييل"
+
+#: functions.php:200
+msgid "Footer 2"
+msgstr "تذييل 2"
+
+#: functions.php:183
+msgid "Sidebar"
+msgstr "الشريط الجانبي"
+
+#: functions.php:192
+msgid "Footer 1"
+msgstr "تذييل 1"
+
+#: functions.php:185
+msgid "Widgets in this area will be shown in the sidebar."
+msgstr "سيتم عرض الأدوات في هذه المنطقة في الشريط الجانبي."
+
+#: footer.php:56
+msgid "Up"
+msgstr "أعلى"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto Slab, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:121
+msgctxt "Roboto Slab font: on or off"
+msgid "on"
+msgstr "مفعل"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto, translate this to 'off'. Do not translate into your own language.
+#: functions.php:115
+msgctxt "Roboto font: on or off"
+msgid "on"
+msgstr "مفعل"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Pacifico, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:127
+msgctxt "Pacifico font: on or off"
+msgid "on"
+msgstr "مفعل"
+
+#: footer.php:56
+msgid "To the top"
+msgstr "للأعلى"
+
+#: footer.php:50
+msgid "Proudly powered by %s"
+msgstr "الموقع يستخدم %s بكل فخر"
+
+#: footer.php:52
+msgid "Theme: %1$s by %2$s."
+msgstr "قالب: %1$s بواسطة %2$s."
+
+#: footer.php:50
+msgid "http://wordpress.org/"
+msgstr "http://wordpress.org/"
+
+#: content-none.php:18
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "آسفين, ولكن لا يوجد شئ مطابق لكلمات البحث التي ادخلتها, حاول بكلمات اخرى مرة ثانية."
+
+#: content-none.php:25
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "يبدو أنه لا يمكن إيجاد ما تبحث عنه. قد تفيدك خاصية البحث."
+
+#: content-author.php:34
+msgid "View all posts by %s"
+msgstr "عرض جميع المواضيع التي كتبها %s"
+
+#: content-none.php:12
+msgid "Ready to publish your first post? %1$sGet started here%2$s."
+msgstr "مستعد لنشر أول تدوينة؟ %1$sإبدأ هنا%2$s."
+
+#. translators: %s: Name of current post.
+#: content-aside.php:38
+#: content-audio.php:49
+#: content-gallery.php:68
+#: content-image.php:52
+#: content-link.php:49
+#: content-page.php:36
+#: content-quote.php:51
+#: content-status.php:36
+#: content-video.php:45
+#: content.php:45
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "استمر في القراءة %s <span class=\"meta-nav\">\t</span>"
+
+#: content-author.php:28
+msgid "Published by %s"
+msgstr "نُشر بواسطة %s"
+
+#. translators: %1$s: Pencil icon, %2$s: Name of current post
+#: content-aside.php:62
+#: content-audio.php:73
+#: content-gallery.php:105
+#: content-image.php:76
+#: content-link.php:79
+#: content-page.php:45
+#: content-quote.php:74
+#: content-status.php:59
+#: content-video.php:68
+#: content.php:66
+msgid "%1$s Edit %2$s"
+msgstr "%1$s تعديل %2$s"
+
+#: comments.php:54
+msgid "Comments are closed."
+msgstr "التعليقات مغلقة."
+
+#: comments.php:44
+msgid "Older Comments"
+msgstr "التعليقات الأقدم"
+
+#: comments.php:45
+msgid "Newer Comments"
+msgstr "التعليقات الأحدث"
+
+#: comments.php:29
+msgid "Add yours"
+msgstr "اضافة لك "
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+
+#: comments.php:21
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "لا توجد أراء حول &ldquo;%2$s&rdquo;"
+msgstr[1] "رأي واحد حول &ldquo;%2$s&rdquo;"
+msgstr[2] "رأيان حول &ldquo;%2$s&rdquo;"
+msgstr[3] "%1$s رأي حول &ldquo;%2$s&rdquo;"
+msgstr[4] "%1$s رأي حول &ldquo;%2$s&rdquo;"
+msgstr[5] "%1$s رأي حول &ldquo;%2$s&rdquo;"
+
+#: 404.php:31
+msgid "Try looking in the monthly archives."
+msgstr "حاول البحث في الأرشيف الشهري."
+
+#: 404.php:19
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "عذراً! لايمكن العثور على تلك الصفحة."

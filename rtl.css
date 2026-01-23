@@ -1,0 +1,815 @@
+/**
+ * RTL Stylesheet
+ *
+ * Description: Adds support for languages written in a Right To Left (RTL) direction.
+ *
+ *
+
+ -----------------------------------------------------------------------------------
+
+ 	Numbering maps to sections in style.css:
+
+	0.	CSS Reset
+	1.	Document Setup
+	2.  Structure
+	3.	Header
+	4.	Navigation
+	5.	Content
+	6.  Single post
+	7.	Post Content
+	8.	Comments
+	9.	Respond
+	10.	Page & Page Templates
+	11. Pagination
+	12. Sidebar
+	13. Footer
+	14. Credits
+	15. Media Queries (Responsive)
+
+----------------------------------------------------------------------------------- */
+
+
+/**
+ * 0. CSS Reset
+ * ----------------------------------------------------------------------------
+ *
+ * Resetting default browser styles
+ */
+
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+li > ul,
+li > ol {
+	margin: 0 20px 0 0;
+}
+
+/**
+ * 1. Document Setup
+ * ----------------------------------------------------------------------------
+ *
+ * Base styles for the template
+ */
+
+
+.fleft {
+	float: right;
+}
+
+.fright {
+	float: left;
+}
+
+
+/* Assistive Text ------------------------------------ */
+
+.screen-reader-text:focus {
+	left: auto;
+	right: 5px;
+}
+
+/**
+ * 2. Structure
+ * ----------------------------------------------------------------------------
+ *
+ * Styles to set up the theme's basic layout
+ */
+
+/* columns */
+
+.row .one-fourth {
+	float: right;
+	margin-left: 0;
+	margin-right: 5%;
+}
+
+.row .one-third {
+	float: right;
+	margin-left: 0;
+	margin-right: 5%;
+}
+
+.row .one-half {
+	float: right;
+	margin-left: 0;
+	margin-right: 5%;
+	width: 47.5%;
+}
+
+.row .two-thirds {
+	float: right;
+	margin-left: 0;
+	margin-right: 5%;
+}
+
+.row .one-fourth:first-child,
+.row .one-third:first-child,
+.row .one-half:first-child,
+.row .two-thirds:first-child {
+	margin-right: 0;
+}
+
+/**
+ * 4. Navigation
+ * ----------------------------------------------------------------------------
+ *
+ * Styles for the theme's primary navigation and dropdown menus
+ */
+
+.main-navigation li {
+	float: right;
+}
+
+/* first level */
+
+.main-navigation li:before {
+	content: '\005C';
+	left: 0;
+	margin-left: -3px;
+	margin-right: 0;
+	right: auto;
+}
+
+.main-navigation li:first-child > a {
+	margin-left: auto;
+	margin-right: 0;
+}
+
+.main-navigation .has-children > a,
+.main-navigation .menu-item-has-children > a,
+.main-navigation .page_item_has_children > a {
+	padding-left: 47px;
+	padding-right: 20px;
+}
+
+.main-navigation .has-children > a::after,
+.main-navigation .menu-item-has-children > a::after,
+.main-navigation .page_item_has_children > a::after {
+	left: 29px;
+	right: auto;
+}
+
+/* Sub menus --------------------------------------- */
+
+.main-navigation ul ul {
+	left: auto;
+	right: -9999px;
+}
+
+.main-navigation ul li > ul:before {
+	left: auto;
+	margin-left: 0;
+	margin-right: -10px;
+	right: 50%;
+}
+
+.main-navigation ul ul li {
+	float: none;
+}
+
+.main-navigation ul ul .has-children::after,
+.main-navigation ul ul .menu-item-has-children::after,
+.main-navigation ul ul .page_item_has_children::after {
+	border: 6px solid transparent;
+	border-right-color: rgba(255,255,255,.4);
+	left: 10px;
+	right: auto;
+}
+
+.main-navigation ul ul > .has-children:hover::after,
+.main-navigation ul ul > .has-children:focus::after,
+.main-navigation ul ul > .menu-item-has-children:hover::after,
+.main-navigation ul ul > .menu-item-has-children:focus::after,
+.main-navigation ul ul > .page_item_has_children:hover::after,
+.main-navigation ul ul > .page_item_has_children:focus::after {
+	border-left-color: transparent;
+	border-right-color: #fff;
+}
+
+.main-navigation ul li:hover > ul,
+.main-navigation ul li.focus > ul {
+	left: auto;
+	margin-left: 0;
+	margin-right: -120px;
+	right: 50%;
+}
+
+
+/* Deep down --------------------------------------- */
+
+.main-navigation ul ul li:hover > ul,
+.main-navigation ul ul li.focus > ul {
+	left: auto;
+	margin-right: 0;
+	right: 240px;
+}
+
+/**
+ * 5. Content
+ * ----------------------------------------------------------------------------
+ *
+ * Styles for the primary content area of the theme
+ */
+
+.post-container {
+	float: right;
+}
+
+.post .post-header {
+    padding-left: 17.5%;
+    padding-right: auto;
+}
+
+.post .sticky-post {
+	left: 9%;
+	right: auto;
+}
+
+.post .sticky-post:after {
+	left: 0;
+	right: auto;
+}
+
+/* format audio */
+
+.audioplayer-playpause a {
+	text-indent: 9999em;
+}
+
+.audioplayer-volume-button {
+	text-indent: 9999em;
+}
+
+
+
+/*  Post inner  ----------------------------------------- */
+
+.posts .post-meta a {
+	float: right;
+	margin-left: 0;
+	margin-right: 20px;
+}
+
+.posts .post-meta a:hover {
+}
+
+.posts .post-meta a:first-child {
+	margin-right: 0;
+}
+
+.posts .post-meta a.post-date i.fa,
+.posts .post-meta a.post-comments i.fa {
+	margin-left: 6px;
+	margin-right: 0;
+}
+
+.posts .post-meta a.post-edit-link i.fa {
+	left: auto;
+	right: 0;
+}
+
+
+/*  Post formats  ----------------------------------------- */
+
+
+/* format standard, format quote, format link */
+
+.post .post-header:before,
+.page .post-header:before {
+	left: auto;
+	right: 10%;
+}
+
+.post .post-header:after,
+.page .post-header:after {
+	left: auto;
+	margin-left: 0;
+	margin-right: 1px;
+	right: 10%;
+}
+
+/* format link */
+
+.posts .format-link .link-header h2 a i.fa {
+	margin-left: 6px;
+	margin-right: 0;
+}
+
+/* format gallery */
+
+.post.format-gallery .flex-viewport {
+	/*
+	overriding 'direction: rtl' so Flexslider will work
+	via: http://stackoverflow.com/questions/12497255/flexslider-and-right-to-left-language-support
+	*/
+	direction: ltr;
+}
+
+/**
+ * 6. Single Post
+ * ----------------------------------------------------------------------------
+ *
+ * Styles specific to the single posts; everything except actual post content
+ */
+
+/* single post meta */
+
+.single .post-meta-container:before {
+	left: 0;
+	right: 60%;
+}
+
+.single .post-meta {
+	float: left;
+}
+
+.single .post-meta p,
+.single .post-meta time,
+.single .post-meta > a,
+.post-nav a {
+	padding: 1px 1px 1px 0;
+}
+
+.single .post-meta time,
+.single .post-meta p.post-tags,
+.single .post-meta p.post-categories,
+.single .post-meta .post-nav-prev,
+.single .post-meta .post-nav-next,
+.single .post-edit-link {
+	padding-left: 0;
+	padding-right: 28px;
+}
+
+.single .post-meta time i.fa,
+.single .post-meta p.post-tags i.fa,
+.single .post-meta p.post-categories i.fa,
+.single .post-meta .post-nav-prev:before,
+.single .post-meta .post-nav-next:before,
+.single .post-edit-link i.fa {
+	left: auto;
+	right: 0;
+}
+
+/* post-author */
+
+.post-author {
+	float: right;
+	width: 60%;
+	z-index: 10;
+}
+
+.post-author:before,
+.post-author:after {
+	left: auto;
+	right: 30px;
+}
+
+.post-author-content {
+	margin-left: auto;
+	margin-right: 70px;
+}
+
+.author-links a {
+	margin-left: 0;
+	margin-right: 5px;
+}
+
+.author-links a:first-child {
+	margin-right: 0;
+}
+
+
+/**
+ * 7. Post Content
+ * ----------------------------------------------------------------------------
+ *
+ * Styles for post content - specific to single post pages
+ */
+
+
+.post-content ul {
+	margin-left: 0;
+	margin-right: 1.5em;
+}
+
+.post-content ol {
+	margin-left: 0;
+	margin-right: 1.5em;
+}
+
+
+/* Post media --------------------------------------- */
+
+
+.post-content .alignleft {
+	float: right;
+	margin-left: 1em;
+	margin-right: 0;
+}
+
+.post-content .alignright {
+	float: left;
+	margin-left: 0;
+	margin-right: 1em;
+}
+
+/* Post-author */
+
+.entry-author::before,
+.entry-author::after {
+	right: 30px;
+	left: auto;
+}
+
+.author-heading,
+.author-bio {
+	margin-left: 0;
+	margin-right: 70px;
+}
+
+/**
+ * 8. Comments
+ * ----------------------------------------------------------------------------
+ *
+ * Styles for the post comments on single post pages
+ */
+
+
+.comments .children {
+	margin-left: 0;
+	margin-right: 5%;
+}
+
+.comment-inner {
+	margin-left: 0;
+	margin-right: 110px;
+}
+
+.comment-inner:after {
+	border: 12px solid transparent;
+	border-left-color: #eee;
+	left: auto;
+	margin-left: 0;
+	margin-right: -24px;
+	right: 0;
+}
+
+.comment .avatar {
+	float: right;
+}
+
+.comment.bypostauthor:after {
+	margin-left: 0;
+	margin-right: -8px;
+}
+
+/* comment actions */
+
+.comment-actions {
+	left: 20px;
+	right: auto;
+}
+
+.comment-actions a {
+	float: right;
+}
+
+.comment-actions a + a {
+	margin-left: 0;
+	margin-right: -8px;
+}
+
+.comment-actions .comment-reply-link {
+	background-position: -52px -81px;
+}
+
+/**
+ * 9. Respond
+ * ----------------------------------------------------------------------------
+ *
+ * Styles for the comments form
+ */
+
+
+.comment-reply-title #cancel-comment-reply-link {
+	margin-left: 0;
+	margin-right: 5px;
+}
+
+.comment-form input[type='text'],
+.comment-form input[type='email'],
+.comment-form input[type='url'] {
+	padding-left: 60px;
+	padding-right: 18px;
+}
+
+.comment-form-author:before,
+.comment-form-email:before,
+.comment-form-url:before {
+	left: 19px;
+	right: auto;
+}
+
+
+/**
+ * 10. Page & Page Templates
+ * ----------------------------------------------------------------------------
+ *
+ * Styles for the default and custom templates for pages
+ */
+
+
+.page .post-edit-link {
+	float: right;
+	padding: 1px 28px 1px 0;
+}
+
+/* Contributors template ---------------------------------------------------------- */
+
+.authors-row:before {
+	left: auto;
+	right: 50%;
+}
+
+.authors-row .author-info {
+	margin-left: 0;
+	margin-right: 10%;
+	width: 45%;
+}
+
+.authors-row .author-info:first-child {
+	margin-right: 0;
+}
+
+
+/**
+ * 11. Pagination
+ * ----------------------------------------------------------------------------
+ *
+ * Styles for the website pagination
+ */
+
+
+.posts-navigation .nav-previous a:before {
+	margin-left: 3px;
+	margin-right: 0;
+}
+
+.posts-navigation .nav-next a:after {
+	margin-left: 0;
+	margin-right: 3px;
+}
+
+
+/**
+ * 12. Sidebar
+ * ----------------------------------------------------------------------------
+ *
+ * Styles for the theme's sidebar and its widgets
+ */
+
+ /* Widgets --------------------------------------- */
+
+.widget-content ul li {
+	padding: 1px 14px 1px 0;
+}
+
+.widget-content ul li:before {
+	left: auto;
+	right: 0;
+}
+
+.widget-content li ul li {
+	padding-left: 0;
+	padding-right: 15px;
+}
+
+.widget-content ul li .post-date {
+	margin-left: 0;
+	margin-right: 5px;
+}
+
+.widget-content li > ul,
+.widget-content li > ol {
+	margin: 0;
+}
+
+
+/* Widget tag cloud --------------------------------------- */
+
+.widget_tag_cloud a,
+.wp_widget_tag_cloud a,
+.tagcloud a {
+	float: right;
+	margin: 0 0 5px 5px !important;
+}
+
+
+/* Widget search --------------------------------------- */
+
+.wrapper .search-form .screen-reader-text,
+.footer .search-form .screen-reader-text {
+	left: auto;
+	right: -99999em;
+}
+
+.wrapper .search-form .search-field,
+.footer .search-form .search-field {
+	padding: 16px 20px 16px 55px;
+}
+
+.wrapper .search-form label:before,
+.footer .search-form label:before {
+	left: 10px;
+	right: auto;
+}
+
+.wrapper .search-form .search-submit,
+.footer .search-form .search-submit {
+	left: 10px;
+	right: auto;
+}
+
+
+/* Widget calendar --------------------------------------- */
+
+#wp-calendar tfoot #prev {
+	text-align: right;
+}
+
+#wp-calendar tfoot #next {
+	text-align: left;
+}
+
+
+/* Dribbble widget --------------------------------------- */
+
+.dribbble-shot {
+	float: right;
+	margin-left: 5%;
+	margin-right: 0;
+}
+
+.dribbble-shot:nth-of-type(2n) {
+	margin-left: 0;
+}
+
+/* Widget - Recent Entries ------------------------- */
+
+.widget_authors ul li:before,
+.widget_author_grid ul li:before {
+	padding-right: 0;
+}
+
+.error404 .widget_recent_entries li:before {
+	left: auto;
+	right: 0;
+}
+
+/**
+ * 15. Media Queries
+ * ----------------------------------------------------------------------------
+ *
+ * Styles to get the theme behaving responsively on smaller screens
+ */
+
+@media (max-width: 1000px) {
+
+	/* navigation */
+	.main-navigation {
+		clear: right;
+	}
+
+	.main-navigation ul li:hover > ul,
+	.main-navigation ul li.focus > ul {
+		margin-right: 0;
+	}
+
+	.main-navigation ul ul a,
+	.main-navigation ul ul .has-children > a,
+	.main-navigation ul ul .menu-item-has-children > a,
+	.main-navigation ul ul .page_item_has_children > a {
+		padding-left: 0;
+		padding-right: 10%;
+		text-align: right;
+	}
+
+	.main-navigation ul ul ul a,
+	.main-navigation ul ul ul .has-children > a,
+	.main-navigation ul ul ul .menu-item-has-children > a,
+	.main-navigation ul ul ul .page_item_has_children > a {
+		padding-left: 0;
+		padding-right: 15%;
+	}
+
+	.main-navigation ul ul ul ul a,
+	.main-navigation ul ul ul ul .has-children > a,
+	.main-navigation ul ul ul ul .menu-item-has-children > a,
+	.main-navigation ul ul ul ul .page_item_has_children > a {
+		padding-left: 0;
+		padding-right: 20%;
+	}
+
+	.main-navigation ul ul ul ul ul a,
+	.main-navigation ul ul ul ul ul .has-children > a,
+	.main-navigation ul ul ul ul ul .menu-item-has-children > a,
+	.main-navigation ul ul ul ul ul .page_item_has_children > a {
+		padding-left: 0;
+		padding-right: 25%;
+	}
+
+	.main-navigation ul ul ul ul ul ul a,
+	.main-navigation ul ul ul ul ul ul .has-children > a,
+	.main-navigation ul ul ul ul ul ul .menu-item-has-children > a,
+	.main-navigation ul ul ul ul ul ul .page_item_has_children > a {
+		padding-left: 0;
+		padding-right: 30%;
+	}
+
+	.search-icon {
+		left: 5%;
+		right: auto;
+	}
+
+	.nav-toggle {
+		margin-left: 0;
+		margin-right: 5%;
+	}
+
+}
+
+@media (max-width: 700px) {
+	.single .post-author {
+		float: none;
+		width: 100%;
+	}
+
+	.single .post-meta-container:before {
+		display: none;
+	}
+}
+
+
+
+@media (max-width: 600px) {
+
+	.post .sticky-post {
+		left: 4%;
+		right: auto;
+	}
+
+	.comment-inner {
+		margin-left: 0;
+		margin-right: 70px;
+	}
+
+	.footer .one-third {
+		margin: 40px 0 0 0;
+		padding: 40px 0 0 0;
+	}
+}
+
+
+@media (max-width: 500px) {
+
+	/* post meta */
+
+	.post-author:before,
+	.post-author:after,
+	.post-author .fa-user {
+		left: auto;
+		right: 15px;
+	}
+
+	.post-author-content {
+		margin-left: 0;
+		margin-right: 40px;
+	}
+
+	.comment-inner {
+		margin-right: 0;
+	}
+
+	.comment-actions-below a {
+		margin-left: 0;
+		margin-right: 8px;
+	}
+
+	.comment-actions-below a:first-child {
+		margin-right: 0;
+	}
+}
+
+
+@media (max-width: 400px) {
+
+	/* respond */
+	.comment-form-author:before,
+	.comment-form-email:before,
+	.comment-form-url:before {
+		left: 14px;
+		right: auto;
+	}
+}
