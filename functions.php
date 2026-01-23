@@ -7,6 +7,8 @@
  * @package Clge
  */
 
+
+define('WP_DEBUG', true);
 if ( ! function_exists( 'clge_setup' ) ) :
 /**
  * Theme setup
