@@ -2,7 +2,7 @@
 /**
  * This template is used on 404 error pages.
  *
- * @package Baskerville 2
+ * @package Clge
  */
 
 get_header(); ?>
@@ -16,19 +16,19 @@ get_header(); ?>
 			<div class="post">
 
 				<header class="post-header">
-					<h1 class="post-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'baskerville-2' ); ?></h1>
+					<h1 class="post-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'clge' ); ?></h1>
 				</header>
 
 				<div class="post-content">
 
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'baskerville-2' ); ?></p>
+					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'clge' ); ?></p>
 
 					<?php get_search_form(); ?>
 
 					<?php the_widget( 'WP_Widget_Recent_Posts' ); ?>
 
 					<?php
-						$archive_content = '<p>' . esc_html__( 'Try looking in the monthly archives.', 'baskerville-2' ) . '</p>';
+						$archive_content = '<p>' . esc_html__( 'Try looking in the monthly archives.', 'clge' ) . '</p>';
 						the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
 					?>
 

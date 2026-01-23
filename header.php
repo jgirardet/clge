@@ -2,7 +2,7 @@
 /**
  * This template is used for the website header
  *
- * @package Baskerville 2
+ * @package Clge
  */
 ?>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
 
 <body <?php body_class(); ?>>
 
-	<a class="screen-reader-text skip-link" href="#content"><?php esc_html_e( 'Skip to content', 'baskerville-2' ); ?></a>
+	<a class="screen-reader-text skip-link" href="#content"><?php esc_html_e( 'Skip to content', 'clge' ); ?></a>
 
 	<header class="header section small-padding bg-dark bg-image" style="background-image: url(<?php if ( '' !== get_header_image() ) { echo esc_url( get_header_image() ); } ?>);" role="banner">
 
@@ -24,7 +24,7 @@
 			<div class="cover"></div>
 		</a>
 
-		<a href="#search-container" class="screen-reader-text search-toggle"><?php esc_html_e( 'Search', 'baskerville-2' ); ?></a>
+		<a href="#search-container" class="screen-reader-text search-toggle"><?php esc_html_e( 'Search', 'clge' ); ?></a>
 		<div class="header-search-block bg-graphite hidden" id="search-container">
 			<?php get_search_form(); ?>
 		</div> <!-- /header-search-block -->
@@ -46,14 +46,14 @@
 			<?php
 			endif; ?>
 
-			<?php baskerville_2_social_menu(); ?>
+			<?php clge_social_menu(); ?>
 
 		</div> <!-- /header-inner -->
 	</header> <!-- /header -->
 
 	<div class="navigation section no-padding bg-dark">
 		<nav id="site-navigation" class="navigation-inner section-inner clear" role="navigation">
-			<button class="nav-toggle fleft" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'baskerville-2' ); ?></button>
+			<button class="nav-toggle fleft" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'clge' ); ?></button>
 			<div class="main-navigation">
 				<?php
 					wp_nav_menu( array(
@@ -64,6 +64,6 @@
 				?>
 			</div>
 
-			<a class="search-toggle search-icon fright" href="#"><?php esc_html_e( 'Open Search', 'baskerville-2' ); ?></a>
+			<a class="search-toggle search-icon fright" href="#"><?php esc_html_e( 'Open Search', 'clge' ); ?></a>
 		</nav> <!-- /navigation-inner -->
 	</div> <!-- /navigation -->

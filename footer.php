@@ -2,7 +2,7 @@
 /**
  * This template is for displaying the website's footer and widgets
  *
- * @package Baskerville 2
+ * @package Clge
  */
 ?>
 
@@ -47,13 +47,13 @@
 		<div class="credits-inner section-inner clear">
 
 			<p class="credits-left fleft">
-				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'baskerville-2' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'baskerville-2' ), 'WordPress' ); ?></a>
+				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'clge' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'clge' ), 'WordPress' ); ?></a>
 				<span class="sep"> | </span>
-				<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'baskerville-2' ), 'Baskerville 2', '<a href="http://www.andersnoren.se/teman/baskerville-wordpress-theme/" rel="designer">Anders Noren</a>' ); ?>
+				<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'clge' ), 'Clge', '<a href="http://www.andersnoren.se/teman/clge-wordpress-theme/" rel="designer">Anders Noren</a>' ); ?>
 			</p>
 
 			<p class="credits-right fright">
-				<a class="tothetop" title="<?php esc_attr_e( 'To the top', 'baskerville-2' ); ?>" href="#"><?php esc_attr_e( 'Up', 'baskerville-2' ); ?> &uarr;</a>
+				<a class="tothetop" title="<?php esc_attr_e( 'To the top', 'clge' ); ?>" href="#"><?php esc_attr_e( 'Up', 'clge' ); ?> &uarr;</a>
 			</p>
 		</div> <!-- /credits-inner -->
 	</div> <!-- /credits -->

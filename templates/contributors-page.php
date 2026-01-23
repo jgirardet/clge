@@ -2,7 +2,7 @@
 /**
  * This template is for displaying all the blog's contributors
  *
- * @package Baskerville 2
+ * @package Clge
  * Template Name: Contributors
  */
 
@@ -56,19 +56,19 @@ get_header(); ?>
 										<h4><a href="<?php echo esc_url( get_author_posts_url( $contributor->ID ) ); ?>"><?php the_author_meta( 'display_name', $contributor->ID ); ?></a></h4>
 										<h5>
 											<a href="<?php echo esc_url( get_author_posts_url( $contributor->ID ) ); ?>">
-												<?php printf( esc_html( _n( '%s post', '%s posts', count_user_posts( $contributor->ID ), 'baskerville-2' ) ), intval( count_user_posts( $contributor->ID ) ) ); ?>
+												<?php printf( esc_html( _n( '%s post', '%s posts', count_user_posts( $contributor->ID ), 'clge' ) ), intval( count_user_posts( $contributor->ID ) ) ); ?>
 											</a>
 										</h5>
 
 										<p class="author-description"><?php the_author_meta( 'description', $contributor->ID ); ?></p>
 
 										<div class="author-links">
-											<a class="author-link-posts" title="<?php esc_attr_e( 'Author archive', 'baskerville-2' ); ?>" href="<?php echo esc_url( get_author_posts_url( $contributor->ID ) ); ?>">
-												<i class="fa fa-archive"></i> <?php esc_html_e( 'Author archive', 'baskerville-2' ); ?>
+											<a class="author-link-posts" title="<?php esc_attr_e( 'Author archive', 'clge' ); ?>" href="<?php echo esc_url( get_author_posts_url( $contributor->ID ) ); ?>">
+												<i class="fa fa-archive"></i> <?php esc_html_e( 'Author archive', 'clge' ); ?>
 											</a>
 											<?php if ( ! empty( $contributor->user_url ) ) : ?>
 												<a class="author-link-website" href="<?php the_author_meta( 'user_url', $contributor->ID ); ?>">
-													<i class="fa fa-home"></i> <?php esc_html_e( 'Website', 'baskerville-2' ); ?>
+													<i class="fa fa-home"></i> <?php esc_html_e( 'Website', 'clge' ); ?>
 												</a>
 											<?php endif; ?>
 										</div> <!-- /author-links -->

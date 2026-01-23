@@ -2,7 +2,7 @@
 /**
  * This template has a content area that takes up the full width of the page
  *
- * @package Baskerville 2
+ * @package Clge
  * Template Name: Full Width, No Sidebar
  */
 

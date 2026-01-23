@@ -3,10 +3,10 @@
  * Adds file support for Jetpack-specific theme functions.
  * See: http://jetpack.me/
  *
- * @package Baskerville 2
+ * @package Clge
  */
 
-function baskerville_2_jetpack_setup() {
+function clge_jetpack_setup() {
 	// Add support for Responsive Videos.
 	add_theme_support( 'jetpack-responsive-videos' );
 
@@ -16,7 +16,7 @@ function baskerville_2_jetpack_setup() {
 		'footer_widgets' => array( 'sidebar-2', 'sidebar-3', 'sidebar-4', ),
 		'footer'         => 'content',
 		'wrapper'        => false,
-		'render'         => 'baskerville_2_infinite_scroll_render',
+		'render'         => 'clge_infinite_scroll_render',
 	) );
 
 	// Add theme support for Social Menu.
@@ -28,7 +28,7 @@ function baskerville_2_jetpack_setup() {
 		'blog-display'    => 'content',
 		'masonry'         => '#posts',
 		'post-details'    => array(
-			'stylesheet'  => 'baskerville-2-style',
+			'stylesheet'  => 'clge-style',
 			'date'        => '.post-date, .single .hentry .post-meta .post-date',
 			'categories'  => '.post-categories, .single .hentry .post-meta .post-categories',
 			'tags'        => '.post-tags, .single .hentry .post-meta .post-tags',
@@ -41,12 +41,12 @@ function baskerville_2_jetpack_setup() {
 		),
 	) );
 }
-add_action( 'after_setup_theme', 'baskerville_2_jetpack_setup' );
+add_action( 'after_setup_theme', 'clge_jetpack_setup' );
 
 /**
  * Return early if Author Bio is not available.
  */
-function baskerville_2_author_bio() {
+function clge_author_bio() {
 	if ( ! function_exists( 'jetpack_author_bio' ) ) {
 		get_template_part( 'content', 'author' );
 	} else {
@@ -57,7 +57,7 @@ function baskerville_2_author_bio() {
 /**
  * Custom render function for Infinite Scroll.
  */
-function baskerville_2_infinite_scroll_render() {
+function clge_infinite_scroll_render() {
 	while ( have_posts() ) {
 		the_post();
 		if ( is_search() ) :
@@ -71,15 +71,15 @@ function baskerville_2_infinite_scroll_render() {
 /**
  * Author Bio Avatar Size.
  */
-function baskerville_2_author_bio_avatar_size() {
+function clge_author_bio_avatar_size() {
 	return 90;
 }
-add_filter( 'jetpack_author_bio_avatar_size', 'baskerville_2_author_bio_avatar_size' );
+add_filter( 'jetpack_author_bio_avatar_size', 'clge_author_bio_avatar_size' );
 
 /**
  * Return early if Social Menu is not available.
  */
-function baskerville_2_social_menu() {
+function clge_social_menu() {
 	if ( ! function_exists( 'jetpack_social_menu' ) ) {
 		return;
 	} else {
@@ -91,7 +91,7 @@ function baskerville_2_social_menu() {
  * Custom function to check for a post thumbnail;
  * If Jetpack is not available, fall back to has_post_thumbnail()
  */
-function baskerville_2_has_post_thumbnail( $post = null ) {
+function clge_has_post_thumbnail( $post = null ) {
 	if ( function_exists( 'jetpack_has_featured_image' ) ) {
 		return jetpack_has_featured_image( $post );
 	} else {

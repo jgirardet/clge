@@ -2,7 +2,7 @@
 /**
  * This template has no sidebar
  *
- * @package Baskerville 2
+ * @package Clge
  * Template Name: No Sidebar
  */
 

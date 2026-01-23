@@ -4,14 +4,14 @@
  *
  * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
  *
- * @package Baskerville 2
+ * @package Clge
  */
 
-if ( ! function_exists( 'baskerville_2_setup' ) ) :
+if ( ! function_exists( 'clge_setup' ) ) :
 /**
  * Theme setup
  */
-function baskerville_2_setup() {
+function clge_setup() {
 	/**
 	 * Adds RSS feed links to <head> for posts and comments.
 	 */
@@ -40,8 +40,8 @@ function baskerville_2_setup() {
 	/**
 	 * Set theme image sizes
 	 */
-	add_image_size( 'baskerville-2-post-image', 1400, 9999 );
-	add_image_size( 'baskerville-2-post-thumbnail', 600, 9999 );
+	add_image_size( 'clge-post-image', 1400, 9999 );
+	add_image_size( 'clge-post-thumbnail', 600, 9999 );
 
 	/**
 	 * Add support for post formats
@@ -51,7 +51,7 @@ function baskerville_2_setup() {
 	/**
 	 * Add support for custom backgrounds
 	 */
-	add_theme_support( 'custom-background', apply_filters( 'baskerville_2_custom_background_args', array(
+	add_theme_support( 'custom-background', apply_filters( 'clge_custom_background_args', array(
 		'default-color' => 'f1f1f1',
 		'default-image' => '',
 	) ) );
@@ -59,7 +59,7 @@ function baskerville_2_setup() {
 	/**
 	 * Add support for styles in WYSIWYG editor
 	 */
-	add_editor_style( array( 'editor-style.css', baskerville_2_fonts_url() ) );
+	add_editor_style( array( 'editor-style.css', clge_fonts_url() ) );
 
 	/**
 	 * Add navigation menu
@@ -69,7 +69,7 @@ function baskerville_2_setup() {
 	/**
 	 * Make the theme translation-ready
 	 */
-	load_theme_textdomain( 'baskerville-2', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'clge', get_template_directory() . '/languages' );
 
 	/**
 	 * Add theme support for selective refresh for widgets.
@@ -86,7 +86,7 @@ function baskerville_2_setup() {
 		)
 	);
 }
-add_action( 'after_setup_theme', 'baskerville_2_setup' );
+add_action( 'after_setup_theme', 'clge_setup' );
 endif;
 
 /**
@@ -96,35 +96,35 @@ endif;
  *
  * @global int $content_width
  */
-function baskerville_2_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'baskerville_2_content_width', 736 );
+function clge_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'clge_content_width', 736 );
 }
-add_action( 'after_setup_theme', 'baskerville_2_content_width', 0 );
+add_action( 'after_setup_theme', 'clge_content_width', 0 );
 
-if ( ! function_exists( 'baskerville_2_fonts_url' ) ) :
+if ( ! function_exists( 'clge_fonts_url' ) ) :
 /**
  * Define Google Fonts
  */
-function baskerville_2_fonts_url() {
+function clge_fonts_url() {
 	$fonts_url = '';
 
 	/* Translators: If there are characters in your language that are not
 	* supported by Roboto, translate this to 'off'. Do not translate
 	* into your own language.
 	*/
-	$roboto = esc_html_x( 'on', 'Roboto font: on or off', 'baskerville-2' );
+	$roboto = esc_html_x( 'on', 'Roboto font: on or off', 'clge' );
 
 	/* Translators: If there are characters in your language that are not
 	* supported by Roboto Slab, translate this to 'off'. Do not translate
 	* into your own language.
 	*/
-	$robotoslab = esc_html_x( 'on', 'Roboto Slab font: on or off', 'baskerville-2' );
+	$robotoslab = esc_html_x( 'on', 'Roboto Slab font: on or off', 'clge' );
 
 	/* Translators: If there are characters in your language that are not
 	* supported by Pacifico, translate this to 'off'. Do not translate
 	* into your own language.
 	*/
-	$pacifico = esc_html_x( 'on', 'Pacifico font: on or off', 'baskerville-2' );
+	$pacifico = esc_html_x( 'on', 'Pacifico font: on or off', 'clge' );
 
 	if ( 'off' !== $roboto || 'off' !== $robotoslab || 'off' !== $pacifico ) {
 		$font_families = array();
@@ -154,42 +154,42 @@ function baskerville_2_fonts_url() {
 endif;
 
 
-if ( ! function_exists( 'baskerville_2_scripts' ) ) :
+if ( ! function_exists( 'clge_scripts' ) ) :
 /**
  * Enqueue scripts and styles.
  */
-function baskerville_2_scripts() {
-	wp_enqueue_style( 'baskerville-2-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'baskerville-2-fonts', baskerville_2_fonts_url(), array(), null );
-	wp_enqueue_script( 'baskerville-2-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+function clge_scripts() {
+	wp_enqueue_style( 'clge-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'clge-fonts', clge_fonts_url(), array(), null );
+	wp_enqueue_script( 'clge-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 	wp_enqueue_style( 'fontawesome', get_template_directory_uri() . '/fontawesome/font-awesome.css', array(), '4.3.0' );
-	wp_enqueue_script( 'baskerville-2-flexslider', get_template_directory_uri() . '/js/flexslider.js', array( 'jquery' ), '', true );
-	wp_enqueue_script( 'baskerville-2-global', get_template_directory_uri() . '/js/global.js', array( 'jquery', 'masonry' ), '', true );
+	wp_enqueue_script( 'clge-flexslider', get_template_directory_uri() . '/js/flexslider.js', array( 'jquery' ), '', true );
+	wp_enqueue_script( 'clge-global', get_template_directory_uri() . '/js/global.js', array( 'jquery', 'masonry' ), '', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'baskerville_2_scripts' );
+add_action( 'wp_enqueue_scripts', 'clge_scripts' );
 endif;
 
 
-if ( ! function_exists( 'baskerville_2_sidebar_reg' ) ) :
+if ( ! function_exists( 'clge_sidebar_reg' ) ) :
 /**
  * Add Widget Areas to footer and sidebar
  */
-function baskerville_2_sidebar_reg() {
+function clge_sidebar_reg() {
 	register_sidebar( array(
-		'name' => esc_html__( 'Sidebar', 'baskerville-2' ),
+		'name' => esc_html__( 'Sidebar', 'clge' ),
 		'id' => 'sidebar-1',
-		'description' => esc_html__( 'Widgets in this area will be shown in the sidebar.', 'baskerville-2' ),
+		'description' => esc_html__( 'Widgets in this area will be shown in the sidebar.', 'clge' ),
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 		'before_widget' => '<div id="%1$s" class="widget %2$s"><div class="widget-content clear">',
 		'after_widget' => '</div></div>',
 	));
 	register_sidebar( array(
-		'name' => esc_html__( 'Footer 1', 'baskerville-2' ),
+		'name' => esc_html__( 'Footer 1', 'clge' ),
 		'id' => 'sidebar-2',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
@@ -197,7 +197,7 @@ function baskerville_2_sidebar_reg() {
 		'after_widget' => '</div></div>',
 	));
 	register_sidebar( array(
-		'name' => esc_html__( 'Footer 2', 'baskerville-2' ),
+		'name' => esc_html__( 'Footer 2', 'clge' ),
 		'id' => 'sidebar-3',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
@@ -205,7 +205,7 @@ function baskerville_2_sidebar_reg() {
 		'after_widget' => '</div></div>',
 	));
 	register_sidebar( array(
-		'name' => esc_html__( 'Footer 3', 'baskerville-2' ),
+		'name' => esc_html__( 'Footer 3', 'clge' ),
 		'id' => 'sidebar-4',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
@@ -213,55 +213,55 @@ function baskerville_2_sidebar_reg() {
 		'after_widget' => '</div></div>',
 	));
 }
-add_action( 'widgets_init', 'baskerville_2_sidebar_reg' );
+add_action( 'widgets_init', 'clge_sidebar_reg' );
 endif;
 
 
-if ( ! function_exists( 'baskerville_2_posts_link_attributes_1' ) ) :
+if ( ! function_exists( 'clge_posts_link_attributes_1' ) ) :
 /**
  * Add classes to next_posts_link and previous_posts_link
  */
-function baskerville_2_posts_link_attributes_1() {
+function clge_posts_link_attributes_1() {
 	return 'class="post-nav-older fleft"';
 }
-add_filter( 'next_posts_link_attributes', 'baskerville_2_posts_link_attributes_1' );
+add_filter( 'next_posts_link_attributes', 'clge_posts_link_attributes_1' );
 endif;
 
-if ( ! function_exists( 'baskerville_2_posts_link_attributes_2' ) ) :
-function baskerville_2_posts_link_attributes_2() {
+if ( ! function_exists( 'clge_posts_link_attributes_2' ) ) :
+function clge_posts_link_attributes_2() {
 	return 'class="post-nav-newer fright"';
 }
-add_filter( 'previous_posts_link_attributes', 'baskerville_2_posts_link_attributes_2' );
+add_filter( 'previous_posts_link_attributes', 'clge_posts_link_attributes_2' );
 endif;
 
-if ( ! function_exists( 'baskerville_2_clearfix_class' ) ) :
+if ( ! function_exists( 'clge_clearfix_class' ) ) :
 /**
  * Add class to posts for clearfix
  */
-function baskerville_2_clearfix_class( $classes ) {
+function clge_clearfix_class( $classes ) {
 	$classes[] = 'clear';
 	return $classes;
 }
-add_filter( 'post_class', 'baskerville_2_clearfix_class', 10, 3 );
+add_filter( 'post_class', 'clge_clearfix_class', 10, 3 );
 endif;
 
 
-if ( ! function_exists( 'baskerville_2_new_excerpt_more' ) ) :
+if ( ! function_exists( 'clge_new_excerpt_more' ) ) :
 /**
  * Add more link text to excerpt
  */
-function baskerville_2_new_excerpt_more( $more ) {
-	return '... <a class="more-link" href="'. esc_url( get_permalink( get_the_ID() ) ) . '#more-' . esc_attr ( get_the_ID() ) . '">' . esc_html__( 'Continue Reading &rarr;', 'baskerville-2' ) . '</a>';
+function clge_new_excerpt_more( $more ) {
+	return '... <a class="more-link" href="'. esc_url( get_permalink( get_the_ID() ) ) . '#more-' . esc_attr ( get_the_ID() ) . '">' . esc_html__( 'Continue Reading &rarr;', 'clge' ) . '</a>';
 }
-add_filter( 'excerpt_more', 'baskerville_2_new_excerpt_more' );
+add_filter( 'excerpt_more', 'clge_new_excerpt_more' );
 endif;
 
 
-if ( ! function_exists( 'baskerville_2_url_to_domain' ) ) :
+if ( ! function_exists( 'clge_url_to_domain' ) ) :
 /**
  * Get domain name from URL
  */
-function baskerville_2_url_to_domain( $url ) {
+function clge_url_to_domain( $url ) {
 	$host = parse_url( $url, PHP_URL_HOST );
 
 	if ( ! $host ) {
@@ -286,18 +286,18 @@ endif;
  *
  * Borrowed from Twenty Thirteen.
  */
-function baskerville_2_get_link_url() {
+function clge_get_link_url() {
 	$content = get_the_content();
 	$has_url = get_url_in_content( $content );
 
 	return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', get_permalink() );
 }
 
-function baskerville_2_block_editor_styles() {
+function clge_block_editor_styles() {
 	// Block Styles.
-	wp_enqueue_style( 'baskerville-2-block-editor-style', get_theme_file_uri( '/editor-blocks.css' ) );
+	wp_enqueue_style( 'clge-block-editor-style', get_theme_file_uri( '/editor-blocks.css' ) );
 }
-add_action( 'enqueue_block_editor_assets', 'baskerville_2_block_editor_styles' );
+add_action( 'enqueue_block_editor_assets', 'clge_block_editor_styles' );
 
 /**
  * Includes & required files:

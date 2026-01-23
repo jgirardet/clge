@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WordPress.com - Themes - Baskerville-2\n"
+"Project-Id-Version: WordPress.com - Themes - Clge\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -31,8 +31,8 @@ msgstr "Colaboradores"
 
 #. Description of the theme
 #: style.css
-msgid "Baskerville 2 is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
-msgstr "Baskerville é um tema dinâmico baseado em grades. É a maneira perfeita para você exibir seus posts, vídeos, imagens e galerias, além de compartilhar seus links e citações favoritas."
+msgid "Clge is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
+msgstr "Baskerville 2 é um tema dinâmico baseado em grades. É a maneira perfeita para você exibir seus posts, vídeos, imagens e galerias, além de compartilhar seus links e citações favoritas."
 
 #: templates/contributors-page.php:71
 msgid "Website"

@@ -1,17 +1,17 @@
-=== Baskerville 2 ===
+=== Clge ===
 
-Author: Anders Norén
+Author: Jimmy GIrardet
 Tags: author-bio, black, blog-excerpts, classic-menu, custom-header, custom-background, custom-menu, custom-colors, dark, editor-style, featured-images, flexible-header, green, grid-layout, post-formats, responsive-layout, sticky-post, threaded-comments, translation-ready, two-columns, right-sidebar, blog, tumblelog, lifestream, modern, contemporary, elegant
 License: GPLv2 or later
 License URI: License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Baskerville 2 WordPress Theme, Copyright 2017 Anders Norén
-Based on the Baskerville WordPress Theme, (c) 2015 Anders Norén
+Clge WordPress Theme, Copyright 2026 Jimmy Girardet
+Based on the Baskerville 2 WordPress Theme, (c) 2017 Anders Norén
 
 
 == Description ==
 
-Baskerville 2 is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links.
+Clge is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links.
 
 == Bundled Licenses ==
 
@@ -32,17 +32,17 @@ Baskerville 2 is a dynamic, grid-based theme for curators. It's the perfect way 
 
 == Content Options (requires Jetpack - jetpack.me) ==
 
-Baskerville 2 supports all Content Options, including the ability to display your choice of full post content or excerpts on the blog and archives.
+Clge supports all Content Options, including the ability to display your choice of full post content or excerpts on the blog and archives.
 
 == Custom Menus ==
 
-Baskerville 2 comes with a Custom Menu location, which sits below the header and can display multiple nested submenus. To add items to the menu:
+Clge comes with a Custom Menu location, which sits below the header and can display multiple nested submenus. To add items to the menu:
 1. Go to Customize > Menus.
 2. If you haven't created a menu yet, create one and select the menu location "Header."
 
 == Social Links Menu (requires Jetpack - jetpack.me)==
 
-With Baskerville 2, you have the option to display links to your social media profiles in the header. To display them, set up a Social Links Menu.
+With Clge, you have the option to display links to your social media profiles in the header. To display them, set up a Social Links Menu.
 
 Linking to any of the following sites will automatically display its icon in your menu:
 * CodePen
@@ -70,7 +70,7 @@ Linking to any of the following sites will automatically display its icon in you
 
 == Widget Areas ==
 
-Baskerville 2 offers four widget areas:
+Clge offers four widget areas:
 
 * The optional Sidebar, which appears on the right in single posts and pages using the default template.
 * Three optional Footer widget areas.
@@ -79,15 +79,15 @@ If there are no widgets in the Sidebar area, the theme automatically adjusts to 
 
 == Site Logo ==
 
-Baskerville 2 supports the Site Logo feature. To add your own image, go to Customize > Site Identity. The logo will appear in the header, above the site title.
+Clge supports the Site Logo feature. To add your own image, go to Customize > Site Identity. The logo will appear in the header, above the site title.
 
 == Custom Header ==
 
-You can customize Baskerville 2's header by uploading your own Custom Header Image, which will appear behind the site title as a background image. Decorative images work best in this space.
+You can customize Clge's header by uploading your own Custom Header Image, which will appear behind the site title as a background image. Decorative images work best in this space.
 
 == Page Templates ==
 
-Baskerville 2 comes with three custom page templates: a Full-Width template, a No-Sidebar template, and a Contributors template.
+Clge comes with three custom page templates: a Full-Width template, a No-Sidebar template, and a Contributors template.
 
 Both the Full-Width and No-Sidebar templates feature a single column of content. The Full-Width template's content area is quite wide, making it perfect for displaying larger media like videos, photos, and maps.
 
@@ -99,7 +99,7 @@ To change the Page Template of any new/published page, go to Pages and click t
 
 == Post Formats ==
 
-Baskerville 2 supports all Post Formats, and includes unique styles to help different kinds of content stand out.
+Clge supports all Post Formats, and includes unique styles to help different kinds of content stand out.
 
 == Quick Specs (all measurements in pixels) ==
 * The main column width on posts and pages is 756, and 1120 for the Full-Width template
@@ -143,7 +143,7 @@ Baskerville 2 supports all Post Formats, and includes unique styles to help d
 * add missing button styles.\nSummary:
 
 = 14 July 2021 =
-* Hemingway Rewritten, Ryu & Baskerville 2: Fix font color in cover with light background\nSummary: Fixes https://github.com/Automattic/themes/issues/3483 on hemingway rewritten, Ryu and Baskerville 2. I had to add a hook for it to load a file while on the gutenberg editor.
+* Hemingway Rewritten, Ryu & Clge: Fix font color in cover with light background\nSummary: Fixes https://github.com/Automattic/themes/issues/3483 on hemingway rewritten, Ryu and Clge. I had to add a hook for it to load a file while on the gutenberg editor.
 
 = 5 February 2021 =
 * Removes PHP warnings from translation files\n

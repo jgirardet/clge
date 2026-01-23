@@ -2,7 +2,7 @@
 /**
  * This template is used in the Loop to display posts with the Quote format
  *
- * @package Baskerville 2
+ * @package Clge
  */
 ?>
 
@@ -25,9 +25,9 @@
 		/**
 		 * Post Thumbnail - only show on single.php view
 		 */
-		if ( is_single() && baskerville_2_has_post_thumbnail() ) { ?>
+		if ( is_single() && clge_has_post_thumbnail() ) { ?>
 			<div class="featured-media">
-				<?php the_post_thumbnail( 'baskerville-2-post-image' ); ?>
+				<?php the_post_thumbnail( 'clge-post-image' ); ?>
 			</div> <!-- /featured-media -->
 		 <?php }
 
@@ -42,7 +42,7 @@
 				<?php
 				the_content( sprintf(
 					/* translators: %s: Name of current post. */
-					wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'baskerville-2' ), array( 'span' => array( 'class' => array() ) ) ),
+					wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'clge' ), array( 'span' => array( 'class' => array() ) ) ),
 					the_title( '<span class="screen-reader-text">"', '"</span>', false )
 				) );
 				wp_link_pages();
@@ -58,14 +58,14 @@
 		if ( is_single() ) { ?>
 
 			<footer class="post-meta-container clear">
-				<?php baskerville_2_author_bio(); ?>
+				<?php clge_author_bio(); ?>
 				<div class="post-meta clear">
-					<?php baskerville_2_single_post_meta(); ?>
+					<?php clge_single_post_meta(); ?>
 					<?php the_post_navigation(); ?>
 					<?php edit_post_link(
 							sprintf(
 								/* translators: %1$s: Pencil icon, %2$s: Name of current post */
-								esc_html__( '%1$s Edit %2$s', 'baskerville-2' ),
+								esc_html__( '%1$s Edit %2$s', 'clge' ),
 								'<i class="fa fa-pencil-square-o"></i>',
 								the_title( '<span class="screen-reader-text">"', '"</span>', false )
 							),
@@ -78,7 +78,7 @@
 			<?php comments_template( '', true );
 
 		} else {
-			baskerville_2_post_meta();
+			clge_post_meta();
 		} ?>
 
 	</article> <!-- /post -->

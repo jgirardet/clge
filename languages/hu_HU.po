@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WordPress.com - Themes - Baskerville-2\n"
+"Project-Id-Version: WordPress.com - Themes - Clge\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,24 +18,24 @@ msgid "Continue Reading &rarr;"
 msgstr "Bővebben &rarr;"
 
 #. Template Name of the plugin/theme
-#: wp-content/themes/pub/baskerville-2/templates/full-width-page.php
+#: wp-content/themes/pub/clge/templates/full-width-page.php
 msgid "Full Width, No Sidebar"
 msgstr "Teljes méret, Oldalsáv nélkül"
 
 #. Template Name of the plugin/theme
-#: wp-content/themes/pub/baskerville-2/templates/no-sidebar-page.php
+#: wp-content/themes/pub/clge/templates/no-sidebar-page.php
 msgid "No Sidebar"
 msgstr "Nincs oldalsáv"
 
 #. Template Name of the plugin/theme
-#: wp-content/themes/pub/baskerville-2/templates/contributors-page.php
+#: wp-content/themes/pub/clge/templates/contributors-page.php
 msgid "Contributors"
 msgstr "Közreműködők"
 
 #. Description of the plugin/theme
-#: wp-content/themes/pub/baskerville-2/style.css
-msgid "Baskerville 2 is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
-msgstr "A Baskerville 2 egy dinamikus, rácsalapú téma a kurátorok számára. Ez a tökéletes módja annak, hogy bemutassa a bejegyzéseit, videóit, képeit és galériáit, és megossza kedvenc idézeteit és linkjeit."
+#: wp-content/themes/pub/clge/style.css
+msgid "Clge is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
+msgstr "A Clge egy dinamikus, rácsalapú téma a kurátorok számára. Ez a tökéletes módja annak, hogy bemutassa a bejegyzéseit, videóit, képeit és galériáit, és megossza kedvenc idézeteit és linkjeit."
 
 #: templates/contributors-page.php:71
 msgid "Website"

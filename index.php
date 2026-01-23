@@ -2,7 +2,7 @@
 /**
  * This is the main generic template file of the theme
  *
- * @package Baskerville 2
+ * @package Clge
  */
 get_header(); ?>
 

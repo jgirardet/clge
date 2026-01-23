@@ -141,7 +141,7 @@
 				return;
 			}
 
-			button.on( 'click.baskerville', function() {
+			button.on( 'click.clge', function() {
 				nav.toggleClass( 'toggled-on' );
 				$( this ).toggleClass( "active" );
 				$( ".main-navigation" ).slideToggle();
@@ -149,7 +149,7 @@
 
 			// Fix sub-menus for touch devices.
 			if ( 'ontouchstart' in window ) {
-				menu.find( '.has-children > a, .page_item_has_children a' ).on( 'touchstart.baskerville', function( e ) {
+				menu.find( '.has-children > a, .page_item_has_children a' ).on( 'touchstart.clge', function( e ) {
 					var el = $( this ).parent( 'li' );
 
 					if ( ! el.hasClass( 'focus' ) ) {
@@ -161,7 +161,7 @@
 			}
 
 			// Better focus for hidden submenu items for accessibility.
-			menu.find( 'a' ).on( 'focus.baskerville blur.baskerville', function() {
+			menu.find( 'a' ).on( 'focus.clge blur.clge', function() {
 				$( this ).parents( '.menu-item, .page_item' ).toggleClass( 'focus' );
 			} );
 
@@ -173,7 +173,7 @@
 
 		// @link http://www.nczonline.net/blog/2013/01/15/fixing-skip-to-content-links/
 
-		$( window ).on( 'hashchange.baskerville', function() {
+		$( window ).on( 'hashchange.clge', function() {
 			var hash = location.hash.substring( 1 ), element;
 			if ( ! hash ) {
 				return;

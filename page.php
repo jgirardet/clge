@@ -2,7 +2,7 @@
 /**
  * This template is used for displaying pages.
  *
- * @package Baskerville 2
+ * @package Clge
  */
 
 get_header(); ?>

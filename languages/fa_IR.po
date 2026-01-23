@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WordPress.com - Themes - Baskerville-2\n"
+"Project-Id-Version: WordPress.com - Themes - Clge\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -31,8 +31,8 @@ msgstr "بدون نوار کناری"
 
 #. Description of the theme
 #: style.css
-msgid "Baskerville 2 is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
-msgstr "Baskerville 2 یک پوسته پویا و مبتنی بر شبکه برای کوراتورهاست. این راهی کامل برای نمایش نوشته‌ها، ویدئوها، تصاویر و گالری‌ها و اشتراک گذاشتن نقل قول‌ها و پیوندهای مورد علاقه شماست."
+msgid "Clge is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
+msgstr "Clge یک پوسته پویا و مبتنی بر شبکه برای کوراتورهاست. این راهی کامل برای نمایش نوشته‌ها، ویدئوها، تصاویر و گالری‌ها و اشتراک گذاشتن نقل قول‌ها و پیوندهای مورد علاقه شماست."
 
 #: templates/contributors-page.php:71
 msgid "Website"

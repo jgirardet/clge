@@ -2,7 +2,7 @@
 /**
  * This template is for displaying the website's sidebar and widgets
  *
- * @package Baskerbille
+ * @package Clge
  */
 ?>
 

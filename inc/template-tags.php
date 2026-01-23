@@ -1,26 +1,26 @@
 <?php
 /**
- * Custom template tags for Baskerville 2
+ * Custom template tags for Clge
  *
- * @package Baskerville 2
+ * @package Clge
  */
 
-if ( ! function_exists( 'baskerville_2_post_meta' ) ) :
+if ( ! function_exists( 'clge_post_meta' ) ) :
 /**
  * Display date posted, zilla likes and comments on posts
  *
  */
 
-function baskerville_2_post_meta() { ?>
+function clge_post_meta() { ?>
 
 	<?php if ( is_sticky() && ! is_paged() && ! is_archive() ) : ?>
-		<span class="sticky-post"><i class="fa fa-thumb-tack"></i><?php esc_attr_e( 'Featured post', 'baskerville-2' ); ?></span>
+		<span class="sticky-post"><i class="fa fa-thumb-tack"></i><?php esc_attr_e( 'Featured post', 'clge' ); ?></span>
 	<?php endif; ?>
 
 	<div class="post-meta clear">
 		<?php if ( is_sticky() && ! is_paged() && ! is_archive() ) : ?>
 			<a class="post-date" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-				<i class="fa fa-thumb-tack"></i><?php esc_html_e( 'Featured', 'baskerville-2' ); ?>
+				<i class="fa fa-thumb-tack"></i><?php esc_html_e( 'Featured', 'clge' ); ?>
 			</a>
 		<?php else : ?>
 			<time class="updated" datetime="<?php the_time( 'Y-m-d' ); ?>">
@@ -36,7 +36,7 @@ function baskerville_2_post_meta() { ?>
 				endif;
 			endif;
 
-			edit_post_link( sprintf( esc_html__( '%s Edit Post ', 'baskerville-2' ), '<i class="fa fa-pencil-square-o"></i>' ) );
+			edit_post_link( sprintf( esc_html__( '%s Edit Post ', 'clge' ), '<i class="fa fa-pencil-square-o"></i>' ) );
 		?>
 	</div>
 
@@ -44,13 +44,13 @@ function baskerville_2_post_meta() { ?>
 }
 endif;
 
-if ( ! function_exists( 'baskerville_2_single_post_meta' ) ) :
+if ( ! function_exists( 'clge_single_post_meta' ) ) :
 
 /**
  * Display date posted, categories and tags on single.php posts
  *
  */
-function baskerville_2_single_post_meta() { ?>
+function clge_single_post_meta() { ?>
 
 	<time class="post-date updated" datetime="<?php the_time( 'Y-m-d' ); ?>">
 		<i class="fa fa-clock-o"></i>
@@ -58,26 +58,26 @@ function baskerville_2_single_post_meta() { ?>
 	</time>
 
 	<?php
-		$categories_list = get_the_category_list( esc_html__( ', ', 'baskerville-2' ) );
+		$categories_list = get_the_category_list( esc_html__( ', ', 'clge' ) );
 		if ( $categories_list ) { ?>
 			<p class="post-categories"><i class="fa fa-folder-open"></i><?php the_category( ', ' ); ?></p>
 	<?php } ?>
 
 	<?php
 		/* translators: used between list items, there is a space after the comma */
-		the_tags( '<p class="post-tags"><i class="fa fa-tag"></i>', esc_html__( ', ', 'baskerville-2' ), '</p>' );
+		the_tags( '<p class="post-tags"><i class="fa fa-tag"></i>', esc_html__( ', ', 'clge' ), '</p>' );
 	?>
 
 <?php
 }
 endif;
 
-if ( ! function_exists( 'baskerville_2_flexslider' ) ) :
+if ( ! function_exists( 'clge_flexslider' ) ) :
 /**
  * Turn photos into flexslider gallery for Gallery posts
  * see http://www.woothemes.com/flexslider/
  */
-function baskerville_2_flexslider( $size = 'thumbnail' ) {
+function clge_flexslider( $size = 'thumbnail' ) {
 
 	if ( is_page() ) :
 		$attachment_parent = $post->ID;

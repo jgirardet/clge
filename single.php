@@ -2,7 +2,7 @@
 /**
  * This template is used for displaying single posts.
  *
- * @package Baskerville 2
+ * @package Clge
  */
 
 get_header();

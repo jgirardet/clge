@@ -2,8 +2,8 @@
 # This file is distributed under the GNU General Public License version 2.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Baskerville 2 2.0.7-wpcom\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/baskerville-2\n"
+"Project-Id-Version: Clge 2.0.7-wpcom\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/clge\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,17 +15,17 @@ msgstr ""
 
 #. Theme Name of the theme
 #: style.css
-msgid "Baskerville 2"
+msgid "Clge"
 msgstr ""
 
 #. Theme URI of the theme
 #: style.css
-msgid "http://www.andersnoren.se/teman/baskerville-wordpress-theme/"
+msgid "http://www.andersnoren.se/teman/clge-wordpress-theme/"
 msgstr ""
 
 #. Description of the theme
 #: style.css
-msgid "Baskerville 2 is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
+msgid "Clge is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
 msgstr ""
 
 #. Author of the theme

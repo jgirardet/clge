@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WordPress.com - Themes - Baskerville-2\n"
+"Project-Id-Version: WordPress.com - Themes - Clge\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,24 +18,24 @@ msgid "Continue Reading &rarr;"
 msgstr "続きを読む &rarr;"
 
 #. Template Name of the plugin/theme
-#: wp-content/themes/pub/baskerville-2/templates/no-sidebar-page.php
+#: wp-content/themes/pub/clge/templates/no-sidebar-page.php
 msgid "No Sidebar"
 msgstr "サイドバーなし"
 
 #. Template Name of the plugin/theme
-#: wp-content/themes/pub/baskerville-2/templates/full-width-page.php
+#: wp-content/themes/pub/clge/templates/full-width-page.php
 msgid "Full Width, No Sidebar"
 msgstr "全幅、サイドバーなし"
 
 #. Template Name of the plugin/theme
-#: wp-content/themes/pub/baskerville-2/templates/contributors-page.php
+#: wp-content/themes/pub/clge/templates/contributors-page.php
 msgid "Contributors"
 msgstr "貢献者"
 
 #. Description of the plugin/theme
-#: wp-content/themes/pub/baskerville-2/style.css
-msgid "Baskerville 2 is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
-msgstr "Baskerville 2は、キュレーターのための動的なグリッドベーステーマです。投稿、動画、画像、ギャラリーを紹介したり、お気に入りの引用やリンクを共有するのに最適です。"
+#: wp-content/themes/pub/clge/style.css
+msgid "Clge is a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links."
+msgstr "Clgeは、キュレーターのための動的なグリッドベーステーマです。投稿、動画、画像、ギャラリーを紹介したり、お気に入りの引用やリンクを共有するのに最適です。"
 
 #: templates/contributors-page.php:71
 msgid "Website"

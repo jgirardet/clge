@@ -2,7 +2,7 @@
 /**
  * This template is used in the Loop to display posts in the Search Results
  *
- * @package Baskerville 2
+ * @package Clge
  */
 ?>
 
@@ -22,10 +22,10 @@
 		/**
 		 * Post Thumbnail
 		 */
-		if ( baskerville_2_has_post_thumbnail() ) { ?>
+		if ( clge_has_post_thumbnail() ) { ?>
 			<div class="featured-media">
 				<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>">
-					<?php the_post_thumbnail( 'baskerville-2-post-thumbnail' ); ?>
+					<?php the_post_thumbnail( 'clge-post-thumbnail' ); ?>
 				</a>
 			</div> <!-- /featured-media -->
 		<?php }
@@ -39,7 +39,7 @@
 			<?php the_excerpt(); ?>
 		</div>
 
-		<?php baskerville_2_post_meta(); ?>
+		<?php clge_post_meta(); ?>
 
 	</article> <!-- /post -->
 

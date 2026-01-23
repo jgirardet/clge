@@ -2,7 +2,7 @@
     "settings": {
         "options": {
             "posts_per_page": "9",
-            "stylesheet": "pub\/baskerville-2"
+            "stylesheet": "pub\/clge"
         },
         "theme_mods": {
             "0": false,

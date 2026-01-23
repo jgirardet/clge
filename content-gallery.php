@@ -2,7 +2,7 @@
 /**
  * This template is used in the Loop to display posts with the Gallery format
  *
- * @package Baskerville 2
+ * @package Clge
  */
 ?>
 
@@ -26,14 +26,14 @@
 		 * If there's a featured thumbnail, show that at the top
 		 *
 		 */
-		if ( baskerville_2_has_post_thumbnail() ) { ?>
+		if ( clge_has_post_thumbnail() ) { ?>
 			<div class="featured-media">
 				<?php if ( ! is_single() ) { ?>
 					<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>">
-						<?php the_post_thumbnail( 'baskerville-2-post-thumbnail' ); ?>
+						<?php the_post_thumbnail( 'clge-post-thumbnail' ); ?>
 					</a>
 				<?php } else {
-					the_post_thumbnail( 'baskerville-2-post-image' );
+					the_post_thumbnail( 'clge-post-image' );
 				} ?>
 			</div> <!-- /featured-media -->
 
@@ -45,7 +45,7 @@
 
 	 } else if ( ! is_single() ) { ?>
 			<div class="featured-media">
-				<?php baskerville_2_flexslider( 'baskerville-post-image' ); ?>
+				<?php clge_flexslider( 'clge-post-image' ); ?>
 			</div> <!-- /featured-media -->
 		<?php }
 
@@ -65,7 +65,7 @@
 				<?php
 				the_content( sprintf(
 					/* translators: %s: Name of current post. */
-					wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'baskerville-2' ), array( 'span' => array( 'class' => array() ) ) ),
+					wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'clge' ), array( 'span' => array( 'class' => array() ) ) ),
 					the_title( '<span class="screen-reader-text">"', '"</span>', false )
 				) );
 				wp_link_pages();
@@ -94,15 +94,15 @@
 		if ( is_single() ) { ?>
 
 			<footer class="post-meta-container clear">
-				<?php baskerville_2_author_bio(); ?>
+				<?php clge_author_bio(); ?>
 
 				<div class="post-meta clear">
-					<?php baskerville_2_single_post_meta(); ?>
+					<?php clge_single_post_meta(); ?>
 					<?php the_post_navigation(); ?>
 					<?php edit_post_link(
 							sprintf(
 								/* translators: %1$s: Pencil icon, %2$s: Name of current post */
-								esc_html__( '%1$s Edit %2$s', 'baskerville-2' ),
+								esc_html__( '%1$s Edit %2$s', 'clge' ),
 								'<i class="fa fa-pencil-square-o"></i>',
 								the_title( '<span class="screen-reader-text">"', '"</span>', false )
 							),
@@ -114,7 +114,7 @@
 			<?php comments_template( '', true );
 
 		} else {
-			baskerville_2_post_meta();
+			clge_post_meta();
 		} ?>
 
 	</article> <!-- /post -->

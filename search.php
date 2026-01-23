@@ -2,13 +2,13 @@
 /**
  * The template for displaying Search Results.
  *
- * @package Baskerville 2
+ * @package Clge
  */
 get_header(); ?>
 
 <main class="wrapper section medium-padding clear" role="main">
 	<header class="page-header section-inner">
-		<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'baskerville-2' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+		<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'clge' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 	</header>
 
 	<div class="content section-inner" id="content">
