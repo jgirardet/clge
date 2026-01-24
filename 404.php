@@ -16,7 +16,7 @@ get_header(); ?>
 			<div class="post">
 
 				<header class="post-header">
-					<h1 class="post-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'clge' ); ?></h1>
+					<h1 class="post-title"><?php esc_html_e( 'Page, non trouvée. Essayez les questions ouvertes', 'clge' ); ?></h1>
 				</header>
 
 				<div class="post-content">
