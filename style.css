@@ -3743,7 +3743,7 @@ body:not(.search-results) .page .post-edit-link {
 }
 
 .widget-content ul li:before {
-	color: #13C4A5;
+	color: #f29816;
 	content: "\00BB";
 	font-size: 18px;
 	left: 0;
