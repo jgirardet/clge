@@ -11,7 +11,7 @@ Based on the Baskerville 2 WordPress Theme, (c) 2017 Anders Norén
 
 == Description ==
 
-Clge is  a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links.
+Clg is  a dynamic, grid-based theme for curators. It's the perfect way to showcase your posts, videos, images and galleries, and share your favorite quotes and links.
 
 == Bundled Licenses ==
 
