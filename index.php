@@ -6,9 +6,11 @@
  */
 get_header(); ?>
 
-<div class="wrapper section medium-padding clear">
 
 	<main class="content section-inner" id="content" role="main">
+		
+	
+
 		<?php if ( have_posts() ) :
 
 			if ( is_home() && ! is_front_page() ) : ?>

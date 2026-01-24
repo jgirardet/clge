@@ -67,3 +67,9 @@
 			<a class="search-toggle search-icon fright" href="#"><?php esc_html_e( 'Open Search', 'clge' ); ?></a>
 		</nav> <!-- /navigation-inner -->
 	</div> <!-- /navigation -->
+	<h4 class="site-description">
+			Le Collège lyonnais des généralistes enseignants (CLGE) est l’association regroupant les MSU et les tuteurs rattachés à l’université de Lyon et organise la formation des maîtres de stage et aide à la promotion et au rayonnement de la médecine générale.
+	</h4>
+	<div class="wrapper section medium-padding clear">
+	
+
