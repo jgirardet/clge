@@ -4203,7 +4203,7 @@ div.gr_custom_container {
 }
 
 .error404 .widget_recent_entries li:before {
-	color: #f29816;
+	color: #1b6db5;
 	content: "\00BB";
 	font-size: 18px;
 	left: 0;
