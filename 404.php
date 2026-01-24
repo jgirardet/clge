@@ -16,27 +16,10 @@ get_header(); ?>
 			<div class="post">
 
 				<header class="post-header">
-					<h1 class="post-title"><?php esc_html_e( 'Page, non trouvée. Essayez les questions ouvertes', 'clge' ); ?></h1>
+					<h1 class="post-title" style="color: #f29816;"><?php esc_html_e( 'Page, non trouvée. Essayez les questions ouvertes', 'clge' ); ?></h1>
 				</header>
 
-				<div class="post-content">
-
-					<p><?php esc_html_e('Page, non trouvée. Essayez les questions ouvertes !!!', 'clge' ); ?></p>
-
-					<?php get_search_form(); ?>
-
-					<?php the_widget( 'WP_Widget_Recent_Posts' ); ?>
-
-					<?php
-						$archive_content = '<p>' . esc_html__( 'Try looking in the monthly archives.', 'clge' ) . '</p>';
-						the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
-					?>
-
-					<div class="clear">
-						<?php the_widget( 'WP_Widget_Tag_Cloud' ); ?>
-					</div>
-
-				</div> <!-- /post-content -->
+				
 
 			</div> <!-- /post -->
 		</section> <!-- /content -->
@@ -46,4 +29,3 @@ get_header(); ?>
 	</main> <!-- /section-inner -->
 </div> <!-- /wrapper -->
 
-<?php get_footer(); ?>
