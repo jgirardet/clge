@@ -424,6 +424,8 @@ a,
 
 .header {
 	padding: 70px 0;
+
+	height: 300px;
 }
 
 .header .cover {
