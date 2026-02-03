@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This template is used for the website header
  *
@@ -7,69 +8,63 @@
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+	<meta charset="<?php bloginfo('charset'); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<title>Collège Lyonnais des Généralistes Enseigants</title>
+
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 
-	<a class="screen-reader-text skip-link" href="#content"><?php esc_html_e( 'Skip to content', 'clge' ); ?></a>
+	<a class="screen-reader-text skip-link" href="#content"><?php esc_html_e('Skip to content', 'clge'); ?></a>
 
-	<header class="header section small-padding bg-dark bg-image" style="background-image: url(<?php if ( '' !== get_header_image() ) { echo esc_url( get_header_image() ); } ?>);" role="banner">
+	<div class="header-search-block bg-graphite hidden" id="search-container">
+		<?php get_search_form(); ?>
+	</div> <!-- /header-search-block -->
 
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+	<header class="header section small-padding bg-dark bg-image" style="background-image: url(<?php echo esc_url(get_header_image()); ?>);" role="banner">
+		<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
 			<div class="cover"></div>
 		</a>
-
-		<a href="#search-container" class="screen-reader-text search-toggle"><?php esc_html_e( 'Search', 'clge' ); ?></a>
-		<div class="header-search-block bg-graphite hidden" id="search-container">
-			<?php get_search_form(); ?>
-		</div> <!-- /header-search-block -->
-
 		<div class="header-inner section-inner">
-
-			<?php the_custom_logo(); ?>
-
-			<?php
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-			endif;
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-			<?php
-			endif; ?>
-
-			<?php clge_social_menu(); ?>
-
 		</div> <!-- /header-inner -->
 	</header> <!-- /header -->
 
+	<div class="header-mobile">
+		<a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+			<img src="<?php echo get_template_directory_uri() . '/images/logo-petit-ecran-sans-nom.png'; ?>" alt="" class="logo-petit-ecran">
+		</a>
+		<h1 class="title-small-screen">Collège Lyonnais des Généralistes Enseignants</h1>
+
+		<div id="actions">
+			<a class="fa fa-search search-icon" href="#"></a>
+			<a class="fa fa-bars" aria-hidden="true" id="menu-icon"></a>
+		</div>
+	</div>
+
 	<div class="navigation section no-padding bg-dark">
 		<nav id="site-navigation" class="navigation-inner section-inner clear" role="navigation">
-			<button class="nav-toggle fleft" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'clge' ); ?></button>
 			<div class="main-navigation">
 				<?php
-					wp_nav_menu( array(
-						'container'      => '',
-						'theme_location' => 'menu-1',
-						'menu_id'        => 'primary-menu',
-					) );
+				wp_nav_menu(array(
+					'container' => '',
+					'theme_location' => 'menu-1',
+					'menu_id' => 'primary-menu',
+				));
 				?>
 			</div>
+			<div id="search-icon-large-screen"><a class="fa fa-search search-icon" style="padding-top: 20px; padding-left: 20px;" href="#"></a></div>
 
-			<a class="search-toggle search-icon fright" href="#"><?php esc_html_e( 'Open Search', 'clge' ); ?></a>
+
+
+
 		</nav> <!-- /navigation-inner -->
 	</div> <!-- /navigation -->
 	<h4 class="site-description">
-			Le Collège lyonnais des généralistes enseignants (CLGE) est l’association regroupant les MSU et les tuteurs rattachés à l’université de Lyon et organise la formation des maîtres de stage et aide à la promotion et au rayonnement de la médecine générale.
+		Le Collège lyonnais des généralistes enseignants (CLGE) est l’association regroupant les MSU et les tuteurs rattachés à l’université de Lyon et organise la formation des maîtres de stage et aide à la promotion et au rayonnement de la médecine générale.
 	</h4>
 	<div class="wrapper section medium-padding clear">
-	
-
