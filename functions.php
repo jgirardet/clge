@@ -59,7 +59,7 @@ function clge_setup() {
 	/**
 	 * Add support for styles in WYSIWYG editor
 	 */
-	add_editor_style( array( 'editor-style.css', clge_fonts_url() ) );
+	// add_editor_style( array( 'editor-style.css', clge_fonts_url() ) );
 
 	/**
 	 * Add navigation menu
@@ -101,57 +101,6 @@ function clge_content_width() {
 }
 add_action( 'after_setup_theme', 'clge_content_width', 0 );
 
-if ( ! function_exists( 'clge_fonts_url' ) ) :
-/**
- * Define Google Fonts
- */
-function clge_fonts_url() {
-	$fonts_url = '';
-
-	/* Translators: If there are characters in your language that are not
-	* supported by Roboto, translate this to 'off'. Do not translate
-	* into your own language.
-	*/
-	$roboto = esc_html_x( 'on', 'Roboto font: on or off', 'clge' );
-
-	/* Translators: If there are characters in your language that are not
-	* supported by Roboto Slab, translate this to 'off'. Do not translate
-	* into your own language.
-	*/
-	$robotoslab = esc_html_x( 'on', 'Roboto Slab font: on or off', 'clge' );
-
-	/* Translators: If there are characters in your language that are not
-	* supported by Pacifico, translate this to 'off'. Do not translate
-	* into your own language.
-	*/
-	$pacifico = esc_html_x( 'on', 'Pacifico font: on or off', 'clge' );
-
-	if ( 'off' !== $roboto || 'off' !== $robotoslab || 'off' !== $pacifico ) {
-		$font_families = array();
-
-		if ( 'off' !== $robotoslab ) {
-			$font_families[] = 'Roboto Slab:400,700';
-		}
-
-		if ( 'off' !== $roboto ) {
-			$font_families[] = 'Roboto:400,400italic,700,700italic,300';
-		}
-
-		if ( 'off' !== $pacifico ) {
-			$font_families[] = 'Pacifico:400';
-		}
-
-		$query_args = array(
-			'family' => urlencode( implode( '|', $font_families ) ),
-			'subset' => urlencode( 'latin,latin-ext' ),
-		);
-
-		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
-	}
-
-	return $fonts_url;
-}
-endif;
 
 
 if ( ! function_exists( 'clge_scripts' ) ) :
@@ -160,7 +109,6 @@ if ( ! function_exists( 'clge_scripts' ) ) :
  */
 function clge_scripts() {
 	wp_enqueue_style( 'clge-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'clge-fonts', clge_fonts_url(), array(), null );
 	wp_enqueue_script( 'clge-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 	wp_enqueue_style( 'fontawesome', get_template_directory_uri() . '/fontawesome/font-awesome.css', array(), '4.3.0' );
 	wp_enqueue_script( 'clge-flexslider', get_template_directory_uri() . '/js/flexslider.js', array( 'jquery' ), '', true );
