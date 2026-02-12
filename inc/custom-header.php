@@ -20,7 +20,7 @@ function clge_custom_header_setup() {
 		'width'	=> 1440,
 		'height' => 221,
 		'flex-height' => true,
-		'default-image' => get_template_directory_uri() . '/images/header.png',
+		'default-image' => get_template_directory_uri() . '/images/tetiere.jpg',
 		'uploads' => true,
 		'header-text' => true,
 		'wp-head-callback' => 'clge_header_style',
@@ -28,8 +28,8 @@ function clge_custom_header_setup() {
 
 	register_default_headers( array(
 		'default' => array(
-			'url'           => '%s/images/header.png',
-			'thumbnail_url' => '%s/images/header.png',
+			'url'           => '%s/images/tetiere.jpg',
+			'thumbnail_url' => '%s/images/tetiere.jpg',
 			'description'   => esc_html__( 'Default Header', 'clge' )
 		),
 	) );
