@@ -17,7 +17,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
 	<title>Collège Lyonnais des Généralistes Enseigants</title>
-
+	<script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/hyperscript.org@0.9.14"></script>
 	<?php wp_head(); ?>
 </head>
 
@@ -67,7 +68,55 @@
 
 		</nav> <!-- /navigation-inner -->
 	</div> <!-- /navigation -->
-	<h4 class="site-description">
-		Le Collège lyonnais des généralistes enseignants (CLGE) est l’association regroupant les MSU et les tuteurs rattachés à l’université de Lyon et organise la formation des maîtres de stage et aide à la promotion et au rayonnement de la médecine générale.
-	</h4>
+
+	<div id="entete-footer">
+
+		<div class="entete-footer-container">
+			<h4>Adhérer au CLGE</h4>
+		</div>
+
+
+		<div class="entete-footer-container" id="phrase-entete-container">
+			<h4 class="phrase-entete">
+				Le Collège lyonnais des généralistes enseignants (CLGE) est l’association regroupant les MSU et les tuteurs rattachés à l’université de Lyon et organise la formation des maîtres de stage et aide à la promotion et au rayonnement de la médecine générale.
+			</h4>
+		</div>
+
+		<div class="entete-footer-container"
+			id="newsletter-container">
+			<form id="newsletter-form"
+				hx-post="/wp-admin/admin-ajax.php"
+				hx-target="#newsletter-container"
+				hx-swap="innerHTML"
+				_="on submit
+					set #newsletter-submit-button.disabled to true
+					set #newsletter-submit-button.style.opacity to '0.6'
+				"
+				>
+				<input type="hidden" name="action" value="send_newsletter">
+				<label for="newsletter-email">
+					Abonnez-vous à la newsletter
+				</label>
+				<div id="newsletter-inputs-container">
+				<input type="email" id="newsletter-email" name="newsletter_email"
+					placeholder="Votre adresse email" required
+					_="on input
+       set #newsletter-submit-button.disabled to !me.validity.valid"
+					>
+				<button
+					id="newsletter-submit-button"
+					type="submit"
+										>
+					<i class="fa fa-paper-plane"></i>
+				</button>
+				</div>
+			</form>
+			<div id="newsletter-response" style="margin-top: 10px;"></div>
+		</div>
+
+
+
+
+	</div>
+
 	<div class="wrapper section medium-padding clear">

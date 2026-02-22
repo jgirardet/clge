@@ -267,3 +267,26 @@ require get_template_directory() . '/inc/template-tags.php';
 // updater for WordPress.com themes
 if ( is_admin() )
 	include dirname( __FILE__ ) . '/inc/updater.php';
+
+
+add_action('wp_ajax_send_newsletter', 'handle_newsletter_submission');
+add_action('wp_ajax_nopriv_send_newsletter', 'handle_newsletter_submission');
+
+function handle_newsletter_submission() {
+    if (isset($_POST['newsletter_email'])) {
+        $email = sanitize_email($_POST['newsletter_email']);
+        $to = 'as28gj2a5@mozmail.com'; // mail destinataire
+        $subject = 'Nouvel abonnement à la newsletter';
+        $message = "Un nouvel abonnement à la newsletter a été soumis depuis votre site.\n\nEmail : $email";
+        $headers = array('Content-Type: text/plain; charset=UTF-8');
+
+        $sent = wp_mail($to, $subject, $message, $headers);
+
+        if ($sent) {
+            echo '<div id="newsletter-sucess">Merci pour votre abonnement !</div>';
+        } else {
+            echo '<div style="color: red;">Une erreur est survenue/div>';
+        }
+    }
+    wp_die(); 
+}

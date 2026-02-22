@@ -518,21 +518,83 @@ a,
 	text-decoration: none;
 }
 
-.site-description {
+
+#entete-footer {
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 20px;
+	gap: 20px;
+
+
+}
+
+
+
+.entete-footer-container {
 	color: #1b6db5;
 	font-size: 1.1em;
 	font-weight: 600;
 	line-height: 110%;
-	margin: 20px auto 0 auto;
 	text-align: center;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, .05);
-	width: 80%;
-	border: solid 2px #f29816 ;
 	border-radius: 20px;
 	background-color: white;
-	padding: 5px;
+	padding: 10px;
 	font-family: "Nunito Sans";
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
+#phrase-entete-container  {
+	flex: 3;
+}
+
+
+#newsletter-container {
+	display: flex;
+	align-items: stretch;
+	flex-direction: column;
+}
+
+
+
+
+#newsletter-form  label {
+	font-size: 1.1rem;
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 600;
+	}
+
+#newsletter-inputs-container {
+	display: flex;
+	gap: 5px;
+	align-items: center;	
+}
+
+
+
+#newsletter-email {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-sizing: border-box;
+}
+
+#newsletter-submit-button {
+	background-color: white;
+}
+
+#newsletter-submit-button > i {
+	color: #1b6db5;
+	background-color: white;
+	border: none;
+	padding: 5px;
+	cursor: pointer;
 }
 
 
@@ -4227,6 +4289,11 @@ img#wpstats {
 	.comment-form-email,
 	.comment-form-url {
 		width: 100%;
+	}
+
+
+	#entete-footer {
+		flex-direction: column;
 	}
 }
 
