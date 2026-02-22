@@ -91,24 +91,21 @@
 				_="on submit
 					set #newsletter-submit-button.disabled to true
 					set #newsletter-submit-button.style.opacity to '0.6'
-				"
-				>
+				">
 				<input type="hidden" name="action" value="send_newsletter">
 				<label for="newsletter-email">
 					Abonnez-vous à la newsletter
 				</label>
 				<div id="newsletter-inputs-container">
-				<input type="email" id="newsletter-email" name="newsletter_email"
-					placeholder="Votre adresse email" required
-					_="on input
-       set #newsletter-submit-button.disabled to !me.validity.valid"
-					>
-				<button
-					id="newsletter-submit-button"
-					type="submit"
-										>
-					<i class="fa fa-paper-plane"></i>
-				</button>
+					<input type="email" id="newsletter-email" name="newsletter_email"
+						placeholder="Votre adresse email" required
+						_="on input
+       set #newsletter-submit-button.disabled to !me.validity.valid">
+					<button
+						id="newsletter-submit-button"
+						type="submit">
+						<i class="fa fa-paper-plane"></i>
+					</button>
 				</div>
 			</form>
 			<div id="newsletter-response" style="margin-top: 10px;"></div>
