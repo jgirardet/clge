@@ -72,7 +72,9 @@
 	<div id="entete-footer">
 
 		<div class="entete-footer-container">
-			<h4>Adhérer au CLGE</h4>
+			<h4 >
+			<a href="https://cnge-adhesion.cnge.fr" target="_blank" rel="noopener noreferrer">Adhérer</a>
+			</h4>
 		</div>
 
 

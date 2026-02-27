@@ -1,4 +1,3 @@
-ajouter: lien vers cnge formation: https://cnge-adhesion.cnge.fr/
 
 Sur Tel je ne mettrai que CLGE et pas la parenthèse, car c'est déjà dans le titre au dessus
 
@@ -7,3 +6,18 @@ Sur Tel je ne mettrai que CLGE et pas la parenthèse, car c'est déjà dans le t
 bandeau fixe en mobile
 
 Subpages: mauvais bandeau et texte
+
+
+Mis en prod:
+
+-utilisateurs to admin
+- les extensions: avant après
+    - smtp configuration
+- logo du site
+- gestion du menu
+
+
+Teste manuel:
+    - sous page
+    - ajouter un évenement
+    - supprimer un évenement
