@@ -290,3 +290,9 @@ function handle_newsletter_submission() {
     }
     wp_die(); 
 }
+
+
+// Inclure les fichiers du module CLGE
+require get_template_directory() . '/inc/cngeformations.php';
+require get_template_directory() . '/inc/clge-admin-page.php';
+require get_template_directory() . '/inc/database.php';
