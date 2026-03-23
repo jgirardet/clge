@@ -1,0 +1,5 @@
+{
+    "require": {
+        "johnpbloch/wordpress-core": "^6.9"
+    }
+}

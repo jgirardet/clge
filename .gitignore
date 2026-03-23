@@ -1,0 +1,61 @@
+# Ignorer les fichiers de configuration locaux
+.env
+.env.local
+.env*.local
+
+# Ignorer les dépendances Composer
+/vendor/
+
+# Ignorer les fichiers de cache et logs
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/uploads/
+/wp-content/ai1wm-backups/
+/wp-content/wflogs/
+
+# Ignorer les fichiers de configuration WordPress
+wp-config.php
+wp-config-sample.php
+
+# Ignorer les fichiers de base de données et sauvegardes
+*.sql
+*.sql.gz
+*.backup
+*.bak
+
+# Ignorer les fichiers de logs
+*.log
+debug.log
+
+# Ignorer les fichiers de sessions PHP
+/sessions/
+
+# Ignorer les fichiers de dépendances npm
+/node_modules/
+
+# Ignorer les fichiers de build et distribution
+/dist/
+/build/
+
+# Ignorer les fichiers IDE et éditeurs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignorer les fichiers de système d'exploitation
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignorer les fichiers de dépendances Composer
+composer.phar
+composer.lock
+
+# Ignorer les fichiers de dépendances npm
+package-lock.json
+yarn.lock
+
+# Ignorer les fichiers de tests et coverage
+/tests/_output/
+/coverage/
