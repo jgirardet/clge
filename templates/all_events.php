@@ -1,3 +1,10 @@
+<?php
+/**
+ * Template variables:
+ *
+ * @var array<object{debut: DateTime, fin: DateTime, nom: string, abrev: string, lieu_physique: string, url: string, id: int}> $calEvents Liste des événements
+ */
+?>
 <table id="cal_events_list" class="wp-list-table widefat fixed striped">
             <thead>
                 <tr>
