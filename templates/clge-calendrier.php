@@ -1,4 +1,10 @@
-<div class="wrap">
+<?php
+/**
+ * @var string|null $error
+ * @var string|null $message
+ */
+?>
+ <div class="wrap">
 
     <style>
         h1 {
@@ -53,7 +59,7 @@
                 <input type="text" id="nom" name="nom" required style="width: 100%; padding: 6px; box-sizing: border-box;">
             </div>
 
-   
+
             <!-- Lieu -->
             <div style="flex: 1; min-width: 120px;" class="add-form-elmts">
                 <label for="lieu_physique" style="display: block; font-weight: bold; margin-bottom: 4px;">Lieu</label>
