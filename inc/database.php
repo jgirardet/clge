@@ -143,25 +143,38 @@ function clge_update_event($id, $data) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'clge_cal_events';
 
-    $update_data = array(
-        'debut' => $data['debut'] instanceof DateTime ? $data['debut']->format('Y-m-d H:i:s') : $data['debut'],
-        'fin'   => $data['fin'] instanceof DateTime ? $data['fin']->format('Y-m-d H:i:s') : $data['fin'],
-        'nom'   => sanitize_text_field($data['nom']),
-        'lieu_physique'  => sanitize_text_field($data['lieu_physique']),
-        'url'   => esc_url_raw($data['url']),
-        'evt_clge' => isset($data['evt_clge']) ? (int) $data['evt_clge'] : 0,
-    );
+    $update_data = array();
 
+    if (isset($data['debut'])) {
+        $update_data['debut'] = $data['debut'] instanceof DateTime ? $data['debut']->format('Y-m-d H:i:s') : $data['debut'];
+    }
+    if (isset($data['fin'])) {
+        $update_data['fin'] = $data['fin'] instanceof DateTime ? $data['fin']->format('Y-m-d H:i:s') : $data['fin'];
+    }
+    if (isset($data['nom'])) {
+        $update_data['nom'] = sanitize_text_field($data['nom']);
+    }
+    if (isset($data['lieu_physique'])) {
+        $update_data['lieu_physique'] = sanitize_text_field($data['lieu_physique']);
+    }
+    if (isset($data['url'])) {
+        $update_data['url'] = esc_url_raw($data['url']);
+    }
+    if (isset($data['evt_clge'])) {
+        $update_data['evt_clge'] = (int) $data['evt_clge'];
+    }
     if (isset($data['abrev'])) {
         $update_data['abrev'] = sanitize_text_field($data['abrev']);
     }
-
     if (isset($data['alias'])) {
         $update_data['alias'] = sanitize_text_field($data['alias']);
     }
-
     if (isset($data['description'])) {
         $update_data['description'] = sanitize_textarea_field($data['description']);
+    }
+
+    if (empty($update_data)) {
+        return 0;
     }
 
     $wpdb->update($table_name, $update_data, array('id' => $id), null, array('%d'));

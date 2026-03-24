@@ -86,6 +86,22 @@ function hx_delete_event()
 }
 add_action('wp_ajax_clge_delete_event', 'hx_delete_event');
 
+// Met à jour un événement
+// retourne le fragment liste des événements mise à jour
+function hx_update_event()
+{
+    if (check_admin_referer('clge_update_event')) {
+        $event_id = isset($_POST['event_id']) ? (int) $_POST['event_id'] : 0;
+        $alias = isset($_POST['alias']) ? $_POST['alias'] : null;
+
+        if ($event_id > 0) {
+            clge_update_event($event_id, array('alias' => $alias));
+        }
+        all_events_list();
+    }
+}
+add_action('wp_ajax_clge_update_event', 'hx_update_event');
+
 
 // fragment qui retoune la liste des formations CNGE sous forme d'options
 function hx_select_cnge_formations_list()

@@ -210,7 +210,7 @@ if (!function_exists("clge_cal_events_shortcode")):
                                 <?php if (!$event->evt_clge): ?>
                                                                 Formation:</br>
                                 <?php endif; ?>
-                                <?php echo esc_html($event->nom); ?></a>
+                                <?php echo esc_html( !empty($event->alias) ? $event->alias : $event->nom ); ?></a>
                         </div>
                     </div>
                     <?php if (!is_front_page()): ?>
