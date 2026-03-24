@@ -108,15 +108,18 @@ $update_nonce = wp_create_nonce("clge_update_event");
 
 				<div style="flex: 1; min-width: 80px;">
 					<input
-                        type="text"
-                        class="clge-alias-input"
-                        data-event-id="<?php echo esc_attr(
-                            (string) absint($event->id),
-                        ); ?>"
-                        value="<?php echo esc_attr($event->alias ?? ""); ?>"
-                        placeholder="alias"
-                        style="width: 100%; padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 13px; font-family: monospace; background: #e0e7ff; color: #3730a3;"
-                    />
+						type="text"
+						name="alias"
+						value="<?php echo esc_attr($event->alias ?? ""); ?>"
+						placeholder="alias"
+						style="width: 100%; padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 13px; font-family: monospace; background: #e0e7ff; color: #3730a3;"
+						hx-post="/wp-admin/admin-ajax.php"
+						hx-trigger="input delay:3s, change"
+						hx-vals='{"action":"clge_update_event","event_id":"<?php echo esc_attr((string) absint($event->id)); ?>","_wpnonce":"<?php echo esc_attr($update_nonce); ?>"}'
+						hx-target="#cal_events_list"
+						hx-include="this"
+						onkeydown="if(event.key === 'Enter') { event.preventDefault(); this.dispatchEvent(new Event('change')); }"
+					/>
 				</div>
 
 				<div style="flex: 1; min-width: 150px;">
@@ -172,61 +175,3 @@ $update_nonce = wp_create_nonce("clge_update_event");
 		<div style="padding: 20px; text-align: center; color: #6b7280; font-style: italic;">Aucun événement trouvé.</div>
 	<?php endif; ?>
 </div>
-
-<script>
-(function() {
-    const updateNonce = <?php echo json_encode($update_nonce); ?>;
-    let timeout;
-
-    function doUpdate(eventId, alias) {
-        fetch('/wp-admin/admin-ajax.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                action: 'clge_update_event',
-                event_id: eventId,
-                alias: alias,
-                _wpnonce: updateNonce
-            })
-        })
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById('cal_events_list').innerHTML = html;
-        })
-        .catch(error => console.error('Error updating alias:', error));
-    }
-
-    const debounce = function(func, wait) {
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    };
-
-    const handleUpdate = debounce(doUpdate, 3000);
-
-    document.addEventListener('input', function(e) {
-        if (e.target.classList.contains('clge-alias-input')) {
-            const eventId = e.target.dataset.eventId;
-            const alias = e.target.value;
-            handleUpdate(eventId, alias);
-        }
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.target.classList.contains('clge-alias-input') && e.key === 'Enter') {
-            e.preventDefault();
-            clearTimeout(timeout);
-            const eventId = e.target.dataset.eventId;
-            const alias = e.target.value;
-            doUpdate(eventId, alias);
-        }
-    });
-})();
-</script>
