@@ -6,9 +6,9 @@
 
 ## Événements à venir
 
-- [ ] Code couleur formation / vie du collège
-- [ ] Affichage 7
-- [ ] Effacement auto des événements passés
+- [ ] Code couleur formation / vie du collège **pas trouvé d'idée mise en page cool.**
+- [x] Affichage
+- [x] Effacement auto des événements passés
 
 ## Interface
 

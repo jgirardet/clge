@@ -572,7 +572,7 @@ a,
 #newsletter-inputs-container {
 	display: flex;
 	gap: 5px;
-	align-items: center;	
+	align-items: center;
 }
 
 
@@ -607,7 +607,7 @@ a,
 	background-color: white;
 	padding-top: 20px;
 	flex-direction: row;
-	justify-content: center; 
+	justify-content: center;
 }
 
 
@@ -652,7 +652,7 @@ a,
 	justify-content: space-between;
 	padding: 5px;
 	font-size: 1.5em;
-	
+
 }
 
 .search-icon {
@@ -3986,7 +3986,7 @@ img#wpstats {
 @media (max-width: 1000px) {
 
 	/* structure */
-	
+
 
 	header.header {
 		display: none;
@@ -4158,7 +4158,7 @@ img#wpstats {
 		background-color: transparent;
 	}
 
-	
+
 
 }
 

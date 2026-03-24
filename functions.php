@@ -296,3 +296,4 @@ function handle_newsletter_submission() {
 require get_template_directory() . '/inc/cngeformations.php';
 require get_template_directory() . '/inc/clge-admin-page.php';
 require get_template_directory() . '/inc/database.php';
+require get_template_directory() . '/inc/shortcodes.php';

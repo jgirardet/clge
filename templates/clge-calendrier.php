@@ -268,7 +268,14 @@
 					<label for="heure-fin">Heure fin</label>
 					<input type="time" id="heure-fin" name="fin_h" value="00:00">
 				</div>
+			</div>
 
+			<div class="clge-field" style="margin-top: 12px;">
+				<label for="description">Description</label>
+				<textarea id="description" name="description" rows="4" style="resize: vertical; width: 100%;"></textarea>
+			</div>
+
+			<div style="margin-top: 12px;">
 				<button type="submit" class="clge-submit">Ajouter</button>
 			</div>
 		</form>
