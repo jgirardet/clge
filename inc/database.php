@@ -25,6 +25,7 @@ function clge_create_cal_events_table() {
             abrev varchar(50) DEFAULT NULL,  -- Champ facultatif
             lieu_physique varchar(255) NOT NULL,
             url varchar(255) NOT NULL,
+            evt_clge bool NOT NULL DEFAULT 0,
             PRIMARY KEY (id)
         );";
 
@@ -40,9 +41,10 @@ function clge_create_cal_events_table() {
                 'nom'   => 'Événement par défaut',
                 'abrev' => 'Def',
                 'lieu_physique'  => 'En ligne',
-                'url'   => '#'
+                'url'   => '#',
+                'evt_clge' => 0,
             ),
-            array('%s', '%s', '%s', '%s', '%s', '%s')
+            array('%s', '%s', '%s', '%s', '%s', '%s', '%d')
         );
     }
 }
@@ -61,13 +63,14 @@ function clge_create_event($data) {
         'nom'   => sanitize_text_field($data['nom']),
         'lieu_physique'  => sanitize_text_field($data['lieu_physique']),
         'url'   => esc_url_raw($data['url']),
+        'evt_clge' => isset($data['evt_clge']) ? (int) $data['evt_clge'] : 0,
     );
 
     if (isset($data['abrev'])) {
         $insert_data['abrev'] = sanitize_text_field($data['abrev']);
     }
 
-    $wpdb->insert($table_name, $insert_data, array('%s', '%s', '%s', '%s', '%s'));
+    $wpdb->insert($table_name, $insert_data, array('%s', '%s', '%s', '%s', '%s', '%d'));
     return $wpdb->insert_id;
 }
 
@@ -111,13 +114,14 @@ function clge_update_event($id, $data) {
         'nom'   => sanitize_text_field($data['nom']),
         'lieu_physique'  => sanitize_text_field($data['lieu_physique']),
         'url'   => esc_url_raw($data['url']),
+        'evt_clge' => isset($data['evt_clge']) ? (int) $data['evt_clge'] : 0,
     );
 
     if (isset($data['abrev'])) {
         $update_data['abrev'] = sanitize_text_field($data['abrev']);
     }
 
-    $wpdb->update($table_name, $update_data, array('id' => $id), array('%s', '%s', '%s', '%s', '%s'), array('%d'));
+    $wpdb->update($table_name, $update_data, array('id' => $id), array('%s', '%s', '%s', '%s', '%s', '%d'), array('%d'));
     return $wpdb->rows_affected;
 }
 
