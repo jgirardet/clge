@@ -14,7 +14,6 @@
 
 - [ ] Bandeau fixe en mobile
 - [ ] Sous-pages : mauvais bandeau et texte
-- [ ] virer les archvies de droites
 - [ ] archives à la fin du menu ressourcesédago
 
 ## categories
@@ -29,9 +28,12 @@
 - [ ] SMTP configuration
 - [ ] Logo du site
 - [ ] Gestion du menu
+- [ ] virer les archvies de droites
 
 ## Tests manuels
 
 - [ ] Sous page
 - [ ] Ajouter un événement
 - [ ] Supprimer un événement
+- [ ] SEO
+- [ ] menu: newsletter group

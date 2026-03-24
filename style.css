@@ -3071,12 +3071,13 @@ body:not(.search-results) .page .post-edit-link {
 .page-title {
 	border-bottom: 2px solid #ccc;
 	display: inline-block;
-	font-family: "Roboto Slab", sans-serif;
+	font-family: "Nunito Sans";
 	font-size: .9em;
 	font-weight: 700;
 	padding-bottom: 4px;
 	text-align: center;
 	text-transform: uppercase;
+	color: #1b6db5;
 }
 
 .taxonomy-description {
