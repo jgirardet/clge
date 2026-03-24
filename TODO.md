@@ -13,13 +13,10 @@
 ## Interface
 
 - [ ] Bandeau fixe en mobile
-- [ ] Sous-pages : mauvais bandeau et texte
-- [ ] archives à la fin du menu ressourcesédago
-
-## categories
-
-- [ ] contact
-- [ ] newsletter/ accès aux archives
+- [x] Sous-pages : mauvais bandeau et texte
+- [x] archives à la fin du menu ressourcesédago
+- [x] contact : **à compléter**
+- [x] newsletter/ accès aux archives
 
 ## Mis en prod
 
@@ -29,6 +26,7 @@
 - [ ] Logo du site
 - [ ] Gestion du menu
 - [ ] virer les archvies de droites
+- [ ] pied de page widget
 
 ## Tests manuels
 
