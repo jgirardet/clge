@@ -23,19 +23,20 @@
 - [x] Utilisateurs to admin
 - [ ] Extensions : avant après
 - [x] SMTP configuration
-- [ ] Logo du site
+- [x] Logo du site
 - [x] Gestion du menu
 - [x] virer les archvies de droites
 - [x] pied de page widget
 
 ## Tests manuels
 
-- [ ] Sous page
-- [ ] Ajouter un événement
-- [ ] Supprimer un événement
-- [ ] SEO
-- [ ] menu: newsletter group
+- [x] Sous page
+- [x] Ajouter un événement
+- [x] Supprimer un événement
+- [en cours] SEO
+- [x] menu: newsletter group
 
 
 DEmander: 
 - déplacer newslettter dans clge (menu) et pas ressources
+- couleur du logo
