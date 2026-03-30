@@ -94,6 +94,8 @@ if (!function_exists("clge_cal_events_shortcode")):
                             color: #1b6db5;
                             text-transform: uppercase;
                             font-weight: 600;
+                            flex:1;
+                            text-align: center  ;
                         }
                         .clge-event-nom {
                             color: #f29816;
@@ -101,6 +103,7 @@ if (!function_exists("clge_cal_events_shortcode")):
                             display: flex;
                             justify-content: right;
                             text-align: right;
+
                         }
                         .clge-event-description {
                             color: #666;
@@ -197,7 +200,7 @@ if (!function_exists("clge_cal_events_shortcode")):
                             <span class="clge-event-date-primary"><?php echo esc_html(
                                 $date_parts["secondary"],
                             ); ?>
-                            &nbsp;à&nbsp;
+
                             </span>
                         <?php endif; ?>
                                                 <span class="clge-event-lieu"><?php echo esc_html(
