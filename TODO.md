@@ -35,3 +35,7 @@
 - [ ] Supprimer un événement
 - [ ] SEO
 - [ ] menu: newsletter group
+
+
+DEmander: 
+- déplacer newslettter dans clge (menu) et pas ressources
