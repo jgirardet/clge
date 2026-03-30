@@ -20,13 +20,13 @@
 
 ## Mis en prod
 
-- [ ] Utilisateurs to admin
+- [x] Utilisateurs to admin
 - [ ] Extensions : avant après
-- [ ] SMTP configuration
+- [x] SMTP configuration
 - [ ] Logo du site
-- [ ] Gestion du menu
-- [ ] virer les archvies de droites
-- [ ] pied de page widget
+- [x] Gestion du menu
+- [x] virer les archvies de droites
+- [x] pied de page widget
 
 ## Tests manuels
 
