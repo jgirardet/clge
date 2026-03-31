@@ -72,53 +72,52 @@
 		</nav> <!-- /navigation-inner -->
 	</div> <!-- /navigation -->
 
-	<div id="entete-footer">
-
-		<div class="entete-footer-container">
-			<h4 >
-			<a href="https://cnge-adhesion.cnge.fr" target="_blank" rel="noopener noreferrer">Adhérer</a>
-			</h4>
-		</div>
-
-
-		<div class="entete-footer-container" id="phrase-entete-container">
-			<h4 class="phrase-entete">
-				Le CLGE est l’association qui regroupe maitres de stage et tuteurs de l’université de Lyon, organise la formation des MSU, aide à la promotion et au rayonnement de la médecine générale.
-			</h4>
-		</div>
-
-		<div class="entete-footer-container"
-			id="newsletter-container">
-			<form id="newsletter-form"
-				hx-post="/wp-admin/admin-ajax.php"
-				hx-target="#newsletter-container"
-				hx-swap="innerHTML"
-				_="on submit
-					set #newsletter-submit-button.disabled to true
-					set #newsletter-submit-button.style.opacity to '0.6'
-				">
-				<input type="hidden" name="action" value="send_newsletter">
-				<label for="newsletter-email">
-					Abonnez-vous à <a href="https://clge.fr/category/newsletter/" style="color: #1b6db5; text-decoration: underline solid;">la newsletter</a>
-				</label>
-				<div id="newsletter-inputs-container">
-					<input type="email" id="newsletter-email" name="newsletter_email"
-						placeholder="Votre adresse email" required
-						_="on input
-       set #newsletter-submit-button.disabled to !me.validity.valid">
-					<button
-						id="newsletter-submit-button"
-						type="submit">
-						<i class="fa fa-paper-plane"></i>
-					</button>
-				</div>
-			</form>
-			<div id="newsletter-response" style="margin-top: 10px;"></div>
-		</div>
-
-
-
-
+	<div id="entete-footer-wrapper">
+    	<div id="entete-footer">
+    
+    		<div class="entete-footer-container">
+    			<h4 >
+    			<a href="https://cnge-adhesion.cnge.fr" target="_blank" rel="noopener noreferrer">Adhérer</a>
+    			</h4>
+    		</div>
+    
+    
+    		<div class="entete-footer-container" id="phrase-entete-container">
+    			<h4 class="phrase-entete">
+    				Le CLGE est l’association qui regroupe maitres de stage et tuteurs de l’université de Lyon, organise la formation des MSU, aide à la promotion et au rayonnement de la médecine générale.
+    			</h4>
+    		</div>
+    
+    
+      		<div class="entete-footer-container"
+     			id="newsletter-container">
+     			<form id="newsletter-form"
+    				hx-post="/wp-admin/admin-ajax.php"
+    				hx-target="#newsletter-container"
+    				hx-swap="innerHTML"
+    				_="on submit
+       					set #newsletter-submit-button.disabled to true
+       					set #newsletter-submit-button.style.opacity to '0.6'
+    				">
+    				<input type="hidden" name="action" value="send_newsletter">
+    				<label for="newsletter-email">
+       					Abonnez-vous à <a href="https://clge.fr/category/newsletter/" style="color: #1b6db5; text-decoration: underline solid;">la newsletter</a>
+    				</label>
+    				<div id="newsletter-inputs-container">
+       					<input type="email" id="newsletter-email" name="newsletter_email"
+      						placeholder="Votre adresse email" required
+      						_="on input
+        set #newsletter-submit-button.disabled to !me.validity.valid">
+       					<button
+      						id="newsletter-submit-button"
+      						type="submit">
+      						<i class="fa fa-paper-plane"></i>
+       					</button>
+    				</div>
+     			</form>
+     			<div id="newsletter-response" style="margin-top: 10px;"></div>
+      		</div>
+    	</div>
 	</div>
 
 	<div class="wrapper section medium-padding clear">

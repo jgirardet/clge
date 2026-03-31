@@ -141,14 +141,15 @@ iframe,
 
 
 body {
-	background: #1b6db5;
+	background: whitesmoke;
 	border: none;
 	color: #444;
 	font-family: "Nunito Sans";
 	font-size: 18px;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 	-webkit-font-smoothing: antialiased;
+	max-width: 1920px;
 }
 
 body a {
@@ -339,6 +340,7 @@ a,
 .section {
 	padding: 80px 0;
 	position: relative;
+	background-color: #1b6db5;
 }
 
 .no-padding {
@@ -458,7 +460,7 @@ a,
 
 .header {
 	padding: 70px 0;
-
+	background-color: #1b6db5;
 	height: 300px;
 }
 
@@ -519,15 +521,20 @@ a,
 }
 
 
+#entete-footer-wrapper {
+	background-color: #1b6db5;
+	max-width: 100%;
+	height: fit-content;
+}
+
 #entete-footer {
 	display: flex;
 	justify-content: space-between;
-	width: 90%;
+	width: 92.6%;
 	margin: 0 auto;
-	margin-top: 20px;
+	padding-top: 20px;
 	gap: 20px;
-
-
+	max-width: 90%;
 }
 
 
