@@ -74,21 +74,21 @@
 
 	<div id="entete-footer-wrapper">
     	<div id="entete-footer">
-    
+
     		<div class="entete-footer-container">
     			<h4 >
     			<a href="https://cnge-adhesion.cnge.fr" target="_blank" rel="noopener noreferrer">Adhérer</a>
     			</h4>
     		</div>
-    
-    
+
+
     		<div class="entete-footer-container" id="phrase-entete-container">
     			<h4 class="phrase-entete">
     				Le CLGE est l’association qui regroupe maitres de stage et tuteurs de l’université de Lyon, organise la formation des MSU, aide à la promotion et au rayonnement de la médecine générale.
     			</h4>
     		</div>
-    
-    
+
+
       		<div class="entete-footer-container"
      			id="newsletter-container">
      			<form id="newsletter-form"
@@ -107,7 +107,7 @@
        					<input type="email" id="newsletter-email" name="newsletter_email"
       						placeholder="Votre adresse email" required
       						_="on input
-        set #newsletter-submit-button.disabled to !me.validity.valid">
+        set #newsletter-submit-button.disabled to not me.validity.valid">
        					<button
       						id="newsletter-submit-button"
       						type="submit">
@@ -121,3 +121,28 @@
 	</div>
 
 	<div class="wrapper section medium-padding clear">
+
+ <script>
+
+ document.addEventListener('DOMContentLoaded', function() {
+     let lastScrollTop = 0;
+     const banner = document.getElementsByClassName('header-mobile')[0];
+
+     window.addEventListener('scroll', function() {
+         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+         // Si on scroll vers le bas, on cache la div
+         if (currentScroll > lastScrollTop && currentScroll > 100) {
+             banner.classList.add('hide');
+         }
+         // Si on scroll rapidement vers le haut, on affiche la div
+         else if (currentScroll < lastScrollTop && (lastScrollTop - currentScroll) > 30) {
+             banner.classList.remove('hide');
+         }
+
+         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+     }, false);
+ });
+
+
+ </script>

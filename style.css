@@ -4034,8 +4034,26 @@ img#wpstats {
 		vertical-align: middle;
 		padding-left: 5px;
 		padding-right: 5px;
-		padding-top: 5px;
 		background: white;
+		transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+        transform: translateY(0);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+	}
+
+	.header-mobile.hide {
+		transform: translateY(-100%);
+	}
+
+	#entete-footer-wrapper    {
+        margin-top: 80px;
+	}
+
+	#entete-footer {
+		margin-top: 100px;
 	}
 
 	#search-icon-large-screen {
@@ -4244,7 +4262,9 @@ img#wpstats {
 
 	#phrase-entete-container  {
 	display: none;
-}
+	}
+
+
 
 	/* 5. Content */
 
@@ -4318,7 +4338,7 @@ img#wpstats {
 	/* 2. Structure */
 
 	.wrapper.section {
-		padding: 25px 0;
+		padding: 5px 0;
 	}
 
 	.post-header,
