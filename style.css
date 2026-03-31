@@ -4348,6 +4348,10 @@ img#wpstats {
 		padding: 5px 0;
 	}
 
+	.title-small-screen {
+	font-size: 1.3em;
+	}
+
 	.post-header,
 	.single .post-content,
 	.posts .post-content,
@@ -4709,6 +4713,10 @@ img#wpstats {
 
 	.header .site-title {
 		font-size: 1.75em;
+	}
+
+	.title-small-screen {
+	font-size: 1.1em;
 	}
 
 	.header .site-description {
