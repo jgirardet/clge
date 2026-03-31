@@ -4040,7 +4040,7 @@ img#wpstats {
 		vertical-align: middle;
 		padding-left: 5px;
 		padding-right: 5px;
-		background: white;
+		background-color: white;
 		transition: transform 0.3s ease-in-out;
         z-index: 1000;
         transform: translateY(0);
