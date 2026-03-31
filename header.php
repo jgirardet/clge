@@ -43,7 +43,7 @@
 	</header> <!-- /header -->
 
 	<div class="header-mobile">
-		<a href="<?php echo esc_url(home_url("/")); ?>" rel="home">
+		<a id="logo-petit-ecran-container" href="<?php echo esc_url(home_url("/")); ?>" rel="home">
 			<img src="<?php echo get_template_directory_uri() .
        "/images/logo-petit-ecran-sans-nom.png"; ?>" alt="" class="logo-petit-ecran">
 		</a>

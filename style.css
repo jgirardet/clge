@@ -4011,10 +4011,16 @@ img#wpstats {
 		padding: 0 10px;
 	}
 
+	#logo-petit-ecran-container {
+		display: block;
+		width: fit-content;
+		height: fit-content;
+	}
 
 	.logo-petit-ecran {
 		display: block;
-		width: 100px;
+		width: 85px;
+		width: 82px;
 	}
 
 	#menu-icon {
@@ -4029,7 +4035,7 @@ img#wpstats {
 	.header-mobile {
 		display: flex;
 		justify-content: space-between;
-		align-items: stretch;
+		align-items: center;
 		text-align: center;
 		vertical-align: middle;
 		padding-left: 5px;
@@ -4042,6 +4048,7 @@ img#wpstats {
         top: 0;
         left: 0;
         width: 100%;
+        height: 85px;
 	}
 
 	.header-mobile.hide {
@@ -4053,7 +4060,7 @@ img#wpstats {
 	}
 
 	#entete-footer {
-		margin-top: 100px;
+		margin-top: 85px;
 	}
 
 	#search-icon-large-screen {
@@ -4368,7 +4375,9 @@ img#wpstats {
 		margin-top: -17px;
 	}
 
-
+	.logo-petit-ecran {
+	width: 85;
+	}
 
 	/* 4. Navigation */
 
@@ -4712,6 +4721,10 @@ img#wpstats {
 		max-width: 70%;
 	}
 
+	.logo-petit-ecran {
+		width: 85px;
+	}
+
 	/* 7. Single Post */
 
 	.entry-author:before,
@@ -4782,6 +4795,11 @@ img#wpstats {
 
 
 @media (max-width: 400px) {
+
+    .logo-petit-ecran {
+	width: 85;
+	}
+
 
 	/* 9. Respond */
 
