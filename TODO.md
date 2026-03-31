@@ -21,7 +21,7 @@
 ## Mis en prod
 
 - [x] Utilisateurs to admin
-- [ ] Extensions : avant après
+- [x] Extensions : avant après
 - [x] SMTP configuration
 - [x] Logo du site
 - [x] Gestion du menu

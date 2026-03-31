@@ -4235,6 +4235,10 @@ img#wpstats {
 		max-width: 250px;
 	}
 
+	#phrase-entete-container  {
+	display: none;
+}
+
 	/* 5. Content */
 
 	.post-content .alignleft,
