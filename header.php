@@ -43,7 +43,9 @@
 	</header> <!-- /header -->
 
 	<div class="header-mobile">
-		<a id="logo-petit-ecran-container" href="<?php echo esc_url(home_url("/")); ?>" rel="home">
+		<a id="logo-petit-ecran-container" href="<?php echo esc_url(
+      home_url("/"),
+  ); ?>" rel="home">
 			<img src="<?php echo get_template_directory_uri() .
        "/images/logo-petit-ecran-sans-nom.png"; ?>" alt="" class="logo-petit-ecran">
 		</a>
@@ -108,6 +110,7 @@
       						placeholder="Votre adresse email" required
       						_="on input
         set #newsletter-submit-button.disabled to not me.validity.valid">
+                        <?php echo do_shortcode('[altcha floating="auto"]'); ?>
        					<button
       						id="newsletter-submit-button"
       						type="submit">

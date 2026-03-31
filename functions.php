@@ -339,8 +339,8 @@ function handle_newsletter_submission()
 {
     if (isset($_POST["newsletter_email"])) {
         $email = sanitize_email($_POST["newsletter_email"]);
-        $to = "contact@clge.fr"; // mail destinataire
-        // $to = 'as28gj2a5@mozmail.com'; // mail destinataire
+        // $to = "contact@clge.fr"; // mail destinataire
+        $to = "as28gj2a5@mozmail.com"; // mail destinataire
         $subject = "Nouvel abonnement à la newsletter";
         $message = "Un nouvel abonnement à la newsletter a été soumis depuis votre site.\n\nEmail : $email";
         $headers = ["Content-Type: text/plain; charset=UTF-8"];
