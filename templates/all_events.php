@@ -163,9 +163,17 @@ $update_nonce = wp_create_nonce("clge_update_event");
                     </button>
 				</div>
 				<div style="flex-basis: 100%; padding-top: 12px; margin-top: 8px;">
-                        <div style="margin: 0; padding: 14px 16px; background: #eff6ff; border: 1px solid #bae6fd; border-radius: 8px; color: #0c4a6e; font-size: 15px; line-height: 1.6;"><?php echo nl2br(esc_html(
-                            $event->description ?? '',
-                        )); ?></div>
+                        <textarea 
+                            name="description"
+                            placeholder="Ajouter une description..."
+                            style="width: 100%; padding: 12px 14px; border: 1px solid #bae6fd; border-radius: 8px; background: #eff6ff; color: #0c4a6e; font-size: 15px; line-height: 1.5; min-height: 80px; resize: vertical; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;"
+                            hx-post="/wp-admin/admin-ajax.php"
+                            hx-trigger="input delay:2s, change"
+                            hx-vals='{"action":"clge_update_event_description","event_id":"<?php echo esc_attr((string) absint($event->id)); ?>","_wpnonce":"<?php echo esc_attr(wp_create_nonce('clge_update_event_description')); ?>"}'
+                            hx-target="#cal_events_list"
+                            hx-include="this"
+                            onkeydown="if(event.key === 'Enter' && event.ctrlKey) { event.preventDefault(); this.dispatchEvent(new Event('change')); }"
+                        ><?php echo esc_textarea($event->description ?? ''); ?></textarea>
 					</div>
 			</div>
 		<?php endforeach; ?>
