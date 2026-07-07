@@ -162,13 +162,11 @@ $update_nonce = wp_create_nonce("clge_update_event");
                         🗑
                     </button>
 				</div>
-				<?php if (!empty($event->description)): ?>
-					<div style="flex-basis: 100%; padding-top: 12px; margin-top: 8px;">
+				<div style="flex-basis: 100%; padding-top: 12px; margin-top: 8px;">
                         <p style="margin: 0; padding: 10px 14px; background: #f1f5f9; border-radius: 6px; color: #334155; font-size: 15px; line-height: 1.5;"><?php echo esc_html(
-                            $event->description,
+                            $event->description ?? '',
                         ); ?></p>
 					</div>
-				<?php endif; ?>
 			</div>
 		<?php endforeach; ?>
 	<?php else: ?>
