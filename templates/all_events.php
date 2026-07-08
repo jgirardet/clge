@@ -106,22 +106,6 @@ $update_nonce = wp_create_nonce("clge_update_event");
 					<?php endif; ?>
 				</div>
 
-				<div style="flex: 1; min-width: 80px;">
-					<input
-						type="text"
-						name="alias"
-						value="<?php echo esc_attr($event->alias ?? ""); ?>"
-						placeholder="alias"
-						style="width: 100%; padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 13px; font-family: monospace; background: #e0e7ff; color: #3730a3;"
-						hx-post="/wp-admin/admin-ajax.php"
-						hx-trigger="input delay:3s, change"
-						hx-vals='{"action":"clge_update_event","event_id":"<?php echo esc_attr((string) absint($event->id)); ?>","_wpnonce":"<?php echo esc_attr($update_nonce); ?>"}'
-						hx-target="#cal_events_list"
-						hx-include="this"
-						onkeydown="if(event.key === 'Enter') { event.preventDefault(); this.dispatchEvent(new Event('change')); }"
-					/>
-				</div>
-
 				<div style="flex: 1; min-width: 150px;">
                     <span style="display: block; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; background: white; font-size: 14px;"><?php echo esc_html(
                         $event->lieu_physique,
@@ -162,7 +146,22 @@ $update_nonce = wp_create_nonce("clge_update_event");
                         🗑
                     </button>
 				</div>
-				<div style="flex-basis: 100%; padding-top: 12px; margin-top: 8px;">
+				<div style="flex-basis: 100%; padding-top: 8px; margin-top: 4px;">
+					<input
+						type="text"
+						name="alias"
+						value="<?php echo esc_attr($event->alias ?? ""); ?>"
+						placeholder="alias"
+						style="width: 100%; padding: 8px 12px; border: 1px solid #c7d2fe; border-radius: 6px; font-size: 14px; font-family: monospace; background: #e0e7ff; color: #3730a3;"
+						hx-post="/wp-admin/admin-ajax.php"
+						hx-trigger="input delay:3s, change"
+						hx-vals='{"action":"clge_update_event","event_id":"<?php echo esc_attr((string) absint($event->id)); ?>","_wpnonce":"<?php echo esc_attr($update_nonce); ?>"}'
+						hx-target="#cal_events_list"
+						hx-include="this"
+						onkeydown="if(event.key === 'Enter') { event.preventDefault(); this.dispatchEvent(new Event('change')); }"
+					/>
+				</div>
+				<div style="flex-basis: 100%; padding-top: 8px; margin-top: 4px;">
                         <textarea 
                             name="description"
                             placeholder="Ajouter une description..."
