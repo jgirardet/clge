@@ -1,5 +1,8 @@
 {
     "require": {
         "johnpbloch/wordpress-core": "^6.9"
+    },
+    "require-dev": {
+        "php-stubs/wordpress-stubs": "^7.0"
     }
 }
