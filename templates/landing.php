@@ -71,7 +71,8 @@
 
     <nav id="clge-navigation">
         <ul>
-            <li><a href="#calendrier">Calendrier</a></li>
+            <li><a href="#calendrier" hx-get="/wp-admin/admin-ajax.php?action=clge_calendrier" hx-target="#clge-content" hx-push-url="true">Calendrier</a></li>
+            <li><a href="#nextcloud" hx-get="/wp-admin/admin-ajax.php?action=clge_nextcloud_settings" hx-target="#clge-content" hx-push-url="true">Nextcloud</a></li>
             <li><a href="#services">Autres</a></li>
         </ul>
     </nav>

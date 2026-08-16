@@ -33,6 +33,8 @@ function hx_clge_calendrier()
 }
 add_action('wp_ajax_clge_calendrier', 'hx_clge_calendrier');
 
+
+
 // fragement qui affiche la liste des événements sous forme de tableau
 function all_events_list()
 {
