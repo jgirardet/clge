@@ -5,15 +5,16 @@
  * Utilise chiffrement AES-256 avec SECURE_AUTH_KEY
  */
 
-if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+if (!defined("ABSPATH")) {
+    exit(); // Exit if accessed directly
 }
 
 // Récupérer les valeurs existantes depuis les options WordPress
-$nextcloud_url = get_option('clge_nextcloud_url', '');
-$nextcloud_username = get_option('clge_nextcloud_username', '');
-$nextcloud_has_password = !empty(get_option('clge_nextcloud_password_encrypted', ''));
-
+$nextcloud_url = get_option("clge_nextcloud_url", "");
+$nextcloud_username = get_option("clge_nextcloud_username", "");
+$nextcloud_has_password = !empty(
+    get_option("clge_nextcloud_password_encrypted", "")
+);
 ?>
 <div class="wrap clge-nextcloud-page">
 
@@ -231,18 +232,76 @@ $nextcloud_has_password = !empty(get_option('clge_nextcloud_password_encrypted',
                 width: 100%;
             }
         }
+
+        .clge-calendar-item {
+            margin: 8px 0;
+            padding: 8px;
+            border: 1px solid var(--clge-border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .clge-calendar-item:hover {
+            border-color: var(--clge-border-strong);
+            box-shadow: var(--clge-shadow);
+        }
+
+        .clge-calendar-item input[type="checkbox"] {
+            margin: 0;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .clge-calendar-item label {
+            flex: 1;
+            cursor: pointer;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .clge-calendar-item label strong {
+            color: var(--clge-text);
+            display: block;
+        }
+
+        .clge-calendar-item label small {
+            color: var(--clge-muted);
+            font-size: 11px;
+        }
+
+        .clge-calendar-item label code {
+            font-size: 11px;
+            color: var(--clge-muted);
+            background: var(--clge-surface);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .clge-calendar-item.error {
+            color: var(--clge-danger);
+            background: #fee2e2;
+            border-color: #fecaca;
+        }
     </style>
 
     <h1>Configuration Nextcloud</h1>
 
     <div class="clge-notice-wrap">
-        <?php if (isset($_GET['error'])): ?>
+        <?php if (isset($_GET["error"])): ?>
             <div class="notice notice-error">
-                <p><?php echo esc_html(sanitize_text_field($_GET['error'])); ?></p>
+                <p><?php echo esc_html(
+                    sanitize_text_field($_GET["error"]),
+                ); ?></p>
             </div>
-        <?php elseif (isset($_GET['message'])): ?>
+        <?php elseif (isset($_GET["message"])): ?>
             <div class="notice notice-success">
-                <p><?php echo esc_html(sanitize_text_field($_GET['message'])); ?></p>
+                <p><?php echo esc_html(
+                    sanitize_text_field($_GET["message"]),
+                ); ?></p>
             </div>
         <?php endif; ?>
     </div>
@@ -257,12 +316,14 @@ $nextcloud_has_password = !empty(get_option('clge_nextcloud_password_encrypted',
 
         <form
             id="clge-nextcloud-form"
-            hx-post="<?php echo esc_url(admin_url('admin-ajax.php')); ?>"
+            hx-post="<?php echo esc_url(admin_url("admin-ajax.php")); ?>"
             hx-target="#test-connection-result"
             hx-swap="innerHTML"
         >
             <input type="hidden" name="action" value="clge_save_nextcloud_settings">
-            <input type="hidden" name="_wpnonce" value="<?php echo esc_attr(wp_create_nonce('clge_save_nextcloud_settings')); ?>">
+            <input type="hidden" name="_wpnonce" value="<?php echo esc_attr(
+                wp_create_nonce("clge_save_nextcloud_settings"),
+            ); ?>">
 
             <div class="clge-form-grid">
                 <div class="clge-field">
@@ -299,7 +360,9 @@ $nextcloud_has_password = !empty(get_option('clge_nextcloud_password_encrypted',
                         placeholder="Entrez le mot de passe"
                         autocomplete="new-password"
                     >
-                    <div id="clge-password-status-container" class="clge-password-status <?php echo $nextcloud_has_password ? 'set' : 'not-set'; ?>">
+                    <div id="clge-password-status-container" class="clge-password-status <?php echo $nextcloud_has_password
+                        ? "set"
+                        : "not-set"; ?>">
                         <?php if ($nextcloud_has_password): ?>
                             <span>✓ Mot de passe configuré</span>
                         <?php else: ?>
@@ -312,36 +375,68 @@ $nextcloud_has_password = !empty(get_option('clge_nextcloud_password_encrypted',
 
             <div class="clge-form-actions">
                 <button type="submit" class="clge-submit">
-                    <?php echo $nextcloud_has_password ? 'Mettre à jour' : 'Enregistrer la configuration'; ?>
+                    <?php echo $nextcloud_has_password
+                        ? "Mettre à jour"
+                        : "Enregistrer la configuration"; ?>
                 </button>
             </div>
 
             <div id="test-connection-result" class="clge-test-connection-result"></div>
         </form>
-        
+
         <div id="clge-nextcloud-actions-container">
         <div class="clge-form-actions" style="margin-top: 16px;">
             <?php if ($nextcloud_has_password): ?>
             <button type="button" class="clge-submit danger"
-                    hx-post="<?php echo esc_url(admin_url('admin-ajax.php')); ?>"
+                    hx-post="<?php echo esc_url(
+                        admin_url("admin-ajax.php"),
+                    ); ?>"
                     hx-target="#test-connection-result"
                     hx-swap="innerHTML"
                     hx-confirm="⚠️ ATTENTION : Cette action supprimera définitivement le mot de passe stocké. Êtes-vous sûr ?"
-                    hx-vals='{"action": "clge_clear_nextcloud_password", "_wpnonce": "<?php echo esc_attr(wp_create_nonce("clge_clear_nextcloud_password")); ?>"}'>
+                    hx-vals='{"action": "clge_clear_nextcloud_password", "_wpnonce": "<?php echo esc_attr(
+                        wp_create_nonce("clge_clear_nextcloud_password"),
+                    ); ?>"}'>
                 Supprimer le mot de passe
             </button>
             <?php endif; ?>
             <?php if (!empty($nextcloud_url) && !empty($nextcloud_username)): ?>
             <button type="button" class="clge-submit secondary"
-                    hx-post="<?php echo esc_url(admin_url('admin-ajax.php')); ?>"
+                    hx-post="<?php echo esc_url(
+                        admin_url("admin-ajax.php"),
+                    ); ?>"
                     hx-target="#test-connection-result"
                     hx-swap="innerHTML"
-                    hx-vals='{"action": "clge_test_nextcloud_connection", "_wpnonce": "<?php echo esc_attr(wp_create_nonce("clge_test_nextcloud_connection")); ?>"}'
-                    style="<?php echo $nextcloud_has_password ? 'margin-left: 8px;' : ''; ?>">
+                    hx-vals='{"action": "clge_test_nextcloud_connection", "_wpnonce": "<?php echo esc_attr(
+                        wp_create_nonce("clge_test_nextcloud_connection"),
+                    ); ?>"}'
+                    style="<?php echo $nextcloud_has_password
+                        ? "margin-left: 8px;"
+                        : ""; ?>">
                 Tester la connexion
             </button>
             <?php endif; ?>
         </div>
+        </div>
+    </section>
+
+    <section class="clge-card">
+        <h2>Calendriers à synchroniser</h2>
+        <p class="clge-muted">Sélectionnez les calendriers distants Nextcloud que vous souhaitez synchroniser avec votre site.</p>
+
+        <div id="clge-calendars-container" style="margin-top: 16px;">
+            <button type="button" class="clge-submit secondary"
+                    hx-get="<?php echo esc_url(admin_url("admin-ajax.php")); ?>"
+                    hx-target="#clge-calendars-list"
+                    hx-swap="innerHTML"
+                    hx-vals='{"action": "clge_load_nextcloud_calendars", "_wpnonce": "<?php echo esc_attr(
+                        wp_create_nonce("clge_load_nextcloud_calendars"),
+                    ); ?>"}'
+                    hx-confirm="Êtes-vous sûr de vouloir recharger les calendriers ? Cela mettra à jour la liste.">
+                Charger les calendriers
+            </button>
+
+            <div id="clge-calendars-list" style="margin-top: 12px;" <?php if (clge_is_nextcloud_configured()): ?>hx-get="<?php echo esc_url(admin_url('admin-ajax.php')); ?>?action=clge_load_nextcloud_calendars&_wpnonce=<?php echo esc_attr(wp_create_nonce('clge_load_nextcloud_calendars')); ?>" hx-trigger="load" hx-swap="innerHTML"<?php endif; ?>></div>
         </div>
     </section>
 
@@ -356,7 +451,7 @@ $nextcloud_has_password = !empty(get_option('clge_nextcloud_password_encrypted',
                 <li>Copiez l'URL de votre serveur, votre nom d'utilisateur et le mot de passe</li>
             </ol>
             <p style="margin: 8px 0 0 0; font-size: 12px;">
-                <strong>Note :</strong> Ce plugin utilise la clé <code>SECURE_AUTH_KEY</code> de votre <code>wp-config.php</code> pour le chiffrement. 
+                <strong>Note :</strong> Ce plugin utilise la clé <code>SECURE_AUTH_KEY</code> de votre <code>wp-config.php</code> pour le chiffrement.
                 Si vous changez cette clé, vous devrez ressaisir le mot de passe.
             </p>
         </div>
