@@ -337,10 +337,18 @@ add_action("wp_ajax_nopriv_send_newsletter", "handle_newsletter_submission");
 
 function handle_newsletter_submission()
 {
+    // Verification du nonce pour la securite
+    if (
+        !isset($_POST["newsletter_nonce"]) ||
+        !wp_verify_nonce($_POST["newsletter_nonce"], "send_newsletter")
+    ) {
+        wp_send_json_error(["message" => __("Security check failed", "clge")]);
+    }
+
     if (isset($_POST["newsletter_email"])) {
         $email = sanitize_email($_POST["newsletter_email"]);
         $to = "contact@clge.fr"; // mail destinataire
-        
+
         //$to = "as28gj2a5@mozmail.com"; // mail destinataire
         $subject = "Nouvel abonnement à la newsletter";
         $message = "Un nouvel abonnement à la newsletter a été soumis depuis votre site.\n\nEmail : $email";
@@ -349,9 +357,9 @@ function handle_newsletter_submission()
         $sent = wp_mail($to, $subject, $message, $headers);
 
         if ($sent) {
-            echo '<div id="newsletter-sucess">Merci pour votre abonnement !</div>';
+            echo '<div id="newsletter-success">Merci pour votre abonnement !</div>';
         } else {
-            echo '<div style="color: red;">Une erreur est survenue/div>';
+            echo '<div style="color: red;">Une erreur est survenue</div>';
         }
     }
     wp_die();
