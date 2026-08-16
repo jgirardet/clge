@@ -208,15 +208,15 @@ if (!function_exists("clge_cal_events_shortcode")):
                                                 ); ?></span>
                     </div>
                     <div class="clge-event-right">
-                        <div class="clge-event-nom ">
+                        <div class="clge-event-nom">
                             <a href="<?php echo isset($event->url) &&
                             !empty($event->url)
                                 ? esc_url($event->url)
                                 : the_permalink(); ?>" <?php echo !$event->evt_clge
-    ? ' target="_blank" rel="noopener noreferrer"'
-    : " "; ?>>
+    ? 'target="_blank" rel="noopener noreferrer"'
+    : ""; ?>>
                                 <?php if (!$event->evt_clge): ?>
-                                                                Formation:</br>
+                                                                Formation:<br>
                                 <?php endif; ?>
                                 <?php echo esc_html(
                                     !empty($event->alias)

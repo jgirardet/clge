@@ -155,24 +155,32 @@ $update_nonce = wp_create_nonce("clge_update_event");
 						style="width: 100%; padding: 8px 12px; border: 1px solid #c7d2fe; border-radius: 6px; font-size: 14px; font-family: monospace; background: #e0e7ff; color: #3730a3;"
 						hx-post="/wp-admin/admin-ajax.php"
 						hx-trigger="input delay:3s, change"
-						hx-vals='{"action":"clge_update_event","event_id":"<?php echo esc_attr((string) absint($event->id)); ?>","_wpnonce":"<?php echo esc_attr($update_nonce); ?>"}'
+						hx-vals='{"action":"clge_update_event","event_id":"<?php echo esc_attr(
+          (string) absint($event->id),
+      ); ?>","_wpnonce":"<?php echo esc_attr($update_nonce); ?>"}'
 						hx-target="#cal_events_list"
 						hx-include="this"
 						onkeydown="if(event.key === 'Enter') { event.preventDefault(); this.dispatchEvent(new Event('change')); }"
 					/>
 				</div>
 				<div style="flex-basis: 100%; padding-top: 8px; margin-top: 4px;">
-                        <textarea 
+                        <textarea
                             name="description"
                             placeholder="Ajouter une description..."
                             style="width: 100%; padding: 12px 14px; border: 1px solid #bae6fd; border-radius: 8px; background: #eff6ff; color: #0c4a6e; font-size: 15px; line-height: 1.5; min-height: 80px; resize: vertical; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;"
                             hx-post="/wp-admin/admin-ajax.php"
                             hx-trigger="input delay:2s, change"
-                            hx-vals='{"action":"clge_update_event_description","event_id":"<?php echo esc_attr((string) absint($event->id)); ?>","_wpnonce":"<?php echo esc_attr(wp_create_nonce('clge_update_event_description')); ?>"}'
+                            hx-vals='{"action":"clge_update_event_description","event_id":"<?php echo esc_attr(
+                                (string) absint($event->id),
+                            ); ?>","_wpnonce":"<?php echo esc_attr(
+    wp_create_nonce("clge_update_event_description"),
+); ?>"}'
                             hx-target="#cal_events_list"
                             hx-include="this"
                             onkeydown="if(event.key === 'Enter' && event.ctrlKey) { event.preventDefault(); this.dispatchEvent(new Event('change')); }"
-                        ><?php echo esc_textarea($event->description ?? ''); ?></textarea>
+                        ><?php echo esc_textarea(
+                            $event->description ?? "",
+                        ); ?></textarea>
 					</div>
 			</div>
 		<?php endforeach; ?>

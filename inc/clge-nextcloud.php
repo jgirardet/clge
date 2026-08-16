@@ -15,10 +15,17 @@ if (!defined("ABSPATH")) {
  * Vérifie que SECURE_AUTH_KEY est définie
  */
 if (!defined("SECURE_AUTH_KEY")) {
-    trigger_error(
-        "SECURE_AUTH_KEY est requise pour le chiffrement Nextcloud. Vérifiez votre wp-config.php.",
-        E_USER_ERROR,
-    );
+    add_action("admin_notices", function () {
+        echo '<div class="error"><p><strong>' .
+            esc_html__("Erreur de configuration Nextcloud:", "clge") .
+            "</strong> " .
+            esc_html__(
+                "SECURE_AUTH_KEY est requise pour le chiffrement Nextcloud. Vérifiez votre wp-config.php.",
+                "clge",
+            ) .
+            "</p></div>";
+    });
+    return;
 }
 
 /**
@@ -102,7 +109,7 @@ function clge_save_nextcloud_settings()
         ? sanitize_text_field($_POST["nextcloud_username"])
         : "";
     $password = isset($_POST["nextcloud_password"])
-        ? $_POST["nextcloud_password"]
+        ? sanitize_text_field($_POST["nextcloud_password"])
         : "";
 
     // Validation de l'URL

@@ -48,6 +48,11 @@ if (!function_exists("clge_setup")):
         add_image_size("clge-post-image", 1400, 9999);
         add_image_size("clge-post-thumbnail", 600, 9999);
 
+        // Initialiser l'option pour l'email de newsletter si elle n'existe pas
+        if (get_option("clge_newsletter_email") === false) {
+            add_option("clge_newsletter_email", "contact@clge.fr");
+        }
+
         /**
          * Add support for post formats
          */
@@ -316,19 +321,27 @@ add_action("enqueue_block_editor_assets", "clge_block_editor_styles");
  */
 
 // Custom header functions for this theme
-require get_template_directory() . "/inc/custom-header.php";
+if (file_exists(get_template_directory() . "/inc/custom-header.php")) {
+    require get_template_directory() . "/inc/custom-header.php";
+}
 
 // Jetpack functions for this theme
-require get_template_directory() . "/inc/jetpack.php";
+if (file_exists(get_template_directory() . "/inc/jetpack.php")) {
+    require get_template_directory() . "/inc/jetpack.php";
+}
 
 // Custom functions that act independently of the theme templates
-require get_template_directory() . "/inc/extras.php";
+if (file_exists(get_template_directory() . "/inc/extras.php")) {
+    require get_template_directory() . "/inc/extras.php";
+}
 
 // Custom template tags for this theme
-require get_template_directory() . "/inc/template-tags.php";
+if (file_exists(get_template_directory() . "/inc/template-tags.php")) {
+    require get_template_directory() . "/inc/template-tags.php";
+}
 
 // updater for WordPress.com themes
-if (is_admin()) {
+if (is_admin() && file_exists(dirname(__FILE__) . "/inc/updater.php")) {
     include dirname(__FILE__) . "/inc/updater.php";
 }
 
@@ -347,9 +360,12 @@ function handle_newsletter_submission()
 
     if (isset($_POST["newsletter_email"])) {
         $email = sanitize_email($_POST["newsletter_email"]);
-        $to = "contact@clge.fr"; // mail destinataire
 
-        //$to = "as28gj2a5@mozmail.com"; // mail destinataire
+        // Utiliser l'email configuré ou la valeur par défaut
+        $to = get_option("clge_newsletter_email", "contact@clge.fr");
+
+        // Appliquer le filtre pour permettre la modification par plugin
+        $to = apply_filters("clge_newsletter_recipient", $to);
         $subject = "Nouvel abonnement à la newsletter";
         $message = "Un nouvel abonnement à la newsletter a été soumis depuis votre site.\n\nEmail : $email";
         $headers = ["Content-Type: text/plain; charset=UTF-8"];

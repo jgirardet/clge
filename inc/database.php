@@ -8,14 +8,22 @@ if (!defined("ABSPATH")) {
     exit();
 }
 
-global $wpdb;
-$table_name = $wpdb->prefix . "clge_cal_events";
+/**
+ * Retourne le nom de la table des événements CLGE
+ *
+ * @return string Nom de la table avec le préfixe WordPress
+ */
+function clge_get_events_table_name()
+{
+    global $wpdb;
+    return $wpdb->prefix . "clge_cal_events";
+}
 
 // Création de la table si elle n'existe pas
 function clge_create_cal_events_table()
 {
     global $wpdb;
-    $table_name = $wpdb->prefix . "clge_cal_events";
+    $table_name = clge_get_events_table_name();
 
     if (
         $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_name)) !=
@@ -37,21 +45,6 @@ function clge_create_cal_events_table()
 
         require_once ABSPATH . "wp-admin/includes/upgrade.php";
         dbDelta($sql);
-
-        // Ajout d'un événement par défaut
-        $wpdb->insert(
-            $table_name,
-            [
-                "debut" => current_time("mysql"), // Date/heure actuelle
-                "fin" => date("Y-m-d H:i:s", strtotime("+1 hour")), // 1 heure plus tard
-                "nom" => "Événement par défaut",
-                "abrev" => "Def",
-                "lieu_physique" => "En ligne",
-                "url" => "#",
-                "evt_clge" => 0,
-            ],
-            ["%s", "%s", "%s", "%s", "%s", "%s", "%d"],
-        );
     }
 }
 
@@ -62,7 +55,7 @@ add_action("after_switch_theme", "clge_create_cal_events_table");
 function clge_migrate_add_alias_description()
 {
     global $wpdb;
-    $table_name = $wpdb->prefix . "clge_cal_events";
+    $table_name = clge_get_events_table_name();
 
     // Vérifier si la colonne alias existe
     $alias_exists = $wpdb->get_results(
@@ -92,7 +85,7 @@ add_action("after_switch_theme", "clge_migrate_add_alias_description");
 function clge_create_event($data)
 {
     global $wpdb;
-    $table_name = $wpdb->prefix . "clge_cal_events";
+    $table_name = clge_get_events_table_name();
 
     $insert_data = [
         "debut" =>
@@ -132,7 +125,12 @@ function clge_create_event($data)
         );
     }
 
-    $wpdb->insert($table_name, $insert_data);
+    $result = $wpdb->insert($table_name, $insert_data);
+
+    if ($result === false) {
+        return false;
+    }
+
     return $wpdb->insert_id;
 }
 
@@ -140,7 +138,7 @@ function clge_create_event($data)
 function clge_get_all_events()
 {
     global $wpdb;
-    $table_name = $wpdb->prefix . "clge_cal_events";
+    $table_name = clge_get_events_table_name();
     $events = $wpdb->get_results(
         "SELECT * FROM $table_name ORDER BY debut ASC",
     );
@@ -157,7 +155,7 @@ function clge_get_all_events()
 function clge_get_event($id)
 {
     global $wpdb;
-    $table_name = $wpdb->prefix . "clge_cal_events";
+    $table_name = clge_get_events_table_name();
     $event = $wpdb->get_row(
         $wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $id),
     );
@@ -174,7 +172,7 @@ function clge_get_event($id)
 function clge_update_event($id, $data)
 {
     global $wpdb;
-    $table_name = $wpdb->prefix . "clge_cal_events";
+    $table_name = clge_get_events_table_name();
 
     $update_data = [];
 
@@ -228,7 +226,7 @@ function clge_update_event($id, $data)
 function clge_delete_event($id)
 {
     global $wpdb;
-    $table_name = $wpdb->prefix . "clge_cal_events";
+    $table_name = clge_get_events_table_name();
 
     $wpdb->delete($table_name, ["id" => $id], ["%d"]);
 

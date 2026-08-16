@@ -19,7 +19,7 @@ define("MoisVersNumero", [
 ]);
 
 define(
-    "ReDateFull",
+    "re_date_full",
     "/(?'ddebut'\d\d)\/(?'mdebut'\d\d)\/(?'ydebut'\d\d) (?'hdebut'\d?\d:\d\d)\|(?'dfin'\d\d)\/(?'mfin'\d\d)\/(?'yfin'\d\d) (?'hfin'\d?\d:\d\d)/",
 );
 define("ReHeure", "/(?'hdebut'\d?\d:\d\d)\|(?'hfin'\d?\d:\d\d)/");
@@ -50,7 +50,7 @@ function parseFormationsTable(
             $jourEnCours =
                 trim($cells->item(0)->firstChild->nodeValue) ?? $jourEnCours;
             $numeroEncours =
-                intval(explode(" ", $jourEnCours)[1] ?? "0") ?? $$numeroEncours;
+                intval(explode(" ", $jourEnCours)[1] ?? "0") ?? $numeroEncours;
 
             // on récupère la case horaire dans le deuxième colone
             $secondTd = $cells->item(1);
@@ -58,9 +58,15 @@ function parseFormationsTable(
                 continue;
             } // Vérifie que $secondTd est un DOMElement
             $spans = $secondTd->getElementsByTagName("span");
+
+            // Vérification que $spans a au moins 3 éléments
+            if ($spans->length < 3) {
+                continue;
+            }
+
             $col2 = $spans->length > 0 ? trim($spans->item(0)->nodeValue) : "";
 
-            // Formattage de cet case : il y a des espaces bizard à supprimer + la fleche entre les 2
+            // Formattage de cette case : il y a des espaces bizarres à supprimer + la flèche entre les 2
             $encoded = urlencode($col2);
             $encoded = str_replace("+", "", $encoded);
             $encoded = str_replace("%0A%0A", " ", $encoded);
@@ -70,7 +76,7 @@ function parseFormationsTable(
             $caseCol2 = urldecode($encoded);
 
             // On ne reconnait que 2 types de formats, sinon on ignore
-            if (preg_match(ReDateFull, $caseCol2, $matches)) {
+            if (preg_match(re_date_full, $caseCol2, $matches)) {
                 // en premier le format complet qui donne toutes les infos
                 $event->debut = DateTime::createFromFormat(
                     "d m y H:i",
@@ -93,7 +99,7 @@ function parseFormationsTable(
                         $matches["hfin"],
                 );
             } elseif (preg_match(ReHeure, $caseCol2, $matches)) {
-                // en deuxième on reconstruit la date  partir du reste (en général formation d'1 seul jour)
+                // en deuxième on reconstruit la date à partir du reste (en général formation d'1 seul jour)
                 $strDebut = "{$numeroEncours} {$moisenCours} {$annee} {$matches["hdebut"]}";
                 $strFin = "{$numeroEncours} {$moisenCours} {$annee} {$matches["hfin"]}";
                 $event->debut = DateTime::createFromFormat(
@@ -193,14 +199,14 @@ function downloadHTML(): string
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
     $html = curl_exec($ch);
     if ($html === false) {
         die("Erreur cURL : " . curl_error($ch));
     }
     curl_close($ch);
 
-    // Enregistrer le contenu pour vérification
-    //file_put_contents('debug.html', $html);
     return $html;
 }
 
@@ -227,39 +233,3 @@ if (!function_exists("getCNGEFormationEvents")) {
         return $allEvents;
     }
 }
-
-// $aaa = getCNGEFormationEvents();
-
-// Exemple d'utilisation :
-
-/**
- * Sauvegarde les événements dans un fichier csv.
- *
- * @param array $allEvents Tableau d'objets représentant les événements.
- * @param string $filename Nom du fichier de sortie (par défaut : events.csv).
- * @return bool Retourne true si l'écriture a réussi, false sinon.
- */
-// function saveEventsToFile(array $allEvents, string $filename = 'events.csv'): bool
-// {
-//     $file = fopen($filename, 'w');
-//     if ($file === false) {
-//         return false;
-//     }
-
-//     // Écrire le BOM (Byte Order Mark) pour UTF-8 (optionnel mais recommandé pour Excel)
-//     fwrite($file, "\xEF\xBB\xBF");
-
-//     // Écrire l'en-tête
-//     fputcsv($file, ['Début', 'Fin', 'Nom', 'URL', 'Lieu', 'Abrev'], "\t");
-
-//     // Parcourir chaque événement
-//     foreach ($allEvents as $event) {
-//         // Écrire les données
-//         fputcsv($file, [$event->debut->format("d m y H:i"), $event->fin->format("d m y H:i"), $event->nom, $event->url, $event->lieu_physique, $event->abrev], "\t");
-//     }
-
-//     fclose($file);
-//     return true;
-// }
-
-// saveEventsToFile($aaa);
