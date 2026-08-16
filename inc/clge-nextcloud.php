@@ -296,7 +296,6 @@ function clge_test_nextcloud_connection()
     // Requête simple comme : curl -u user:password URL
     $args = [
         "timeout" => 10,
-        "sslverify" => false, // Désactive la vérification SSL pour éviter les blocages
         "headers" => [
             "Authorization" => "Basic " . $credentials,
         ],
@@ -526,7 +525,6 @@ function clge_fetch_nextcloud_calendars()
     $args = [
         "method" => "PROPFIND",
         "timeout" => 30,
-        "sslverify" => false,
         "headers" => [
             "Authorization" => "Basic " . $auth,
             "Content-Type" => "application/xml",
