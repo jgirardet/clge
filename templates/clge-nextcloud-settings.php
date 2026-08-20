@@ -432,11 +432,17 @@ $nextcloud_has_password = !empty(
                     hx-vals='{"action": "clge_load_nextcloud_calendars", "_wpnonce": "<?php echo esc_attr(
                         wp_create_nonce("clge_load_nextcloud_calendars"),
                     ); ?>"}'
-                    hx-confirm="Êtes-vous sûr de vouloir recharger les calendriers ? Cela mettra à jour la liste.">
+                    hx-confirm="Êtes-vous sûr de vouloir recharger les calendriers ? Cela téléchargera la liste depuis Nextcloud et la fusionnera avec vos calendriers connus.">
                 Charger les calendriers
             </button>
 
-            <div id="clge-calendars-list" style="margin-top: 12px;" <?php if (clge_is_nextcloud_configured()): ?>hx-get="<?php echo esc_url(admin_url('admin-ajax.php')); ?>?action=clge_load_nextcloud_calendars&_wpnonce=<?php echo esc_attr(wp_create_nonce('clge_load_nextcloud_calendars')); ?>" hx-trigger="load" hx-swap="innerHTML"<?php endif; ?>></div>
+            <div id="clge-calendars-list" style="margin-top: 12px;" <?php if (
+                clge_is_nextcloud_configured()
+            ): ?>hx-get="<?php echo esc_url(
+    admin_url("admin-ajax.php"),
+); ?>?action=clge_get_known_calendars&_wpnonce=<?php echo esc_attr(
+    wp_create_nonce("clge_get_known_calendars"),
+); ?>" hx-trigger="load" hx-swap="innerHTML"<?php endif; ?>></div>
         </div>
     </section>
 

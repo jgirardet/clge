@@ -382,8 +382,8 @@ function handle_newsletter_submission()
 }
 
 // Inclure les fichiers du module CLGE
-require get_template_directory() . "/inc/cngeformations.php";
-require get_template_directory() . "/inc/clge-admin-page.php";
-require get_template_directory() . "/inc/database.php";
-require get_template_directory() . "/inc/shortcodes.php";
-require get_template_directory() . "/inc/clge-nextcloud.php";
+require get_template_directory() . "/inc/clge/cngeformations.php";
+require get_template_directory() . "/inc/clge/admin-page.php";
+require get_template_directory() . "/inc/clge/database.php";
+require get_template_directory() . "/inc/clge/shortcodes.php";
+require get_template_directory() . "/inc/clge/nextcloud/nextcloud.php";

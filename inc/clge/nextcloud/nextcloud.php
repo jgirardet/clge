@@ -296,6 +296,12 @@ function clge_test_nextcloud_connection()
         wp_die();
     }
 
+    // Normaliser l'URL de base pour le test de connexion
+    $normalized_url = rtrim($url, "/");
+    if (strpos($normalized_url, "/remote.php/dav") === false) {
+        $normalized_url .= "/remote.php/dav";
+    }
+
     // Construire les credentials Basic Auth
     $credentials = base64_encode($username . ":" . $password);
     unset($password);
@@ -308,7 +314,7 @@ function clge_test_nextcloud_connection()
         ],
     ];
 
-    $response = wp_remote_get($url, $args);
+    $response = wp_remote_get($normalized_url, $args);
 
     // Nettoyer
     unset($credentials, $args);
@@ -515,7 +521,13 @@ function clge_fetch_nextcloud_calendars()
     $username = $credentials["username"];
     $password = $credentials["password"];
 
-    $caldav_url = $base_url . "/calendars/" . rawurlencode($username);
+    // Normaliser l'URL de base pour s'assurer qu'elle contient /remote.php/dav
+    $normalized_base_url = rtrim($base_url, "/");
+    if (strpos($normalized_base_url, "/remote.php/dav") === false) {
+        $normalized_base_url .= "/remote.php/dav";
+    }
+    $caldav_url =
+        $normalized_base_url . "/calendars/" . rawurlencode($username) . "/";
 
     $auth = base64_encode($username . ":" . $password);
     unset($password);
@@ -635,12 +647,11 @@ function clge_fetch_nextcloud_calendars()
             }
 
             $calendar_id = basename(rtrim($url, "/"));
-            $calendar_url = $url;
 
             $calendars[] = [
                 "name" => $displayname,
                 "id" => $calendar_id,
-                "url" => $calendar_url,
+                "url" => $url, // stocké sous la forme "/remote.php/dav/calendars/username/calendarname"
             ];
         }
     } catch (Exception $e) {
@@ -698,6 +709,7 @@ function clge_toggle_calendar_active($calendar_url)
 /**
  * Fusionne les calendriers CalDAV avec ceux stockés en base
  * Garde le statut 'active' des calendriers existants
+ * Conserve les calendriers stockés qui ne sont plus sur Nextcloud
  *
  * @param array $caldav_calendars Calendriers récupérés depuis CalDAV
  * @return array Liste fusionnée
@@ -735,6 +747,16 @@ function clge_merge_calendars($caldav_calendars)
         }
     }
 
+    // Ajouter les calendriers stockés qui ne sont plus sur Nextcloud (marqués comme inactifs)
+    foreach ($stored_by_url as $cal) {
+        $merged[] = [
+            "url" => $cal["url"],
+            "name" => $cal["name"],
+            "id" => $cal["id"],
+            "active" => false, // Désactivé car plus disponible sur Nextcloud
+        ];
+    }
+
     return $merged;
 }
 
@@ -747,7 +769,9 @@ function clge_merge_calendars($caldav_calendars)
 function clge_render_calendar_item($calendar)
 {
     $admin_ajax_url = esc_url(admin_url("admin-ajax.php"));
-    $calendar_id = esc_attr($calendar["id"]);
+    $calendar_id = isset($calendar["id"])
+        ? esc_attr($calendar["id"])
+        : md5($calendar["url"]);
     $is_active = !empty($calendar["active"]);
     $nonce = esc_attr(wp_create_nonce("clge_toggle_calendar"));
 
@@ -777,8 +801,32 @@ function clge_render_calendar_item($calendar)
 }
 
 /**
+ * Affiche la liste des calendriers connus (sans recharger depuis Nextcloud)
+ * Utilisé pour l'affichage initial de la page
+ */
+function clge_render_known_calendars()
+{
+    if (!current_user_can("manage_options")) {
+        wp_die("Vous n'avez pas les droits nécessaires.");
+    }
+
+    $calendars = clge_get_nextcloud_calendars();
+
+    if (empty($calendars)) {
+        echo '<div class="clge-test-connection-result">Aucun calendrier configuré. Cliquez sur "Charger les calendriers" pour les récupérer depuis Nextcloud.</div>';
+        wp_die();
+    }
+
+    foreach ($calendars as $calendar) {
+        echo clge_render_calendar_item($calendar);
+    }
+
+    wp_die();
+}
+
+/**
  * Affiche la liste des calendriers avec checkboxes (fragment HTML via HTMX)
- * Met à jour la liste en base avec fusion
+ * Charge depuis Nextcloud, fusionne avec les calendriers existants et sauvegarde
  */
 function clge_render_calendar_selection()
 {
@@ -833,6 +881,8 @@ add_action(
     "wp_ajax_clge_load_nextcloud_calendars",
     "clge_render_calendar_selection",
 );
+
+add_action("wp_ajax_clge_get_known_calendars", "clge_render_known_calendars");
 
 /**
  * Gère le toggle de sélection d'un calendrier (appelé via HTMX)
@@ -889,3 +939,605 @@ function clge_handle_toggle_calendar()
     wp_die();
 }
 add_action("wp_ajax_clge_toggle_calendar", "clge_handle_toggle_calendar");
+
+/**
+ * Affiche la page de debug Nextcloud
+ */
+function clge_render_debug_page()
+{
+    if (!current_user_can("manage_options")) {
+        wp_die(
+            "Vous n'avez pas les droits nécessaires pour accéder à cette page.",
+        );
+    }
+
+    include get_template_directory() . "/templates/clge-debug-page.php";
+    wp_die();
+}
+add_action("wp_ajax_clge_debug_page", "clge_render_debug_page");
+
+/**
+ * Gère la requête AJAX pour charger les événements Nextcloud en debug
+ */
+function clge_handle_debug_nextcloud_events()
+{
+    // Vérifier le nonce
+    check_ajax_referer("clge_debug_nextcloud_events", "_wpnonce");
+
+    // Récupérer l'URL du serveur Nextcloud
+    $nextcloud_url = get_option("clge_nextcloud_url", "");
+
+    // Normaliser l'URL pour s'assurer qu'elle ne se termine pas par un slash
+    $nextcloud_url = untrailingslashit($nextcloud_url);
+
+    // Récupérer l'URL du calendrier depuis la requête
+    $calendar_url = isset($_POST["calendar_url"])
+        ? esc_url_raw($_POST["calendar_url"])
+        : "";
+
+    // Si $calendar_url commence par /, ajouter l'URL du serveur Nextcloud au début
+    if (!empty($calendar_url) && substr($calendar_url, 0, 1) === "/") {
+        $calendar_url = $nextcloud_url . $calendar_url;
+    }
+    // Récupérer les événements
+    $events = clge_fetch_nextcloud_calendar_events($calendar_url);
+
+    if (is_wp_error($events)) {
+        wp_send_json_error(["message" => $events->get_error_message()]);
+    }
+
+    // Afficher les événements pour le debug
+    echo '<div class="clge-debug-result" style="background: #f8fafc; padding: 16px; border-radius: 8px; margin-top: 16px;">';
+    echo '<h3 style="margin-top: 0;">Événements trouvés: ' .
+        count($events) .
+        "</h3>";
+    echo '<pre style="background: #fff; padding: 12px; border-radius: 6px; overflow-x: auto; white-space: pre-wrap;">';
+    echo esc_html(print_r($events, true));
+    echo "</pre>";
+    echo "</div>";
+
+    wp_die();
+}
+add_action(
+    "wp_ajax_clge_debug_nextcloud_events",
+    "clge_handle_debug_nextcloud_events",
+);
+
+/**
+ * Récupère les événements d'un calendrier Nextcloud spécifique
+ *
+ * Utilise l'export iCalendar via ?export (méthode GET)
+ *
+ * @param string $calendar_url URL complète du calendrier CalDAV
+ * @param string|null $start_date Date de début au format Y-m-d (optionnel)
+ * @param string|null $end_date Date de fin au format Y-m-d (optionnel)
+ * @return array|WP_Error Tableau d'événements ou erreur
+ */
+function clge_fetch_nextcloud_calendar_events(
+    $calendar_url,
+    $start_date = null,
+    $end_date = null,
+) {
+    if (!clge_is_nextcloud_configured()) {
+        return new WP_Error(
+            "nextcloud_not_configured",
+            "Configuration Nextcloud incomplète. Veuillez d'abord configurer l'URL, le nom d'utilisateur et le mot de passe.",
+        );
+    }
+
+    $credentials = clge_get_nextcloud_credentials(true);
+    $username = $credentials["username"];
+    $password = $credentials["password"];
+
+    $auth = base64_encode($username . ":" . $password);
+    unset($password);
+
+    // Ajouter ?export à l'URL pour récupérer tous les événements en format iCalendar
+    $export_url = add_query_arg("export", "", $calendar_url);
+
+    $args = [
+        "method" => "GET",
+        "timeout" => 60,
+        "headers" => [
+            "Authorization" => "Basic " . $auth,
+            "Accept" => "text/calendar",
+        ],
+    ];
+
+    unset($auth);
+
+    $response = wp_remote_request($export_url, $args);
+
+    if (is_wp_error($response)) {
+        return new WP_Error(
+            "caldav_events_request_failed",
+            "Erreur lors de la requête CalDAV pour les événements: " .
+                $response->get_error_message(),
+        );
+    }
+
+    $status_code = wp_remote_retrieve_response_code($response);
+    $body = wp_remote_retrieve_body($response);
+    $headers = wp_remote_retrieve_headers($response);
+
+    unset($args, $response);
+
+    if ($status_code < 200 || $status_code >= 300) {
+        $error_msg =
+            "Erreur HTTP " .
+            $status_code .
+            " pour l'URL: " .
+            esc_url($export_url);
+        if (!empty($body)) {
+            if (
+                preg_match("/<s:message>(.*?)<\/s:message>/", $body, $matches)
+            ) {
+                $error_msg .= " | Message: " . trim($matches[1]);
+            } elseif (
+                preg_match("/<message>(.*?)<\/message>/", $body, $matches)
+            ) {
+                $error_msg .= " | Message: " . trim($matches[1]);
+            } else {
+                $error_msg .= " | Corps: " . esc_html(substr($body, 0, 200));
+            }
+        }
+        return new WP_Error("caldav_events_http_error", $error_msg);
+    }
+
+    // Vérifier que le corps n'est pas vide
+    if (empty($body) || trim($body) === "") {
+        return new WP_Error(
+            "caldav_events_empty_response",
+            "La réponse CalDAV pour les événements est vide pour l'URL: " .
+                esc_url($export_url) .
+                ". Vérifiez que l'URL du calendrier est correcte.",
+        );
+    }
+
+    $events = [];
+
+    try {
+        // Avec ?export, la réponse est directement en format iCalendar
+        // Pas besoin de parser le XML CalDAV, on parse directement le contenu iCalendar
+        $parsed_events = clge_parse_icalendar_content($body);
+        if (!empty($parsed_events)) {
+            // Ajouter le champ calendar pour indiquer la source
+            foreach ($parsed_events as &$event) {
+                $event["calendar"] = $calendar_url;
+            }
+            $events = $parsed_events;
+        }
+    } catch (Exception $e) {
+        return new WP_Error(
+            "caldav_events_parse_error",
+            "Erreur lors du parse du contenu iCalendar pour les événements: " .
+                $e->getMessage(),
+        );
+    }
+
+    return $events;
+}
+
+/**
+ * Parse une date iCalendar en objet DateTime
+ *
+ * @param string $date_string Date au format iCalendar
+ * @param array $params Paramètres iCalendar (ex: ['TZID' => 'Europe/Paris'])
+ * @return DateTime|null Objet DateTime ou null en cas d'erreur
+ */
+function clge_parse_icalendar_date($date_string, $params = [])
+{
+    try {
+        // Vérifier si c'est une DATE (jour entier) avec VALUE=DATE
+        if (
+            isset($params["VALUE"]) &&
+            strtoupper($params["VALUE"]) === "DATE"
+        ) {
+            // Essayer de parser comme date (YYYYMMDD)
+            $date = DateTime::createFromFormat("Ymd", $date_string);
+            if ($date !== false) {
+                // Pour les dates (jour entier), mettre à minuit UTC
+                $date->setTime(0, 0, 0);
+                $date->setTimezone(new DateTimeZone("UTC"));
+                return $date;
+            }
+        }
+
+        // Vérifier si c'est une date avec timezone
+        if (isset($params["TZID"])) {
+            $timezone = new DateTimeZone($params["TZID"]);
+            $date = new DateTime($date_string, $timezone);
+            return $date;
+        }
+
+        // Vérifier si la date est en UTC (se termine par Z)
+        if (substr($date_string, -1) === "Z") {
+            $date = new DateTime(substr($date_string, 0, -1) . "+00:00");
+            $date->setTimezone(new DateTimeZone("UTC"));
+            return $date;
+        }
+
+        // Date sans timezone (format local)
+        // Essayer différents formats, en commençant par les plus courants
+        $formats = [
+            "Ymd\\THis", // 20240101T120000 (iCalendar standard)
+            "Ymd", // 20240101 (DATE)
+            "Y-m-d\\TH:i:s", // 2024-01-01T12:00:00
+            "Y-m-d", // 2024-01-01
+            "Ymd\\THis\\Z", // 20240101T120000Z (au cas où)
+        ];
+
+        foreach ($formats as $format) {
+            $date = DateTime::createFromFormat($format, $date_string);
+            if ($date !== false) {
+                // Si pas de timezone spécifiée et que ce n'est pas une date UTC,
+                // on suppose UTC pour les formats iCalendar
+                if (
+                    !isset($params["TZID"]) &&
+                    substr($date_string, -1) !== "Z"
+                ) {
+                    $date->setTimezone(new DateTimeZone("UTC"));
+                }
+                return $date;
+            }
+        }
+
+        // Dernier recours : essayer de parser directement
+        return new DateTime($date_string);
+    } catch (Exception $e) {
+        error_log("Erreur de parse de date iCalendar: " . $e->getMessage());
+        return null;
+    }
+}
+
+/**
+ * Parse le contenu iCalendar (ICS) et extrait les événements
+ *
+ * @param string $ical_content Contenu iCalendar brut
+ * @return array Tableau d'événements parsés
+ */
+function clge_parse_icalendar_content($ical_content)
+{
+    $events = [];
+
+    // D'abord, déplier toutes les lignes (unfold)
+    // Les lignes qui commencent par un espace ou tab sont des continuations
+    $lines = explode("\n", $ical_content);
+    $unfolded_lines = [];
+    $current_line = "";
+
+    foreach ($lines as $line) {
+        $trimmed = ltrim($line);
+
+        // Lignes vides
+        if ($trimmed === "") {
+            if ($current_line !== "") {
+                $unfolded_lines[] = $current_line;
+                $current_line = "";
+            }
+            continue;
+        }
+
+        // Lignes repliées (commencent par espace ou tab)
+        if (substr($line, 0, 1) === " " || substr($line, 0, 1) === "\t") {
+            $current_line .= $trimmed;
+        } else {
+            // Si on a une ligne en cours, l'ajouter
+            if ($current_line !== "") {
+                $unfolded_lines[] = $current_line;
+            }
+            $current_line = $trimmed;
+        }
+    }
+
+    // Ne pas oublier la dernière ligne
+    if ($current_line !== "") {
+        $unfolded_lines[] = $current_line;
+    }
+
+    // Maintenant parser les événements
+    $current_event = null;
+    $in_event = false;
+
+    foreach ($unfolded_lines as $line) {
+        $trimmed = trim($line);
+
+        // Lignes vides
+        if ($trimmed === "") {
+            continue;
+        }
+
+        // BEGIN:VEVENT
+        if ($trimmed === "BEGIN:VEVENT") {
+            $current_event = [
+                "is_fullday" => false, // Par défaut, ce n'est pas un événement sur toute la journée
+                "_date_fields" => [], // Pour suivre quels champs sont de type DATE
+            ];
+            $in_event = true;
+            continue;
+        }
+
+        // END:VEVENT
+        if ($trimmed === "END:VEVENT") {
+            if ($current_event !== null && !empty($current_event)) {
+                // Nettoyer les champs temporaires
+                unset($current_event["_date_fields"]);
+                $events[] = $current_event;
+            }
+            $current_event = null;
+            $in_event = false;
+            continue;
+        }
+
+        // Si on est dans un événement
+        if ($in_event && $current_event !== null) {
+            // Trouver le premier :
+            $colon_pos = strpos($line, ":");
+            if ($colon_pos !== false) {
+                $full_property = trim(substr($line, 0, $colon_pos));
+                $value = trim(substr($line, $colon_pos + 1));
+
+                // Séparer la propriété des paramètres
+                $semicolon_pos = strpos($full_property, ";");
+                if ($semicolon_pos !== false) {
+                    $property = trim(substr($full_property, 0, $semicolon_pos));
+                    $params_str = trim(
+                        substr($full_property, $semicolon_pos + 1),
+                    );
+
+                    // Parser les paramètres
+                    $params = [];
+                    $param_parts = explode(";", $params_str);
+                    foreach ($param_parts as $param) {
+                        if (strpos($param, "=") !== false) {
+                            $pair = explode("=", $param, 2);
+                            $params[strtoupper(trim($pair[0]))] =
+                                $pair[1] ?? "";
+                        }
+                    }
+
+                    // Traiter les propriétés courantes
+                    switch (strtoupper($property)) {
+                        case "DTSTART":
+                        case "DTEND":
+                            // Vérifier si c'est une DATE (jour entier)
+                            $is_date =
+                                isset($params["VALUE"]) &&
+                                $params["VALUE"] === "DATE";
+
+                            // Stocker la date
+                            $current_event[
+                                strtolower($property)
+                            ] = clge_parse_icalendar_date($value, $params);
+
+                            // Mettre à jour is_fullday
+                            $current_event["is_fullday"] = $is_date;
+                            break;
+                        case "CREATED":
+                        case "LAST-MODIFIED":
+                            $current_event[
+                                strtolower($property)
+                            ] = clge_parse_icalendar_date($value, $params);
+                            break;
+                        case "SUMMARY":
+                            $current_event["summary"] = $value;
+                            break;
+                        case "DESCRIPTION":
+                            $current_event["description"] = $value;
+                            break;
+                        case "LOCATION":
+                            $current_event["location"] = $value;
+                            break;
+                        case "UID":
+                            $current_event["uid"] = $value;
+                            break;
+                        case "URL":
+                            $current_event["url"] = $value;
+                            break;
+                        case "ORGANIZER":
+                            // Extraire le CN des paramètres s il existe
+                            $cn = isset($params["CN"]) ? $params["CN"] : null;
+                            // Parser la valeur (qui peut être mailto:email@domaine.fr)
+                            $mail_data = clge_parse_mailto($value);
+                            // Si on a un CN dans les paramètres, il prime sur celui de mailto
+                            $final_cn = !empty($cn) ? $cn : $mail_data["name"];
+                            $current_event["organizer"] = [
+                                "cn" => $final_cn,
+                                "mail" => $mail_data["email"],
+                            ];
+                            break;
+                        case "STATUS":
+                            $current_event["status"] = $value;
+                            break;
+                        case "TRANSP":
+                            $current_event["transparency"] = $value;
+                            break;
+                        case "SEQUENCE":
+                            $current_event["sequence"] = (int) $value;
+                            break;
+                        case "CATEGORIES":
+                            $current_event["categories"] = $value;
+                            break;
+                        case "ATTENDEE":
+                            if (!isset($current_event["attendees"])) {
+                                $current_event["attendees"] = [];
+                            }
+                            // Parser l'email depuis value (mailto:email@domaine.fr)
+                            $mail_data = clge_parse_mailto($value);
+
+                            // Convertir tous les paramètres en minuscules
+                            $lower_params = [];
+                            foreach ($params as $key => $param_value) {
+                                $lower_params[strtolower($key)] = $param_value;
+                            }
+
+                            // Fusionner email et params
+                            $attendee = [
+                                "email" => $mail_data["email"],
+                                "cn" =>
+                                    $mail_data["name"] ??
+                                    ($lower_params["cn"] ?? null),
+                            ];
+
+                            // Ajouter tous les autres paramètres
+                            foreach ($lower_params as $key => $param_value) {
+                                if ($key !== "cn") {
+                                    $attendee[$key] = $param_value;
+                                }
+                            }
+
+                            $current_event["attendees"][] = $attendee;
+                            break;
+                        default:
+                            // Stocker les autres propriétés
+                            if (!isset($current_event["_extra"])) {
+                                $current_event["_extra"] = [];
+                            }
+                            $current_event["_extra"][strtoupper($property)] = [
+                                "value" => $value,
+                                "params" => $params,
+                            ];
+                            break;
+                    }
+                } else {
+                    // Pas de paramètres, propriété simple
+                    $property = strtoupper($full_property);
+
+                    // Traiter les propriétés courantes
+                    switch ($property) {
+                        case "DTSTART":
+                        case "DTEND":
+                        case "CREATED":
+                        case "LAST-MODIFIED":
+                            $current_event[
+                                strtolower($property)
+                            ] = clge_parse_icalendar_date($value, []);
+                            break;
+                        case "SUMMARY":
+                            $current_event["summary"] = $value;
+                            break;
+                        case "DESCRIPTION":
+                            $current_event["description"] = $value;
+                            break;
+                        case "LOCATION":
+                            $current_event["location"] = $value;
+                            break;
+                        case "UID":
+                            $current_event["uid"] = $value;
+                            break;
+                        case "URL":
+                            $current_event["url"] = $value;
+                            break;
+                        case "ORGANIZER":
+                            // Parser la valeur (qui peut être mailto:email@domaine.fr)
+                            $mail_data = clge_parse_mailto($value);
+                            $current_event["organizer"] = [
+                                "cn" => $mail_data["name"],
+                                "mail" => $mail_data["email"],
+                            ];
+                            break;
+                        case "STATUS":
+                            $current_event["status"] = $value;
+                            break;
+                        case "TRANSP":
+                            $current_event["transparency"] = $value;
+                            break;
+                        case "SEQUENCE":
+                            $current_event["sequence"] = (int) $value;
+                            break;
+                        case "CATEGORIES":
+                            $current_event["categories"] = $value;
+                            break;
+                        default:
+                            // Stocker les autres propriétés
+                            if (!isset($current_event["_extra"])) {
+                                $current_event["_extra"] = [];
+                            }
+                            $current_event["_extra"][
+                                strtoupper($property)
+                            ] = $value;
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    return $events;
+}
+
+/**
+ * Parse une adresse mailto et extrait le CN (Common Name) et l'email
+ *
+ * Gère les formats:
+ * - "mailto:email@domaine.fr" -> ['email' => 'email@domaine.fr', 'name' => null]
+ * - "mailto:Nom <email@domaine.fr>" -> ['email' => 'email@domaine.fr', 'name' => 'Nom']
+ * - "Nom <mailto:email@domaine.fr>" -> ['email' => 'email@domaine.fr', 'name' => 'Nom']
+ * - "Nom <email@domaine.fr>" -> ['email' => 'email@domaine.fr', 'name' => 'Nom']
+ * - "email@domaine.fr" -> ['email' => 'email@domaine.fr', 'name' => null]
+ *
+ * @param string $input Chaîne à parser (adresse mailto ou email standard)
+ * @return array Tableau associatif avec les clés 'email' et 'name'
+ */
+function clge_parse_mailto($input)
+{
+    $result = [
+        "email" => "",
+        "name" => null,
+    ];
+
+    if (empty($input)) {
+        return $result;
+    }
+
+    // Supprimer le préfixe mailto: s'il est présent
+    $clean_input = str_replace("mailto:", "", $input);
+    $clean_input = trim($clean_input);
+
+    // Cas 1: Format avec nom et email entre chevrons: "Nom <email@domaine.fr>"
+    if (preg_match('/^(.+?)\s*<(.+?)>$/', $clean_input, $matches)) {
+        $result["name"] = trim($matches[1]);
+        $result["email"] = trim($matches[2]);
+
+        // Nettoyer l'email des éventuels mailto: restants
+        $result["email"] = str_replace("mailto:", "", $result["email"]);
+        $result["email"] = trim($result["email"]);
+
+        return $result;
+    }
+
+    // Cas 2: Simple adresse email (avec ou sans mailto:)
+    if (filter_var($clean_input, FILTER_VALIDATE_EMAIL)) {
+        $result["email"] = $clean_input;
+        return $result;
+    }
+
+    // Cas 3: Adresse email entre chevrons sans nom: "<email@domaine.fr>"
+    if (preg_match('/^<(.+?)>$/', $clean_input, $matches)) {
+        $result["email"] = trim($matches[1]);
+        $result["email"] = str_replace("mailto:", "", $result["email"]);
+        $result["email"] = trim($result["email"]);
+        return $result;
+    }
+
+    // Cas 4: Dernier recours - essayer de trouver une adresse email dans la chaîne
+    if (
+        preg_match(
+            "/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/",
+            $clean_input,
+            $matches,
+        )
+    ) {
+        $result["email"] = $matches[1];
+
+        // Extraire le nom (tout ce qui précède l'email)
+        $name_part = str_replace($matches[1], "", $clean_input);
+        $name_part = trim(str_replace(["<", ">", "mailto:"], "", $name_part));
+
+        if (!empty($name_part)) {
+            $result["name"] = $name_part;
+        }
+    }
+
+    return $result;
+}
