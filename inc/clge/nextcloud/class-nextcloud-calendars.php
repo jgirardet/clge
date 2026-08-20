@@ -292,13 +292,13 @@ class Clge_Nextcloud_Calendars
             )
         ) {
             header("HTTP/1.1 403 Forbidden");
-            echo '<div class="clge-calendar-item" style="color: #dc2626; padding: 8px; margin: 8px 0; border: 1px solid #fecaca; border-radius: 6px;">Erreur de sécurité</div>';
+            echo '<div class="clge-test-connection-result error">Erreur de sécurité</div>';
             wp_die();
         }
 
         if (!current_user_can("manage_options")) {
             header("HTTP/1.1 403 Forbidden");
-            echo '<div class="clge-calendar-item" style="color: #dc2626; padding: 8px; margin: 8px 0; border: 1px solid #fecaca; border-radius: 6px;">Droits insuffisants</div>';
+            echo '<div class="clge-test-connection-result error">Droits insuffisants</div>';
             wp_die();
         }
 
@@ -307,7 +307,7 @@ class Clge_Nextcloud_Calendars
             : "";
         if (empty($calendar_url)) {
             header("HTTP/1.1 400 Bad Request");
-            echo '<div class="clge-calendar-item" style="color: #dc2626; padding: 8px; margin: 8px 0; border: 1px solid #fecaca; border-radius: 6px;">URL de calendrier manquante</div>';
+            echo '<div class="clge-test-connection-result error">URL de calendrier manquante</div>';
             wp_die();
         }
 
@@ -319,7 +319,7 @@ class Clge_Nextcloud_Calendars
             echo self::render_calendar_item($calendar);
         } else {
             header("HTTP/1.1 404 Not Found");
-            echo '<div class="clge-calendar-item" style="color: #dc2626; padding: 8px; margin: 8px 0; border: 1px solid #fecaca; border-radius: 6px;">Calendrier introuvable</div>';
+            echo '<div class="clge-test-connection-result error">Calendrier introuvable</div>';
         }
 
         wp_die();
