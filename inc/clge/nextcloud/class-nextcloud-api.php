@@ -8,7 +8,7 @@
  * - Récupération des événements (iCalendar export)
  */
 
-defined('ABSPATH') || exit;
+defined("ABSPATH") || exit();
 
 class Clge_Nextcloud_API
 {
@@ -17,7 +17,10 @@ class Clge_Nextcloud_API
      */
     public static function register_hooks(): void
     {
-        add_action('wp_ajax_clge_test_nextcloud_connection', [self::class, 'test_connection']);
+        add_action("wp_ajax_clge_test_nextcloud_connection", [
+            self::class,
+            "test_connection",
+        ]);
     }
 
     /**
@@ -28,19 +31,36 @@ class Clge_Nextcloud_API
      * @param array $args Arguments supplémentaires pour wp_remote_request
      * @return array|WP_Error Résultat ou erreur
      */
-    private static function request(string $url, string $method = 'GET', array $args = []): array|WP_Error
-    {
+    private static function request(
+        string $url,
+        string $method = "GET",
+        array $args = [],
+    ): array|WP_Error {
         $default_args = [
-            'timeout' => 30,
-            'headers' => [],
+            "timeout" => apply_filters("clge_nextcloud_api_timeout", 30),
+            "headers" => [],
         ];
 
         $merged_args = array_merge($default_args, $args);
-        $merged_args['method'] = $method;
+        $merged_args["method"] = $method;
 
         $response = wp_remote_request($url, $merged_args);
 
         if (is_wp_error($response)) {
+            error_log(
+                "Nextcloud API Request Error: " .
+                    $response->get_error_message(),
+            );
+
+            // Gestion spécifique des erreurs réseau
+            $error_code = $response->get_error_code();
+            if ($error_code === "http_request_failed") {
+                error_log(
+                    "Nextcloud API Network Error: Impossible de se connecter à l'URL: " .
+                        esc_url($url),
+                );
+            }
+
             return $response;
         }
 
@@ -49,23 +69,36 @@ class Clge_Nextcloud_API
         $headers = wp_remote_retrieve_headers($response);
 
         if ($status_code < 200 || $status_code >= 300) {
-            $error_msg = 'Erreur HTTP ' . $status_code . ' pour l\'URL: ' . esc_url($url);
+            $error_msg =
+                "Erreur HTTP " .
+                $status_code .
+                ' pour l\'URL: ' .
+                esc_url($url);
             if (!empty($body)) {
-                if (preg_match('/<s:message>(.*?)<\/s:message>/', $body, $matches)) {
-                    $error_msg .= ' | Message: ' . trim($matches[1]);
-                } elseif (preg_match('/<message>(.*?)<\/message>/', $body, $matches)) {
-                    $error_msg .= ' | Message: ' . trim($matches[1]);
+                if (
+                    preg_match(
+                        "/<s:message>(.*?)<\/s:message>/",
+                        $body,
+                        $matches,
+                    )
+                ) {
+                    $error_msg .= " | Message: " . trim($matches[1]);
+                } elseif (
+                    preg_match("/<message>(.*?)<\/message>/", $body, $matches)
+                ) {
+                    $error_msg .= " | Message: " . trim($matches[1]);
                 } else {
-                    $error_msg .= ' | Corps: ' . esc_html(substr($body, 0, 200));
+                    $error_msg .=
+                        " | Corps: " . esc_html(substr($body, 0, 200));
                 }
             }
-            return new WP_Error('nextcloud_http_error', $error_msg);
+            return new WP_Error("nextcloud_http_error", $error_msg);
         }
 
         return [
-            'status_code' => $status_code,
-            'body' => $body,
-            'headers' => $headers,
+            "status_code" => $status_code,
+            "body" => $body,
+            "headers" => $headers,
         ];
     }
 
@@ -76,49 +109,60 @@ class Clge_Nextcloud_API
     public static function test_connection(): void
     {
         // Vérification de sécurité
-        if (!check_ajax_referer('clge_test_nextcloud_connection', '_wpnonce')) {
+        if (!check_ajax_referer("clge_test_nextcloud_connection", "_wpnonce")) {
             echo '<div class="clge-test-connection-result error">Erreur de sécurité. Veuillez réessayer.</div>';
             wp_die();
         }
 
         // Vérification des capabilities
-        if (!current_user_can('manage_options')) {
+        if (!current_user_can("manage_options")) {
             echo '<div class="clge-test-connection-result error">Vous n\'avez pas les droits nécessaires.</div>';
             wp_die();
         }
 
         $credentials = Clge_Nextcloud_Settings::get_credentials(true);
-        if (empty($credentials['url']) || empty($credentials['username']) || empty($credentials['password'])) {
+        if (
+            empty($credentials["url"]) ||
+            empty($credentials["username"]) ||
+            empty($credentials["password"])
+        ) {
             echo '<div class="clge-test-connection-result error">Configuration incomplète. Veuillez d\'abord sauvegarder l\'URL, le nom d\'utilisateur et le mot de passe.</div>';
             wp_die();
         }
 
         // Normaliser l'URL de base pour le test de connexion
-        $normalized_url = rtrim($credentials['url'], '/');
-        if (strpos($normalized_url, '/remote.php/dav') === false) {
-            $normalized_url .= '/remote.php/dav';
+        $normalized_url = rtrim($credentials["url"], "/");
+        if (strpos($normalized_url, "/remote.php/dav") === false) {
+            $normalized_url .= "/remote.php/dav";
         }
 
         // Construire les credentials Basic Auth
-        $credentials_base64 = base64_encode($credentials['username'] . ':' . $credentials['password']);
-        unset($credentials['password']);
+        $username = $credentials["username"];
+        $password = $credentials["password"];
+        unset($credentials["password"], $credentials);
+        $credentials_base64 = base64_encode($username . ":" . $password);
+        unset($username, $password);
 
         // Effectuer la requête
         $args = [
-            'headers' => [
-                'Authorization' => 'Basic ' . $credentials_base64,
+            "headers" => [
+                "Authorization" => "Basic " . $credentials_base64,
             ],
         ];
         unset($credentials_base64);
 
-        $response = self::request($normalized_url, 'GET', $args);
+        $response = self::request($normalized_url, "GET", $args);
 
         if (is_wp_error($response)) {
-            echo '<div class="clge-test-connection-result error">Erreur de connexion: ' . esc_html($response->get_error_message()) . '</div>';
+            echo '<div class="clge-test-connection-result error">Erreur de connexion: ' .
+                esc_html($response->get_error_message()) .
+                "</div>";
             wp_die();
         }
 
-        echo '<div class="clge-test-connection-result success">Connexion réussie (Code: ' . esc_html($response['status_code']) . ')</div>';
+        echo '<div class="clge-test-connection-result success">Connexion réussie (Code: ' .
+            esc_html($response["status_code"]) .
+            ")</div>";
         wp_die();
     }
 
@@ -131,25 +175,38 @@ class Clge_Nextcloud_API
     {
         if (!Clge_Nextcloud_Settings::is_configured()) {
             return new WP_Error(
-                'nextcloud_not_configured',
-                'Configuration Nextcloud incomplète. Veuillez d\'abord configurer l\'URL, le nom d\'utilisateur et le mot de passe.'
+                "nextcloud_not_configured",
+                'Configuration Nextcloud incomplète. Veuillez d\'abord configurer l\'URL, le nom d\'utilisateur et le mot de passe.',
             );
         }
 
         $credentials = Clge_Nextcloud_Settings::get_credentials(true);
-        $base_url = untrailingslashit($credentials['url']);
-        $username = $credentials['username'];
-        $password = $credentials['password'];
+        $base_url = untrailingslashit($credentials["url"]);
+        $username = $credentials["username"];
+        $password = $credentials["password"];
+        unset($credentials["password"], $credentials);
 
         // Normaliser l'URL de base pour CalDAV
-        $normalized_base_url = rtrim($base_url, '/');
-        if (strpos($normalized_base_url, '/remote.php/dav') === false) {
-            $normalized_base_url .= '/remote.php/dav';
+        $normalized_base_url = rtrim($base_url, "/");
+        if (strpos($normalized_base_url, "/remote.php/dav") === false) {
+            $normalized_base_url .= "/remote.php/dav";
         }
-        $caldav_url = $normalized_base_url . '/calendars/' . rawurlencode($username) . '/';
+        $caldav_url =
+            $normalized_base_url .
+            "/calendars/" .
+            rawurlencode($username) .
+            "/";
 
-        $auth = base64_encode($username . ':' . $password);
-        unset($password);
+        // Valider l'URL CalDAV avant la requête
+        if (!filter_var($caldav_url, FILTER_VALIDATE_URL)) {
+            return new WP_Error(
+                "invalid_caldav_url",
+                "URL CalDAV invalide: " . esc_url($caldav_url),
+            );
+        }
+
+        $auth = base64_encode($username . ":" . $password);
+        unset($username, $password, $base_url);
 
         // Requête PROPFIND pour récupérer les calendriers
         $xml_body = '<?xml version="1.0" encoding="utf-8" ?>
@@ -162,25 +219,27 @@ class Clge_Nextcloud_API
 </d:propfind>';
 
         $args = [
-            'headers' => [
-                'Authorization' => 'Basic ' . $auth,
-                'Content-Type' => 'application/xml',
-                'Depth' => '1',
+            "headers" => [
+                "Authorization" => "Basic " . $auth,
+                "Content-Type" => "application/xml",
+                "Depth" => "1",
             ],
-            'body' => $xml_body,
+            "body" => $xml_body,
         ];
         unset($auth, $xml_body);
 
-        $response = self::request($caldav_url, 'PROPFIND', $args);
+        $response = self::request($caldav_url, "PROPFIND", $args);
         if (is_wp_error($response)) {
             return $response;
         }
 
-        $body = $response['body'];
-        if (empty($body) || trim($body) === '') {
+        $body = $response["body"];
+        if (empty($body) || trim($body) === "") {
             return new WP_Error(
-                'caldav_empty_response',
-                'La réponse CalDAV est vide pour l\'URL: ' . esc_url($caldav_url) . '. Vérifiez que l\'URL et les identifiants sont corrects.'
+                "caldav_empty_response",
+                'La réponse CalDAV est vide pour l\'URL: ' .
+                    esc_url($caldav_url) .
+                    '. Vérifiez que l\'URL et les identifiants sont corrects.',
             );
         }
 
@@ -191,47 +250,64 @@ class Clge_Nextcloud_API
             $xml = new SimpleXMLElement($body);
             if ($xml === false) {
                 $errors = libxml_get_errors();
-                $error_msg = 'Erreur de parse XML';
+                $error_msg = "Erreur de parse XML";
                 if (!empty($errors)) {
-                    $error_msg .= ': ' . $errors[0]->message;
+                    $error_msg .= ": " . $errors[0]->message;
                 }
-                return new WP_Error('caldav_parse_error', $error_msg);
+                return new WP_Error("caldav_parse_error", $error_msg);
             }
 
-            $xml->registerXPathNamespace('d', 'DAV:');
-            $xml->registerXPathNamespace('cs', 'http://calendarserver.org/ns/');
-            $xml->registerXPathNamespace('caldav', 'urn:ietf:params:xml:ns:caldav');
+            $xml->registerXPathNamespace("d", "DAV:");
+            $xml->registerXPathNamespace("cs", "http://calendarserver.org/ns/");
+            $xml->registerXPathNamespace(
+                "caldav",
+                "urn:ietf:params:xml:ns:caldav",
+            );
 
-            $responses = $xml->xpath('//d:response');
+            $responses = $xml->xpath("//d:response");
             foreach ($responses as $response_node) {
-                $href_elements = $response_node->xpath('.//d:href');
+                $href_elements = $response_node->xpath(".//d:href");
                 if (empty($href_elements)) {
                     continue;
                 }
                 $url = (string) $href_elements[0];
 
-                $displayname_elements = $response_node->xpath('.//d:displayname');
-                $displayname = empty($displayname_elements) ? 'Calendrier sans nom' : (string) $displayname_elements[0];
+                $displayname_elements = $response_node->xpath(
+                    ".//d:displayname",
+                );
+                $displayname = empty($displayname_elements)
+                    ? "Calendrier sans nom"
+                    : (string) $displayname_elements[0];
 
                 // Vérifier que c'est un calendrier (et non un autre type de ressource)
-                $resourcetype_elements = $response_node->xpath('.//d:resourcetype');
+                $resourcetype_elements = $response_node->xpath(
+                    ".//d:resourcetype",
+                );
                 if (!empty($resourcetype_elements)) {
                     $resourcetype = $resourcetype_elements[0];
-                    $calendar_comp = $resourcetype->xpath('.//cal:calendar | .//cs:calendar | .//d:calendar');
+                    $calendar_comp = $resourcetype->xpath(
+                        ".//cal:calendar | .//cs:calendar | .//d:calendar",
+                    );
                     if (empty($calendar_comp)) {
                         continue; // Skip si ce n'est pas un calendrier
                     }
                 }
 
-                $calendar_id = basename(rtrim($url, '/'));
+                $calendar_id = basename(rtrim($url, "/"));
                 $calendars[] = [
-                    'name' => $displayname,
-                    'id' => $calendar_id,
-                    'url' => $url,
+                    "name" => $displayname,
+                    "id" => $calendar_id,
+                    "url" => $url,
                 ];
             }
         } catch (Exception $e) {
-            return new WP_Error('caldav_parse_error', 'Erreur lors du parse du XML CalDAV: ' . $e->getMessage());
+            return new WP_Error(
+                "caldav_parse_error",
+                "Erreur lors du parse du XML CalDAV: " . $e->getMessage(),
+            );
+        } finally {
+            libxml_use_internal_errors(false);
+            libxml_clear_errors();
         }
 
         return $calendars;
@@ -249,41 +325,53 @@ class Clge_Nextcloud_API
     public static function fetch_calendar_events(
         string $calendar_url,
         ?string $start_date = null,
-        ?string $end_date = null
+        ?string $end_date = null,
     ): array|WP_Error {
         if (!Clge_Nextcloud_Settings::is_configured()) {
             return new WP_Error(
-                'nextcloud_not_configured',
-                'Configuration Nextcloud incomplète. Veuillez d\'abord configurer l\'URL, le nom d\'utilisateur et le mot de passe.'
+                "nextcloud_not_configured",
+                'Configuration Nextcloud incomplète. Veuillez d\'abord configurer l\'URL, le nom d\'utilisateur et le mot de passe.',
+            );
+        }
+
+        // Valider l'URL du calendrier en entrée
+        if (!filter_var($calendar_url, FILTER_VALIDATE_URL)) {
+            return new WP_Error(
+                "invalid_calendar_url",
+                "URL du calendrier invalide: " . esc_url($calendar_url),
             );
         }
 
         $credentials = Clge_Nextcloud_Settings::get_credentials(true);
-        $auth = base64_encode($credentials['username'] . ':' . $credentials['password']);
-        unset($credentials['password']);
+        $username = $credentials["username"];
+        $password = $credentials["password"];
+        unset($credentials["password"], $credentials);
+        $auth = base64_encode($username . ":" . $password);
+        unset($username, $password);
 
         // Ajouter ?export à l'URL pour récupérer tous les événements en format iCalendar
-        $export_url = add_query_arg('export', '', $calendar_url);
+        $export_url = add_query_arg("export", "", $calendar_url);
 
         $args = [
-            'timeout' => 60,
-            'headers' => [
-                'Authorization' => 'Basic ' . $auth,
-                'Accept' => 'text/calendar',
+            "timeout" => 60,
+            "headers" => [
+                "Authorization" => "Basic " . $auth,
+                "Accept" => "text/calendar",
             ],
         ];
         unset($auth);
 
-        $response = self::request($export_url, 'GET', $args);
+        $response = self::request($export_url, "GET", $args);
         if (is_wp_error($response)) {
             return $response;
         }
 
-        $body = $response['body'];
-        if (empty($body) || trim($body) === '') {
+        $body = $response["body"];
+        if (empty($body) || trim($body) === "") {
             return new WP_Error(
-                'caldav_events_empty_response',
-                'La réponse CalDAV pour les événements est vide pour l\'URL: ' . esc_url($export_url)
+                "caldav_events_empty_response",
+                'La réponse CalDAV pour les événements est vide pour l\'URL: ' .
+                    esc_url($export_url),
             );
         }
 
@@ -293,14 +381,15 @@ class Clge_Nextcloud_API
             if (!empty($events)) {
                 // Ajouter le champ calendar pour indiquer la source
                 foreach ($events as &$event) {
-                    $event['calendar'] = $calendar_url;
+                    $event["calendar"] = $calendar_url;
                 }
             }
             return $events;
         } catch (Exception $e) {
             return new WP_Error(
-                'caldav_events_parse_error',
-                'Erreur lors du parse du contenu iCalendar: ' . $e->getMessage()
+                "caldav_events_parse_error",
+                "Erreur lors du parse du contenu iCalendar: " .
+                    $e->getMessage(),
             );
         }
     }
