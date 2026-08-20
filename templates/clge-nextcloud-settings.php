@@ -9,12 +9,21 @@ if (!defined("ABSPATH")) {
     exit(); // Exit if accessed directly
 }
 
+// Charger les classes Nextcloud pour utiliser les méthodes statiques
+require_once get_template_directory() .
+    "/inc/clge/nextcloud/class-nextcloud-settings.php";
+require_once get_template_directory() .
+    "/inc/clge/nextcloud/class-nextcloud-ui.php";
+
 // Récupérer les valeurs existantes depuis les options WordPress
 $nextcloud_url = get_option("clge_nextcloud_url", "");
 $nextcloud_username = get_option("clge_nextcloud_username", "");
 $nextcloud_has_password = !empty(
     get_option("clge_nextcloud_password_encrypted", "")
 );
+
+// Vérifier si Nextcloud est configuré
+$is_configured = Clge_Nextcloud_Settings::is_configured();
 ?>
 <div class="wrap clge-nextcloud-page">
 
@@ -437,7 +446,7 @@ $nextcloud_has_password = !empty(
             </button>
 
             <div id="clge-calendars-list" style="margin-top: 12px;" <?php if (
-                clge_is_nextcloud_configured()
+                $is_configured
             ): ?>hx-get="<?php echo esc_url(
     admin_url("admin-ajax.php"),
 ); ?>?action=clge_get_known_calendars&_wpnonce=<?php echo esc_attr(

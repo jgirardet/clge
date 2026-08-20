@@ -13,6 +13,10 @@ if (!current_user_can("manage_options")) {
     wp_die("Vous n'avez pas les droits nécessaires pour accéder à cette page.");
 }
 
+// Charger la classe des calendriers
+require_once get_template_directory() .
+    "/inc/clge/nextcloud/class-nextcloud-calendars.php";
+
 $admin_ajax_url = esc_url(admin_url("admin-ajax.php"));
 $debug_nonce = esc_attr(wp_create_nonce("clge_debug_nextcloud_events"));
 ?>
@@ -39,9 +43,7 @@ $debug_nonce = esc_attr(wp_create_nonce("clge_debug_nextcloud_events"));
                     <option value="">-- Choisir un calendrier --</option>
                     <?php
                     // Charger les calendriers configurés
-                    $calendars = function_exists("clge_get_nextcloud_calendars")
-                        ? clge_get_nextcloud_calendars()
-                        : [];
+                    $calendars = Clge_Nextcloud_Calendars::get_calendars();
 
                     // Si aucun calendrier, afficher un message
                     if (empty($calendars)):
