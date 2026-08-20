@@ -385,5 +385,6 @@ function handle_newsletter_submission()
 require get_template_directory() . "/inc/clge/cngeformations.php";
 require get_template_directory() . "/inc/clge/admin-page.php";
 require get_template_directory() . "/inc/clge/database.php";
+require get_template_directory() . "/inc/clge/shortcodes.php";
 
 require get_template_directory() . "/inc/clge/nextcloud/class-nextcloud.php";
