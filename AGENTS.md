@@ -8,6 +8,7 @@ Clge is a WordPress theme - a dynamic, grid-based theme for curators. It display
 - **Event Management System**: Custom calendar with `clge_cal_events` table for managing events with dates, locations, and descriptions
 - **Newsletter Subscription**: AJAX-powered newsletter signup with email validation
 - **CNGE Formations Integration**: HTML parsing and automatic event creation from CNGE formation tables
+- **Nextcloud Integration**: CalDAV calendar integration with event synchronization, encryption, and debug tools
 - **Custom Admin Interface**: Dedicated admin page for event management
 - **Multi-language Support**: 25+ translation files (fr_FR, en, es_ES, de_DE, etc.)
 - **Responsive Grid Layout**: Masonry-based post display
@@ -68,12 +69,13 @@ composer require --dev phpstan/phpstan
 No automated tests exist. Test manually by:
 
 1. **Frontend**: homepage, single posts, pages, archives, widgets, responsive layouts
-2. **Admin**: Event management interface, newsletter signup, custom admin page
+2. **Admin**: Event management interface, newsletter signup, custom admin page, Nextcloud settings
 3. **Browser Compatibility**: Chrome, Firefox, Safari, Edge
 4. **Functionality**:
    - Event CRUD operations
    - Newsletter subscription form
    - Shortcode `[clge_cal_events]`
+   - Nextcloud calendar synchronization
    - All post format displays
    - Custom templates
 
@@ -96,7 +98,7 @@ This is a WordPress theme. Follow WordPress PHP Coding Standards: https://develo
 ### Naming Conventions
 
 - **Functions**: `snake_case` with prefix (e.g., `clge_setup()`, `clge_create_event()`, `clge_get_all_events()`)
-- **Classes**: `PascalCase` (e.g., `Clge_Admin_Page`)
+- **Classes**: `PascalCase` (e.g., `Clge_Admin_Page`, `Clge_Nextcloud_API`)
 - **Variables**: `snake_case` (e.g., `$table_name`, `$insert_data`, `$event`)
 - **Constants**: `UPPER_SNAKE_CASE` (e.g., `CLGE_VERSION`)
 - **Hooks (filters/actions)**: `lowercase_with_underscores` (e.g., `after_setup_theme`)
@@ -301,6 +303,8 @@ clge/
 │   ├── contributors-page.php  # Authors/contributors grid template
 │   ├── clge-calendrier.php    # Calendar admin interface template
 │   ├── all_events.php         # Events list table template (AJAX)
+│   ├── clge-debug-page.php    # Debug page template for Nextcloud integration
+│   ├── clge-nextcloud-settings.php # Nextcloud settings page template
 │   ├── full-width-page.php    # Full-width page template
 │   ├── landing.php            # Admin landing page template
 │   └── no-sidebar-page.php    # No sidebar page template
@@ -310,20 +314,29 @@ clge/
     ├── extras.php             # Additional theme functions
     ├── jetpack.php            # Jetpack plugin integration
     ├── jetpack-fonts.php      # Jetpack font handling
-    ├── database.php           # Custom database operations (events CRUD)
-    ├── clge-admin-page.php    # Admin interface for CLGE
-    ├── cngeformations.php     # CNGE formations HTML parser and importer
-    ├── shortcodes.php         # Custom shortcodes ([clge_cal_events])
     ├── updater.php            # Theme updater for WordPress.com
-    └── headstart/
-        └── en.json            # Headstart configuration for signup
+    └── clge/
+        ├── admin-page.php      # Admin interface for CLGE
+        ├── cngeformations.php   # CNGE formations HTML parser and importer
+        ├── database.php         # Custom database operations (events CRUD)
+        ├── shortcodes.php       # Custom shortcodes ([clge_cal_events])
+        └── nextcloud/
+            ├── parsers.php              # iCalendar and date parsing functions
+            ├── class-nextcloud.php       # Main Nextcloud integration class
+            ├── class-nextcloud-api.php    # Nextcloud API client
+            ├── class-nextcloud-calendars.php # Nextcloud calendar management
+            ├── class-nextcloud-events.php  # Nextcloud event handling
+            ├── class-nextcloud-settings.php # Nextcloud settings management
+            ├── class-nextcloud-ui.php     # Nextcloud UI components
+            ├── class-nextcloud-debug.php   # Debug utilities for Nextcloud
+            └── class-nextcloud-encryption.php # Encryption utilities (AES-256)
 ```
 
 ## Working with This Theme
 
 ### Adding New Features
 
-1. **PHP Functions**: Create new functions in appropriate `inc/` files or `functions.php`
+1. **PHP Functions**: Create new functions in appropriate `inc/` or `inc/clge/` files or `functions.php`
 2. **Template Files**: Add template files in root or `templates/` directory
 3. **CSS**: Add styles to `style.css` or create new stylesheet in root
 4. **JavaScript**: Add scripts to `js/` directory and enqueue properly
@@ -331,7 +344,7 @@ clge/
 
 ### Database Operations
 
-When adding custom tables (as in `inc/database.php`):
+When adding custom tables (as in `inc/clge/database.php`):
 
 - Create table on theme activation: `add_action( 'after_switch_theme', 'callback' )`
 - Use `dbDelta()` for table creation (idempotent)
@@ -361,7 +374,7 @@ add_action('after_switch_theme', 'clge_create_custom_table');
 
 ### AJAX Handling
 
-The theme registers multiple AJAX endpoints for event management and newsletter:
+The theme registers multiple AJAX endpoints for event management, newsletter, and Nextcloud integration:
 
 **Newsletter** (in functions.php):
 ```php
@@ -369,7 +382,7 @@ add_action('wp_ajax_send_newsletter', 'handle_newsletter_submission');
 add_action('wp_ajax_nopriv_send_newsletter', 'handle_newsletter_submission');
 ```
 
-**Event Management** (in inc/clge-admin-page.php):
+**Event Management** (in inc/clge/admin-page.php):
 ```php
 // Display interfaces
 add_action('wp_ajax_clge_calendrier', 'hx_clge_calendrier');
@@ -380,6 +393,14 @@ add_action('wp_ajax_clge_add_event', 'hx_add_event');
 add_action('wp_ajax_clge_add_cnge_formation', 'hx_add_cnge_formation');
 add_action('wp_ajax_clge_delete_event', 'hx_delete_event');
 add_action('wp_ajax_clge_update_event', 'hx_update_event');
+```
+
+**Nextcloud Integration** (in inc/clge/nextcloud/class-nextcloud-*.php):
+```php
+// Calendar synchronization
+add_action('wp_ajax_clge_nextcloud_sync_calendars', 'Clge_Nextcloud_Calendars::sync_calendars');
+add_action('wp_ajax_clge_nextcloud_test_connection', 'Clge_Nextcloud_API::test_connection');
+add_action('wp_ajax_clge_nextcloud_save_settings', 'Clge_Nextcloud_Settings::save_settings');
 ```
 
 AJAX handler pattern:
@@ -459,7 +480,7 @@ The theme includes a complete event management system for managing CLGE calendar
 | url | varchar(255) | Event URL |
 | evt_clge | bool | Flag: 1 = CLGE event, 0 = Formation |
 
-**Functions** (in `inc/database.php`):
+**Functions** (in `inc/clge/database.php`):
 - `clge_create_cal_events_table()`: Creates table on theme activation
 - `clge_migrate_add_alias_description()`: Adds alias/description columns if missing
 - `clge_create_event($data)`: Add new event (accepts DateTime objects or strings)
@@ -510,7 +531,7 @@ add_action('wp_ajax_nopriv_send_newsletter', 'handle_newsletter_submission');
 
 ### CNGE Formations Integration
 
-**Module**: `inc/cngeformations.php`
+**Module**: `inc/clge/cngeformations.php`
 
 Parses HTML tables from CNGE (College National des Generalistes Enseignants) website to extract formation information and create events automatically.
 
@@ -535,11 +556,105 @@ Parses HTML tables from CNGE (College National des Generalistes Enseignants) web
 
 **Usage**: Triggered from admin interface to import formations from external source.
 
+### Nextcloud Integration
+
+**Module**: `inc/clge/nextcloud/`
+
+Complete Nextcloud CalDAV integration for calendar synchronization with CLGE events.
+
+**Main Class**: `Clge_Nextcloud` (`class-nextcloud.php`)
+- Entry point for Nextcloud integration
+- Loads all dependencies and registers WordPress hooks
+- Requires `SECURE_AUTH_KEY` to be defined in wp-config.php (minimum 32 characters for AES-256 encryption)
+
+**Core Components**:
+
+1. **API Client** (`class-nextcloud-api.php`)
+   - Handles HTTP requests to Nextcloud server
+   - Manages authentication (Basic Auth, Bearer tokens)
+   - Provides methods for testing connection and server capabilities
+   - Implements rate limiting and error handling
+
+2. **Calendar Management** (`class-nextcloud-calendars.php`)
+   - Lists available Nextcloud calendars
+   - Syncs events from Nextcloud to local `clge_cal_events` table
+   - Handles calendar color and display properties
+   - Manages calendar subscriptions
+
+3. **Event Handling** (`class-nextcloud-events.php`)
+   - Parses iCalendar (ICS) event data
+   - Maps Nextcloud events to CLGE event format
+   - Handles event creation, updates, and deletion
+   - Manages event recurrence and exceptions
+
+4. **Settings Management** (`class-nextcloud-settings.php`)
+   - Stores Nextcloud server URL, username, password (encrypted)
+   - Manages synchronization settings and frequency
+   - Provides admin interface for configuration
+   - Validates connection settings before saving
+
+5. **Encryption** (`class-nextcloud-encryption.php`)
+   - Implements AES-256-CBC encryption for sensitive data
+   - Uses WordPress `SECURE_AUTH_KEY` as encryption key
+   - Encrypts Nextcloud password before storage
+   - Decrypts password for API requests
+
+6. **UI Components** (`class-nextcloud-ui.php`)
+   - Renders settings form in WordPress admin
+   - Displays connection status and sync information
+   - Provides manual sync button and logs
+   - Handles AJAX requests for sync operations
+
+7. **Debug Utilities** (`class-nextcloud-debug.php`)
+   - Logs API requests and responses
+   - Provides debug page at `/wp-admin/admin.php?page=clge-debug`
+   - Tests connection and displays server information
+   - Logs synchronization errors
+
+8. **Parsers** (`parsers.php`)
+   - `clge_parse_icalendar_date()`: Parses iCalendar date strings (DATE, DATE-TIME, UTC)
+   - `clge_parse_icalendar_content()`: Parses full iCalendar (ICS) content
+   - `clge_parse_mailto()`: Extracts email addresses from mailto: links
+   - Supports multiple date formats: YYYYMMDD, YYYYMMDDTHHMMSS, YYYY-MM-DD, etc.
+   - Handles timezone conversion and day-only dates
+
+**AJAX Endpoints**:
+```php
+// Settings and connection
+add_action('wp_ajax_clge_nextcloud_save_settings', 'Clge_Nextcloud_Settings::save_settings');
+add_action('wp_ajax_clge_nextcloud_test_connection', 'Clge_Nextcloud_API::test_connection');
+
+// Calendar operations
+add_action('wp_ajax_clge_nextcloud_sync_calendars', 'Clge_Nextcloud_Calendars::sync_calendars');
+add_action('wp_ajax_clge_nextcloud_get_calendars', 'Clge_Nextcloud_Calendars::get_calendars');
+
+// Debug
+add_action('wp_ajax_clge_nextcloud_debug_info', 'Clge_Nextcloud_Debug::get_debug_info');
+```
+
+**Templates**:
+- `templates/clge-nextcloud-settings.php`: Settings page with connection form
+- `templates/clge-debug-page.php`: Debug information and connection testing
+
+**Security**:
+- Password encrypted using AES-256-CBC before storage
+- Requires `manage_options` capability for all admin operations
+- All AJAX requests use nonce verification
+- Connection settings validated before use
+- Sensitive data never logged in plain text
+
+**Requirements**:
+- PHP 7.4+
+- OpenSSL extension for encryption
+- cURL extension for HTTP requests
+- WordPress 5.0+
+- Nextcloud server with CalDAV enabled
+
 ### Admin Interface
 
 **Page**: "CLGE" in WordPress admin menu (position 20, icon: dashicons-calendar-alt)
 
-**Setup** (in `inc/clge-admin-page.php`):
+**Setup** (in `inc/clge/admin-page.php`):
 ```php
 add_action('admin_menu', 'clge_add_admin_page');
 ```
@@ -547,6 +662,7 @@ add_action('admin_menu', 'clge_add_admin_page');
 **Main Template**: `templates/landing.php`
 - Includes calendar interface and event management
 - Uses AJAX for dynamic content loading
+- Tabbed interface for different sections
 
 **AJAX Endpoints**:
 - `clge_calendrier`: Display calendar interface template
@@ -639,6 +755,7 @@ if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'action_name'))
   // In newsletter handler
   $to = get_option('clge_newsletter_email', 'contact@clge.fr');
   ```
+- Nextcloud password is encrypted using AES-256 before storage in database
 
 ### File Security
 - All include files must have `defined('ABSPATH')` guard
