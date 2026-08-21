@@ -10,7 +10,7 @@ if (!defined("ABSPATH")) {
 
 /**
  * Shortcode [clge_cal_events]
- * Affiche les 7 prochains événements du calendrier clge_cal_events
+ * Affiche les 7 prochains événements des calendriers Nextcloud actifs
  *
  * Utilisation: [clge_cal_events]
  *
@@ -20,8 +20,28 @@ if (!defined("ABSPATH")) {
 if (!function_exists("clge_cal_events_shortcode")):
     function clge_cal_events_shortcode($atts = [])
     {
-        // Récupérer tous les événements
-        $events = clge_get_all_events();
+        // Récupérer tous les événements depuis Nextcloud (calendriers actifs)
+        error_log(
+            "CLGE Shortcode: class_exists Clge_Nextcloud_Events = " .
+                (class_exists("Clge_Nextcloud_Events") ? "YES" : "NO"),
+        );
+
+        if (class_exists("Clge_Nextcloud_Events")) {
+            $events = Clge_Nextcloud_Events::get_all_active_events();
+            error_log(
+                "CLGE Shortcode: " .
+                    count($events) .
+                    " événements récupérés depuis Nextcloud",
+            );
+        } else {
+            // Si la classe n'est pas disponible, retourner un message
+            error_log(
+                "CLGE Shortcode: ERREUR - Classe Clge_Nextcloud_Events non disponible",
+            );
+            return '<p class="clge-no-events">' .
+                esc_html__("Nextcloud Events: classe non disponible.", "clge") .
+                "</p>";
+        }
 
         // Filtrer: garder seulement les événements futurs et limiter à 7
         $now = new DateTime();

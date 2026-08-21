@@ -44,6 +44,7 @@ require_once __DIR__ . "/class-nextcloud-encryption.php";
 require_once __DIR__ . "/class-nextcloud-settings.php";
 require_once __DIR__ . "/class-nextcloud-api.php";
 require_once __DIR__ . "/class-nextcloud-calendars.php";
+require_once __DIR__ . "/class-nextcloud-events.php";
 require_once __DIR__ . "/class-nextcloud-ui.php";
 require_once __DIR__ . "/class-nextcloud-debug.php";
 
