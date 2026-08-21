@@ -17,7 +17,64 @@ if (!defined("ABSPATH")) {
  * @param array $atts Attributs du shortcode
  * @return string HTML des événements
  */
-if (!function_exists("clge_cal_events_shortcode")):
+
+// Fonction helper pour formater les dates
+if (!function_exists("clge_format_date_range")):
+    function clge_format_date_range($debut, $fin)
+    {
+        $mois_fr = [
+            1 => "janvier",
+            2 => "février",
+            3 => "mars",
+            4 => "avril",
+            5 => "mai",
+            6 => "juin",
+            7 => "juillet",
+            8 => "août",
+            9 => "septembre",
+            10 => "octobre",
+            11 => "novembre",
+            12 => "décembre",
+        ];
+
+        $debut_jour = (int) $debut->format("j");
+        $debut_mois = (int) $debut->format("n");
+        $debut_annee = (int) $debut->format("Y");
+
+        $fin_jour = (int) $fin->format("j");
+        $fin_mois = (int) $fin->format("n");
+        $fin_annee = (int) $fin->format("Y");
+
+        $date_principale = $debut_jour;
+        $date_secondaire = "";
+
+        // Même jour
+        if (
+            $debut_jour === $fin_jour &&
+            $debut_mois === $fin_mois &&
+            $debut_annee === $fin_annee
+        ) {
+            $date_secondaire = "&nbsp;" . $mois_fr[$debut_mois];
+        }
+        // Même mois et année
+        elseif ($debut_mois === $fin_mois && $debut_annee === $fin_annee) {
+            $date_principale = $debut_jour;
+            $date_secondaire = "-" . $fin_jour . "&nbsp;" . $mois_fr[$fin_mois];
+        }
+        // Mois différents
+        else {
+            $date_principale = $debut_jour . " " . $mois_fr[$debut_mois] . " -";
+            $date_secondaire = "&nbsp;" . $fin_jour . " " . $mois_fr[$fin_mois];
+        }
+
+        return [
+            "primary" => $date_principale,
+            "secondary" => $date_secondaire,
+        ];
+    }
+endif;
+
+if (!function_exists("clge_cal_events_shortcode")) {
     function clge_cal_events_shortcode($atts = [])
     {
         // Récupérer tous les événements depuis Nextcloud (calendriers actifs)
@@ -131,70 +188,98 @@ if (!function_exists("clge_cal_events_shortcode")):
                             margin-top: 5px;
                             text-align: right;
                         }
+                        .clge-event-description-link {
+                            color: #1b6db5;
+                            text-decoration: none;
+                            font-weight: 600;
+                        }
+                        .clge-event-description-link:hover {
+                            text-decoration: underline;
+                        }
+                        .clge-event-nom.clge-event-description-modal-trigger {
+                            cursor: pointer;
+                        }
+
+                        /* Modal styles */
+                        .clge-modal-overlay {
+                            display: none;
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background-color: rgba(0, 0, 0, 0.7);
+                            z-index: 10000;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                        .clge-modal-overlay.active {
+                            display: flex;
+                        }
+                        .clge-modal {
+                            background: white;
+                            padding: 25px;
+                            border-radius: 10px;
+                            max-width: 600px;
+                            width: 90%;
+                            max-height: 80vh;
+                            overflow-y: auto;
+                            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                            position: relative;
+                        }
+                        .clge-modal-close {
+                            position: absolute;
+                            top: 10px;
+                            right: 15px;
+                            background: none;
+                            border: none;
+                            font-size: 24px;
+                            cursor: pointer;
+                            color: #666;
+                        }
+                        .clge-modal-close:hover {
+                            color: #000;
+                        }
+                        .clge-modal-content {
+                            margin-top: 10px;
+                        }
                         </style>
             <?php $css_included = true;}
 
-        // Fonction helper pour formater les dates
-        if (!function_exists("clge_format_date_range")):
-            function clge_format_date_range($debut, $fin)
-            {
-                $mois_fr = [
-                    1 => "janvier",
-                    2 => "février",
-                    3 => "mars",
-                    4 => "avril",
-                    5 => "mai",
-                    6 => "juin",
-                    7 => "juillet",
-                    8 => "août",
-                    9 => "septembre",
-                    10 => "octobre",
-                    11 => "novembre",
-                    12 => "décembre",
-                ];
+        // Add modal HTML once
+        static $modal_added = false;
+        if (!$modal_added) {
+            echo '<div class="clge-modal-overlay" id="clge-modal-overlay"><div class="clge-modal"><button class="clge-modal-close" id="clge-modal-close">&times;</button><div class="clge-modal-content" id="clge-modal-content"></div></div></div>';
+            $modal_added = true;
+        }
 
-                $debut_jour = (int) $debut->format("j");
-                $debut_mois = (int) $debut->format("n");
-                $debut_annee = (int) $debut->format("Y");
-
-                $fin_jour = (int) $fin->format("j");
-                $fin_mois = (int) $fin->format("n");
-                $fin_annee = (int) $fin->format("Y");
-
-                $date_principale = $debut_jour;
-                $date_secondaire = "";
-
-                // Même jour
-                if (
-                    $debut_jour === $fin_jour &&
-                    $debut_mois === $fin_mois &&
-                    $debut_annee === $fin_annee
-                ) {
-                    $date_secondaire = "&nbsp;" . $mois_fr[$debut_mois];
-                }
-                // Même mois et année
-                elseif (
-                    $debut_mois === $fin_mois &&
-                    $debut_annee === $fin_annee
-                ) {
-                    $date_principale = $debut_jour;
-                    $date_secondaire =
-                        "-" . $fin_jour . "&nbsp;" . $mois_fr[$fin_mois];
-                }
-                // Mois différents
-                else {
-                    $date_principale =
-                        $debut_jour . " " . $mois_fr[$debut_mois] . " -";
-                    $date_secondaire =
-                        "&nbsp;" . $fin_jour . " " . $mois_fr[$fin_mois];
-                }
-
-                return [
-                    "primary" => $date_principale,
-                    "secondary" => $date_secondaire,
-                ];
-            }
-        endif;
+        // Add JavaScript once
+        static $js_added = false;
+        if (!$js_added) {
+            echo '<script>document.addEventListener("DOMContentLoaded", function() {';
+            echo 'var overlay = document.getElementById("clge-modal-overlay");';
+            echo 'var modal = document.querySelector(".clge-modal");';
+            echo 'var content = document.getElementById("clge-modal-content");';
+            echo 'var closeBtn = document.getElementById("clge-modal-close");';
+            echo 'var triggers = document.querySelectorAll(".clge-event-description-modal-trigger");';
+            echo "triggers.forEach(function(trigger) {";
+            echo 'trigger.addEventListener("click", function(e) {';
+            echo "e.preventDefault();";
+            echo 'content.textContent = this.getAttribute("data-description");';
+            echo 'overlay.classList.add("active");';
+            echo "});";
+            echo "});";
+            echo 'overlay.addEventListener("click", function(e) {';
+            echo "if (e.target === overlay) {";
+            echo 'overlay.classList.remove("active");';
+            echo "}";
+            echo "});";
+            echo 'closeBtn.addEventListener("click", function() {';
+            echo 'overlay.classList.remove("active");';
+            echo "});";
+            echo "});</script>";
+            $js_added = true;
+        }
         ?>
 
         <div class="clge-events-layout">
@@ -229,35 +314,59 @@ if (!function_exists("clge_cal_events_shortcode")):
                     </div>
                     <div class="clge-event-right">
                         <div class="clge-event-nom ">
-                            <a href="<?php echo isset($event->url) &&
-                            !empty($event->url)
-                                ? esc_url($event->url)
-                                : esc_url(
-                                    get_permalink(),
-                                ); ?>"<?php echo !$event->evt_clge
-    ? ' target="_blank" rel="noopener noreferrer"'
-    : ""; ?>>
-                                <?php if (!$event->evt_clge): ?>
-                                                                Formation:<br/>
-                                <?php endif; ?>
-                                <?php echo esc_html(
-                                    !empty($event->alias)
-                                        ? $event->alias
-                                        : $event->nom,
-                                ); ?></a>
+                            <?php
+                            $description = isset($event->description)
+                                ? trim($event->description)
+                                : "";
+
+                            if (!empty($description)) {
+                                if (
+                                    filter_var(
+                                        $description,
+                                        FILTER_VALIDATE_URL,
+                                    )
+                                ) {
+                                    // Cas 1: description est une URL -> lien vers cette URL
+                                    $event_link = esc_url($description);
+                                    $is_clge_url =
+                                        strpos($description, "clge.fr") !==
+                                        false;
+                                    $event_target = $is_clge_url
+                                        ? ""
+                                        : ' target="_blank" rel="noopener noreferrer"';
+                                    echo '<a href="' .
+                                        $event_link .
+                                        '"' .
+                                        $event_target .
+                                        ">";
+                                } else {
+                                    // Cas 2: description est du texte -> clic ouvre la modale
+                                    echo '<a href="#" class="clge-event-description-modal-trigger" data-description="' .
+                                        esc_attr($description) .
+                                        '">';
+                                }
+                            } else {
+                                // Cas 3: pas de description -> pas de lien du tout
+                                echo "<span>";
+                            }
+
+                            if (!$event->evt_clge) {
+                                echo "Formation:<br/>";
+                            }
+                            echo esc_html(
+                                !empty($event->alias)
+                                    ? $event->alias
+                                    : $event->nom,
+                            );
+
+                            if (!empty($description)) {
+                                echo "</a>";
+                            } else {
+                                echo "</span>";
+                            }
+                            ?>
                         </div>
                     </div>
-                    <?php if (!is_front_page()): ?>
-                    <div class="clge-event-description">
-                                                <?php echo isset(
-                                                    $event->description,
-                                                )
-                                                    ? esc_html(
-                                                        $event->description,
-                                                    )
-                                                    : ""; ?>
-                    </div>
-                    <?php endif; ?>
                 </article>
             <?php
             endforeach; ?>
@@ -265,5 +374,6 @@ if (!function_exists("clge_cal_events_shortcode")):
 
         <?php return ob_get_clean();
     }
-    add_shortcode("clge_cal_events", "clge_cal_events_shortcode");
-endif;
+}
+
+add_shortcode("clge_cal_events", "clge_cal_events_shortcode");
