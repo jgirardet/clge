@@ -27,275 +27,6 @@ $is_configured = Clge_Nextcloud_Settings::is_configured();
 ?>
 <div class="wrap clge-nextcloud-page">
 
-    <style>
-        .clge-nextcloud-page {
-            --clge-bg: #ffffff;
-            --clge-surface: #f8fafc;
-            --clge-border: #e5e7eb;
-            --clge-border-strong: #cbd5e1;
-            --clge-text: #1f2937;
-            --clge-muted: #6b7280;
-            --clge-title: #0f172a;
-            --clge-accent: #2563eb;
-            --clge-accent-hover: #1d4ed8;
-            --clge-success: #16a34a;
-            --clge-danger: #dc2626;
-            --clge-warning: #f59e0b;
-            --clge-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-        }
-
-        .clge-nextcloud-page h1 {
-            margin: 12px 0 24px;
-            text-align: center;
-            color: var(--clge-title);
-            font-size: 30px;
-            letter-spacing: 0.2px;
-        }
-
-        .clge-nextcloud-page h2 {
-            margin: 0 0 14px;
-            color: var(--clge-title);
-            font-size: 20px;
-        }
-
-        .clge-card {
-            background: var(--clge-bg);
-            border: 1px solid var(--clge-border);
-            border-radius: 12px;
-            box-shadow: var(--clge-shadow);
-            padding: 18px;
-            margin-bottom: 18px;
-        }
-
-        .clge-muted {
-            color: var(--clge-muted);
-            font-size: 13px;
-            margin-top: -4px;
-            margin-bottom: 12px;
-        }
-
-        .clge-notice-wrap .notice {
-            border-radius: 8px;
-            margin: 0 0 16px;
-        }
-
-        .clge-form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            align-items: start;
-        }
-
-        .clge-field {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            min-width: 0;
-        }
-
-        .clge-field label {
-            font-size: 12px;
-            font-weight: 600;
-            color: #334155;
-            letter-spacing: 0.03em;
-        }
-
-        .clge-field input,
-        .clge-field select {
-            width: 100%;
-            height: 38px;
-            padding: 8px 10px;
-            border: 1px solid var(--clge-border-strong);
-            border-radius: 8px;
-            background: #fff;
-            color: var(--clge-text);
-            box-sizing: border-box;
-            transition: border-color 0.15s ease, box-shadow 0.15s ease;
-        }
-
-        .clge-field input:focus,
-        .clge-field select:focus {
-            border-color: var(--clge-accent);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-        }
-
-        .clge-field input[type="password"] {
-            font-family: monospace;
-            letter-spacing: 0.5px;
-        }
-
-        .clge-submit {
-            height: 38px;
-            padding: 0 14px;
-            border: 0;
-            border-radius: 8px;
-            background: var(--clge-accent);
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: background 0.2s ease, transform 0.05s ease;
-        }
-
-        .clge-submit:hover,
-        .clge-submit:focus {
-            background: var(--clge-accent-hover);
-        }
-
-        .clge-submit:active {
-            transform: translateY(1px);
-        }
-
-        .clge-submit.secondary {
-            background: #64748b;
-        }
-
-        .clge-submit.secondary:hover,
-        .clge-submit.secondary:focus {
-            background: #475569;
-        }
-
-        .clge-submit.danger {
-            background: var(--clge-danger);
-        }
-
-        .clge-submit.danger:hover,
-        .clge-submit.danger:focus {
-            background: #991b1b;
-        }
-
-        .clge-info-box {
-            background: #e0f2fe;
-            border: 1px solid #bae6fd;
-            border-radius: 8px;
-            padding: 12px 14px;
-            color: #0369a1;
-            font-size: 13px;
-            margin-bottom: 16px;
-        }
-
-        .clge-info-box strong {
-            font-weight: 600;
-            color: #0284c7;
-        }
-
-        .clge-password-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            margin-top: 4px;
-        }
-
-        .clge-password-status.set {
-            color: var(--clge-success);
-        }
-
-        .clge-password-status.not-set {
-            color: var(--clge-warning);
-        }
-
-        .clge-form-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 16px;
-            flex-wrap: wrap;
-        }
-
-        .clge-test-connection-result {
-            margin-top: 12px;
-            padding: 10px 12px;
-            border-radius: 8px;
-            font-size: 13px;
-        }
-
-        .clge-test-connection-result.success {
-            background: #d1fae5;
-            border: 1px solid #a7f3d0;
-            color: #065f46;
-            display: block;
-        }
-
-        .clge-test-connection-result.error {
-            background: #fee2e2;
-            border: 1px solid #fecaca;
-            color: #991b1b;
-            display: block;
-        }
-
-        @media (max-width: 860px) {
-            .clge-nextcloud-page h1 {
-                font-size: 25px;
-            }
-
-            .clge-form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .clge-form-actions {
-                flex-direction: column;
-            }
-
-            .clge-form-actions .clge-submit {
-                width: 100%;
-            }
-        }
-
-        .clge-calendar-item {
-            margin: 8px 0;
-            padding: 8px;
-            border: 1px solid var(--clge-border);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: border-color 0.15s ease, box-shadow 0.15s ease;
-        }
-
-        .clge-calendar-item:hover {
-            border-color: var(--clge-border-strong);
-            box-shadow: var(--clge-shadow);
-        }
-
-        .clge-calendar-item input[type="checkbox"] {
-            margin: 0;
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
-        .clge-calendar-item label {
-            flex: 1;
-            cursor: pointer;
-            margin: 0;
-            line-height: 1.4;
-        }
-
-        .clge-calendar-item label strong {
-            color: var(--clge-text);
-            display: block;
-        }
-
-        .clge-calendar-item label small {
-            color: var(--clge-muted);
-            font-size: 11px;
-        }
-
-        .clge-calendar-item label code {
-            font-size: 11px;
-            color: var(--clge-muted);
-            background: var(--clge-surface);
-            padding: 2px 4px;
-            border-radius: 3px;
-        }
-
-        .clge-calendar-item.error {
-            color: var(--clge-danger);
-            background: #fee2e2;
-            border-color: #fecaca;
-        }
-    </style>
 
     <h1>Configuration Nextcloud</h1>
 
@@ -345,7 +76,7 @@ $is_configured = Clge_Nextcloud_Settings::is_configured();
                         placeholder="https://votre-serveur.cloud"
                         required
                     >
-                    <p class="clge-muted" style="font-size: 11px; margin-top: 2px;">Exemple: https://cloud.domain.com</p>
+                    <p class="clge-help-text">Exemple: https://cloud.domain.com</p>
                 </div>
 
                 <div class="clge-field">
@@ -378,7 +109,7 @@ $is_configured = Clge_Nextcloud_Settings::is_configured();
                             <span>⚠ Aucun mot de passe configuré</span>
                         <?php endif; ?>
                     </div>
-                    <p class="clge-muted" style="font-size: 11px; margin-top: 2px;">Laissez vide pour conserver le mot de passe actuel</p>
+                    <p class="clge-help-text">Laissez vide pour conserver le mot de passe actuel</p>
                 </div>
             </div>
 
@@ -394,7 +125,7 @@ $is_configured = Clge_Nextcloud_Settings::is_configured();
         </form>
 
         <div id="clge-nextcloud-actions-container">
-        <div class="clge-form-actions" style="margin-top: 16px;">
+        <div class="clge-form-actions clge-mt-4">
             <?php if ($nextcloud_has_password): ?>
             <button type="button" class="clge-submit danger"
                     hx-post="<?php echo esc_url(
@@ -410,7 +141,9 @@ $is_configured = Clge_Nextcloud_Settings::is_configured();
             </button>
             <?php endif; ?>
             <?php if (!empty($nextcloud_url) && !empty($nextcloud_username)): ?>
-            <button type="button" class="clge-submit secondary"
+            <button type="button" class="clge-submit secondary<?php echo $nextcloud_has_password
+                ? " clge-ml-2"
+                : ""; ?>"
                     hx-post="<?php echo esc_url(
                         admin_url("admin-ajax.php"),
                     ); ?>"
@@ -418,10 +151,7 @@ $is_configured = Clge_Nextcloud_Settings::is_configured();
                     hx-swap="innerHTML"
                     hx-vals='{"action": "clge_test_nextcloud_connection", "_wpnonce": "<?php echo esc_attr(
                         wp_create_nonce("clge_test_nextcloud_connection"),
-                    ); ?>"}'
-                    style="<?php echo $nextcloud_has_password
-                        ? "margin-left: 8px;"
-                        : ""; ?>">
+                    ); ?>"}'>
                 Tester la connexion
             </button>
             <?php endif; ?>
@@ -433,7 +163,7 @@ $is_configured = Clge_Nextcloud_Settings::is_configured();
         <h2>Calendriers à synchroniser</h2>
         <p class="clge-muted">Sélectionnez les calendriers distants Nextcloud que vous souhaitez synchroniser avec votre site.</p>
 
-        <div id="clge-calendars-container" style="margin-top: 16px;">
+        <div id="clge-calendars-container" class="clge-mt-4">
             <button type="button" class="clge-submit secondary"
                     hx-get="<?php echo esc_url(admin_url("admin-ajax.php")); ?>"
                     hx-target="#clge-calendars-list"
@@ -445,7 +175,7 @@ $is_configured = Clge_Nextcloud_Settings::is_configured();
                 Charger les calendriers
             </button>
 
-            <div id="clge-calendars-list" style="margin-top: 12px;" <?php if (
+            <div id="clge-calendars-list" class="clge-mt-3" <?php if (
                 $is_configured
             ): ?>hx-get="<?php echo esc_url(
     admin_url("admin-ajax.php"),
@@ -457,15 +187,15 @@ $is_configured = Clge_Nextcloud_Settings::is_configured();
 
     <section class="clge-card">
         <h2>Documentation</h2>
-        <div style="background: var(--clge-surface); padding: 12px; border-radius: 8px;">
-            <p style="margin: 0 0 8px 0;"><strong>Comment obtenir les informations de connexion :</strong></p>
-            <ol style="margin: 0 0 0 18px; padding: 0;">
+        <div class="clge-doc-box">
+            <p><strong>Comment obtenir les informations de connexion :</strong></p>
+            <ol>
                 <li>Connectez-vous à votre instance Nextcloud</li>
                 <li>Allez dans Paramètres → Sécurité</li>
                 <li>Générez un "App Password" (mot de passe d'application) si vous utilisez l'authentification à 2 facteurs</li>
                 <li>Copiez l'URL de votre serveur, votre nom d'utilisateur et le mot de passe</li>
             </ol>
-            <p style="margin: 8px 0 0 0; font-size: 12px;">
+            <p>
                 <strong>Note :</strong> Ce plugin utilise la clé <code>SECURE_AUTH_KEY</code> de votre <code>wp-config.php</code> pour le chiffrement.
                 Si vous changez cette clé, vous devrez ressaisir le mot de passe.
             </p>

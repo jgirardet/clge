@@ -390,3 +390,19 @@ require get_template_directory() . "/inc/clge/database.php";
 require get_template_directory() . "/inc/clge/nextcloud/class-nextcloud.php";
 
 require get_template_directory() . "/inc/clge/shortcodes.php";
+
+// Charger le CSS admin pour les pages CLGE
+function clge_admin_enqueue_styles($hook)
+{
+    // Charger le CSS admin sur la page principale CLGE
+    // Les autres templates (calendrier, nextcloud, debug) sont chargés via HTMX dans cette page
+    if ($hook === "toplevel_page_clge") {
+        wp_enqueue_style(
+            "clge-admin-css",
+            get_template_directory_uri() . "/clge-admin.css",
+            [],
+            "1.0.0",
+        );
+    }
+}
+add_action("admin_enqueue_scripts", "clge_admin_enqueue_styles");

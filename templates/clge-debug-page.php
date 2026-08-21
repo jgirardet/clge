@@ -23,23 +23,21 @@ $debug_nonce = esc_attr(wp_create_nonce("clge_debug_nextcloud_events"));
 <div class="wrap clge-debug-page">
     <h1>Debug Nextcloud</h1>
 
-    <div class="clge-card" style="margin-top: 20px;">
+    <div class="clge-card clge-mt-5">
         <h2>Événements Nextcloud</h2>
         <p class="clge-muted">Affiche les événements bruts d'un calendrier Nextcloud.</p>
 
-        <form id="clge-debug-form"
+        <form id="clge-debug-form" class="clge-mt-4"
               hx-post="<?php echo $admin_ajax_url; ?>"
               hx-target="#clge-debug-events-result"
-              hx-swap="innerHTML"
-              style="margin-top: 16px;">
+              hx-swap="innerHTML">
 
             <input type="hidden" name="action" value="clge_debug_nextcloud_events">
             <input type="hidden" name="_wpnonce" value="<?php echo $debug_nonce; ?>">
 
             <div class="clge-field">
                 <label for="clge-debug-calendar-select">Sélectionner un calendrier</label>
-                <select id="clge-debug-calendar-select" name="calendar_url"
-                        style="width: 100%; height: 38px; padding: 8px 10px; border: 1px solid var(--clge-border-strong); border-radius: 8px; background: #fff; color: var(--clge-text);">
+                <select id="clge-debug-calendar-select" name="calendar_url">
                     <option value="">-- Choisir un calendrier --</option>
                     <?php
                     // Charger les calendriers configurés
@@ -66,91 +64,13 @@ $debug_nonce = esc_attr(wp_create_nonce("clge_debug_nextcloud_events"));
                 </select>
             </div>
 
-            <div style="margin-top: 12px;">
+            <div class="clge-mt-3">
                 <button type="submit" class="clge-submit secondary">
                     Charger les événements
                 </button>
             </div>
         </form>
 
-        <div id="clge-debug-events-result" style="margin-top: 16px;"></div>
+        <div id="clge-debug-events-result" class="clge-mt-4"></div>
     </div>
 </div>
-
-<style>
-    .clge-debug-page {
-        --clge-bg: #ffffff;
-        --clge-surface: #f8fafc;
-        --clge-border: #e5e7eb;
-        --clge-border-strong: #cbd5e1;
-        --clge-text: #1f2937;
-        --clge-muted: #6b7280;
-        --clge-title: #0f172a;
-        --clge-accent: #2563eb;
-        --clge-accent-hover: #1d4ed8;
-        --clge-success: #16a34a;
-        --clge-danger: #dc2626;
-        --clge-warning: #f59e0b;
-        --clge-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-    }
-
-    .clge-debug-page h1 {
-        margin: 12px 0 24px;
-        color: var(--clge-title);
-        font-size: 30px;
-        letter-spacing: 0.2px;
-    }
-
-    .clge-debug-page h2 {
-        margin: 0 0 14px;
-        color: var(--clge-title);
-        font-size: 20px;
-    }
-
-    .clge-card {
-        background: var(--clge-bg);
-        border: 1px solid var(--clge-border);
-        border-radius: 12px;
-        box-shadow: var(--clge-shadow);
-        padding: 18px;
-        margin-bottom: 18px;
-    }
-
-    .clge-muted {
-        color: var(--clge-muted);
-        font-size: 13px;
-        margin-top: -4px;
-        margin-bottom: 12px;
-    }
-
-    .clge-submit {
-        height: 38px;
-        padding: 0 14px;
-        border: 0;
-        border-radius: 8px;
-        background: var(--clge-accent);
-        color: #fff;
-        font-weight: 600;
-        cursor: pointer;
-        white-space: nowrap;
-        transition: background 0.2s ease, transform 0.05s ease;
-    }
-
-    .clge-submit:hover,
-    .clge-submit:focus {
-        background: var(--clge-accent-hover);
-    }
-
-    .clge-submit:active {
-        transform: translateY(1px);
-    }
-
-    .clge-submit.secondary {
-        background: #64748b;
-    }
-
-    .clge-submit.secondary:hover,
-    .clge-submit.secondary:focus {
-        background: #475569;
-    }
-</style>

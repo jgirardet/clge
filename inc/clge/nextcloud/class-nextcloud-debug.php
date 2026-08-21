@@ -71,11 +71,11 @@ class Clge_Nextcloud_Debug
         }
 
         // Afficher les événements pour le debug
-        echo '<div class="clge-debug-result" style="background: #f8fafc; padding: 16px; border-radius: 8px; margin-top: 16px;">';
-        echo '<h3 style="margin-top: 0;">Événements trouvés: ' .
+        echo '<div class="clge-debug-result clge-mt-4">';
+        echo '<h3 class="clge-mt-0">Événements trouvés: ' .
             count($events) .
             "</h3>";
-        echo '<pre style="background: #fff; padding: 12px; border-radius: 6px; overflow-x: auto; white-space: pre-wrap;">';
+        echo '<pre class="clge-pre-debug">';
         echo htmlspecialchars(print_r($events, true), ENT_QUOTES, "UTF-8");
         echo "</pre>";
         echo "</div>";

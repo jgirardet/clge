@@ -142,110 +142,6 @@ if (!function_exists("clge_cal_events_shortcode")) {
         // Démarrer le tampon de sortie
         ob_start();
 
-        // Inclure le CSS inline uniquement si pas déjà fait
-        static $css_included = false;
-        if (!$css_included) { ?>
-            <style id="clge-cal-events-styles">
-                        .clge-event-box {
-                            display: flex;
-                            justify-content: space-between;
-                            flex-direction: column;
-                            /*align-items: center;*/
-                            margin-bottom: 10px;
-                            border: 0 black solid;
-                            border-radius: 10px;
-                            background-color: #c5c9cc33;
-                            padding: 5px;
-                            box-shadow: rgba(0, 0, 0, 0.05) 0 2px 32px, rgba(0, 0, 0, 0.05) 0 2px 1px;
-                        }
-                        .clge-event-left {
-                            display: flex;
-                            align-items: center;
-                            justify-content: left;
-                        }
-                        .clge-event-date-primary {
-                            color: #1b6db5;
-                            font-weight: 600;
-                        }
-                        .clge-event-lieu {
-                            color: #1b6db5;
-                            text-transform: uppercase;
-                            font-weight: 600;
-                            flex:1;
-                            text-align: center  ;
-                        }
-                        .clge-event-nom {
-                            color: #f29816;
-                            font-weight: 700;
-                            display: flex;
-                            justify-content: right;
-                            text-align: right;
-
-                        }
-                        .clge-event-description {
-                            color: #666;
-                            font-size: 0.9em;
-                            margin-top: 5px;
-                            text-align: right;
-                        }
-                        .clge-event-description-link {
-                            color: #1b6db5;
-                            text-decoration: none;
-                            font-weight: 600;
-                        }
-                        .clge-event-description-link:hover {
-                            text-decoration: underline;
-                        }
-                        .clge-event-nom.clge-event-description-modal-trigger {
-                            cursor: pointer;
-                        }
-
-                        /* Modal styles */
-                        .clge-modal-overlay {
-                            display: none;
-                            position: fixed;
-                            top: 0;
-                            left: 0;
-                            right: 0;
-                            bottom: 0;
-                            background-color: rgba(0, 0, 0, 0.7);
-                            z-index: 10000;
-                            align-items: center;
-                            justify-content: center;
-                        }
-                        .clge-modal-overlay.active {
-                            display: flex;
-                        }
-                        .clge-modal {
-                            background: white;
-                            padding: 25px;
-                            border-radius: 10px;
-                            max-width: 600px;
-                            width: 90%;
-                            max-height: 80vh;
-                            overflow-y: auto;
-                            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-                            position: relative;
-                        }
-                        .clge-modal-close {
-                            position: absolute;
-                            top: 10px;
-                            right: 15px;
-                            background: none;
-                            border: none;
-                            font-size: 24px;
-                            cursor: pointer;
-                            color: #666;
-                        }
-                        .clge-modal-close:hover {
-                            color: #000;
-                        }
-                        .clge-modal-content {
-                            margin-top: 10px;
-                        }
-                        </style>
-            <?php $css_included = true;}
-
         // Add modal HTML once
         static $modal_added = false;
         if (!$modal_added) {
@@ -298,11 +194,11 @@ if (!function_exists("clge_cal_events_shortcode")) {
                 ?>
                 <article class="clge-event-box">
                     <div class="clge-event-left">
-                        <span class="clge-event-date-primary"><?php echo esc_html(
+                        <span class="clge-event-date"><?php echo esc_html(
                             $date_parts["primary"],
                         ); ?></span>
                         <?php if (!empty($date_parts["secondary"])): ?>
-                            <span class="clge-event-date-primary"><?php echo esc_html(
+                            <span class="clge-event-date"><?php echo esc_html(
                                 $date_parts["secondary"],
                             ); ?>
 

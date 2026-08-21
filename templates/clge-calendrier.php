@@ -6,202 +6,17 @@
 ?>
 <div class="wrap clge-calendar-page">
 
-	<style>
-		.clge-calendar-page {
-			--clge-bg: #ffffff;
-			--clge-surface: #f8fafc;
-			--clge-border: #e5e7eb;
-			--clge-border-strong: #cbd5e1;
-			--clge-text: #1f2937;
-			--clge-muted: #6b7280;
-			--clge-title: #0f172a;
-			--clge-accent: #2563eb;
-			--clge-accent-hover: #1d4ed8;
-			--clge-success: #16a34a;
-			--clge-danger: #dc2626;
-			--clge-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-		}
-
-		.clge-calendar-page h1 {
-			margin: 12px 0 24px;
-			text-align: center;
-			color: var(--clge-title);
-			font-size: 30px;
-			letter-spacing: 0.2px;
-		}
-
-		.clge-calendar-page h2 {
-			margin: 0 0 14px;
-			color: var(--clge-title);
-			font-size: 20px;
-		}
-
-		.clge-card {
-			background: var(--clge-bg);
-			border: 1px solid var(--clge-border);
-			border-radius: 12px;
-			box-shadow: var(--clge-shadow);
-			padding: 18px;
-			margin-bottom: 18px;
-		}
-
-		.clge-muted {
-			color: var(--clge-muted);
-			font-size: 13px;
-			margin-top: -4px;
-			margin-bottom: 12px;
-		}
-
-		.clge-notice-wrap .notice {
-			border-radius: 8px;
-			margin: 0 0 16px;
-		}
-
-		.clge-add-form {
-			width: 100%;
-		}
-
-		.clge-form-grid {
-			display: grid;
-			grid-template-columns: 2fr 1.4fr 1.6fr 1fr 0.9fr 1fr 0.9fr auto;
-			gap: 12px;
-			align-items: end;
-		}
-
-		.clge-field {
-			display: flex;
-			flex-direction: column;
-			gap: 6px;
-			min-width: 0;
-		}
-
-		.clge-field label {
-			font-size: 12px;
-			font-weight: 600;
-			color: #334155;
-			letter-spacing: 0.03em;
-		}
-
-		.clge-field input,
-		.clge-field select {
-			width: 100%;
-			height: 38px;
-			padding: 8px 10px;
-			border: 1px solid var(--clge-border-strong);
-			border-radius: 8px;
-			background: #fff;
-			color: var(--clge-text);
-			box-sizing: border-box;
-			transition: border-color 0.15s ease, box-shadow 0.15s ease;
-		}
-
-		.clge-field input:focus,
-		.clge-field select:focus {
-			border-color: var(--clge-accent);
-			outline: none;
-			box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-		}
-
-		.clge-submit {
-			height: 38px;
-			padding: 0 14px;
-			border: 0;
-			border-radius: 8px;
-			background: var(--clge-accent);
-			color: #fff;
-			font-weight: 600;
-			cursor: pointer;
-			white-space: nowrap;
-			transition: background 0.2s ease, transform 0.05s ease;
-		}
-
-		.clge-submit:hover,
-		.clge-submit:focus {
-			background: var(--clge-accent-hover);
-		}
-
-		.clge-submit:active {
-			transform: translateY(1px);
-		}
-
-		.clge-submit.secondary {
-			background: #0f766e;
-		}
-
-		.clge-submit.secondary:hover,
-		.clge-submit.secondary:focus {
-			background: #0d5f59;
-		}
-
-		.clge-cnge-row {
-			display: flex;
-			gap: 10px;
-			align-items: end;
-			flex-wrap: wrap;
-		}
-
-		.clge-cnge-row .clge-field {
-			flex: 1 1 360px;
-		}
-
-		.clge-cnge-row .clge-submit {
-			flex: 0 0 auto;
-		}
-
-		.clge-events-shell {
-			background: var(--clge-surface);
-			border: 1px solid var(--clge-border);
-			border-radius: 12px;
-			padding: 10px;
-			min-height: 80px;
-		}
-
-		.clge-loading {
-			color: var(--clge-muted);
-			font-style: italic;
-			padding: 8px;
-		}
-
-		@media (max-width: 1280px) {
-			.clge-form-grid {
-				grid-template-columns: 2fr 1.5fr 1.6fr 1fr 1fr 1fr 1fr;
-			}
-
-			.clge-form-grid .clge-submit {
-				grid-column: 1 / -1;
-				justify-self: start;
-			}
-		}
-
-		@media (max-width: 860px) {
-			.clge-calendar-page h1 {
-				font-size: 25px;
-			}
-
-			.clge-form-grid {
-				grid-template-columns: 1fr;
-			}
-
-			.clge-form-grid .clge-submit {
-				width: 100%;
-			}
-
-			.clge-cnge-row .clge-submit {
-				width: 100%;
-			}
-		}
-	</style>
 
 	<h1>Calendrier CLGE</h1>
 
 	<div class="clge-notice-wrap">
-		<?php if ( ! empty( $error ) ) : ?>
+		<?php if (!empty($error)): ?>
 			<div class="notice notice-error">
-				<p><?php echo esc_html( $error ); ?></p>
+				<p><?php echo esc_html($error); ?></p>
 			</div>
-		<?php elseif ( ! empty( $message ) ) : ?>
+		<?php elseif (!empty($message)): ?>
 			<div class="notice notice-warning">
-				<p><?php echo esc_html( $message ); ?></p>
+				<p><?php echo esc_html($message); ?></p>
 			</div>
 		<?php endif; ?>
 	</div>
@@ -218,7 +33,9 @@
 			hx-on::after-request="if(event.detail.successful) this.reset()"
 		>
 			<input type="hidden" name="action" value="clge_add_event">
-			<input type="hidden" name="_wpnonce" value="<?php echo esc_attr( wp_create_nonce( 'clge_add_event' ) ); ?>">
+			<input type="hidden" name="_wpnonce" value="<?php echo esc_attr(
+       wp_create_nonce("clge_add_event"),
+   ); ?>">
 			<input type="hidden" name="evt_clge" value="1">
 
 			<div class="clge-form-grid">
@@ -270,12 +87,12 @@
 				</div>
 			</div>
 
-			<div class="clge-field" style="margin-top: 12px;">
+			<div class="clge-field clge-mt-3">
 				<label for="description">Description</label>
-				<textarea id="description" name="description" rows="4" style="resize: vertical; width: 100%;"></textarea>
+				<textarea id="description" name="description" rows="4"></textarea>
 			</div>
 
-			<div style="margin-top: 12px;">
+			<div class="clge-mt-3">
 				<button type="submit" class="clge-submit">Ajouter</button>
 			</div>
 		</form>
@@ -287,7 +104,9 @@
 
 		<form hx-post="/wp-admin/admin-ajax.php" hx-target="#cal_events_list">
 			<input type="hidden" name="action" value="clge_add_cnge_formation">
-			<input type="hidden" name="_wpnonce" value="<?php echo esc_attr( wp_create_nonce( 'clge_add_cnge_formation' ) ); ?>">
+			<input type="hidden" name="_wpnonce" value="<?php echo esc_attr(
+       wp_create_nonce("clge_add_cnge_formation"),
+   ); ?>">
 
 			<div class="clge-cnge-row">
 				<div class="clge-field">
@@ -311,7 +130,7 @@
 		<div
 			class="clge-events-shell"
 			id="events-list"
-			hx-get="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
+			hx-get="<?php echo esc_url(admin_url("admin-ajax.php")); ?>"
 			hx-target="#events-list"
 			hx-trigger="load"
 			hx-swap="innerHTML"
