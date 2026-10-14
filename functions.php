@@ -124,7 +124,12 @@ if (!function_exists("clge_scripts")):
      */
     function clge_scripts()
     {
-        wp_enqueue_style("clge-style", get_stylesheet_uri());
+        // Version basée sur la date de modification pour purger le cache navigateur à chaque mise à jour du CSS
+        $style_file = get_stylesheet_directory() . "/style.css";
+        $style_version = file_exists($style_file)
+            ? (string) filemtime($style_file)
+            : wp_get_theme()->get("Version");
+        wp_enqueue_style("clge-style", get_stylesheet_uri(), [], $style_version);
         wp_enqueue_script(
             "clge-skip-link-focus-fix",
             get_template_directory_uri() . "/js/skip-link-focus-fix.js",
