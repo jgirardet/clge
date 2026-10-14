@@ -1623,6 +1623,13 @@ img.alignright,
 	padding: 0;
 }
 
+/* Les e-mails collés ne doivent pas déborder de leur conteneur (cellules étroites
+   de la grille Masonry en page d'accueil) : la carte s'adapte à la place disponible */
+.post-content .clge-email-embed table {
+	max-width: 100% !important;
+	min-width: 0 !important;
+}
+
 
 /* Forms --------------------------------------- */
 
