@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Clge WordPress Theme, Copyright 2026 Jimmy Girardet
-Based on the Baskerville 2 WordPress Theme, (c) 2017 Anders Norén
+Based on the Baskerville 2 WordPress Theme, (c) 2017 Anders Norén.
 
 
 == Description ==
