@@ -357,6 +357,21 @@ function handle_newsletter_submission()
     wp_die();
 }
 
+/**
+ * Encapsule les e-mails collés dans un article (ex : courrier du CLGE
+ * généré depuis Canva) dans un conteneur dédié afin de neutraliser le
+ * zébrage des tableaux du thème sur ces contenus.
+ */
+function clge_wrap_email_embed($content)
+{
+    if (stripos($content, "canva-cdn") !== false || stripos($content, "bgcolor=") !== false) {
+        $content = '<div class="clge-email-embed">' . $content . "</div>";
+    }
+
+    return $content;
+}
+add_filter("the_content", "clge_wrap_email_embed", 20);
+
 // Inclure les fichiers du module CLGE
 require get_template_directory() . "/inc/cngeformations.php";
 require get_template_directory() . "/inc/clge-admin-page.php";

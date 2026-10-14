@@ -1607,6 +1607,22 @@ img.alignright,
 	background: #f9f9f9;
 }
 
+/* Neutralise les styles de tableaux du thème pour les e-mails collés (ex : courrier Canva), construits entièrement en <table> :
+   zébrage, bordure grise sous chaque cellule et padding cumulé sur les tables imbriquées */
+.post-content .clge-email-embed table tbody>tr:nth-child(odd)>td,
+.post-content .clge-email-embed table tbody>tr:nth-child(odd)>th {
+	background: transparent;
+}
+
+.post-content .clge-email-embed th,
+.post-content .clge-email-embed td {
+	border-bottom: 0;
+	line-height: normal;
+	margin: 0;
+	overflow: visible;
+	padding: 0;
+}
+
 
 /* Forms --------------------------------------- */
 
