@@ -1624,9 +1624,11 @@ img.alignright,
 }
 
 /* Les e-mails collés ne doivent pas déborder de leur conteneur (cellules étroites
-   de la grille Masonry en page d'accueil) : la carte s'adapte à la place disponible */
+   de la grille Masonry en page d'accueil). Même comportement que la version
+   mobile de l'e-mail : la carte s'adapte à la place disponible ; la largeur
+   inline max-width:600px de la carte préserve le rendu 600px sur page article. */
 .post-content .clge-email-embed table {
-	max-width: 100% !important;
+	width: 100% !important;
 	min-width: 0 !important;
 }
 
